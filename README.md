@@ -6,7 +6,7 @@ Read the Docs Documentation: *soon available*
 
 # Counterdiabatic Optimized Local Driving annealER
 
-This package provides tool for Spin system simulation and optimization through a combination of Quantum Optimal Control and Counterdiabatic Driving techniques, as inspired by the [source paper](https://journals.aps.org/prxquantum/abstract/10.1103/PRXQuantum.4.010312).
+This package provides tool for Spin system simulation and optimization through a combination of Quantum Optimal Control and Counterdiabatic Driving techniques, as inspired by this [reference paper](https://journals.aps.org/prxquantum/abstract/10.1103/PRXQuantum.4.010312).
 The framework allows to prompt the system through a simplified interface and automatically solve the minimization of the Adiabatic Gauge Potential (AGP) for a given local ansatz.
 
 *Package creator*: Barone Francesco Pio, openlab summer 2023 intern
