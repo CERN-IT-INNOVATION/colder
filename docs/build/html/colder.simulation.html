@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>colder.simulation package &mdash; colder 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="colder.models package" href="colder.models.html" />
+    <link rel="prev" title="colder package" href="colder.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            colder
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Counterdiabatic Optimized Local Driving annealER</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Package documentation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="colder.html">colder package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="colder.html#main-modules">main modules</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">colder.simulation package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-colder.simulation.annealing">annealing module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-colder.simulation.cold">COLD module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-colder.simulation.numerical">numerical module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="colder.models.html">colder.models package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.gauge.html">colder.gauge package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.quantum.html">quantum package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.core.physics.html">core physics package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="colder.html#support-modules">support modules</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">colder</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="colder.html">colder package</a></li>
+      <li class="breadcrumb-item active">colder.simulation package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/colder.simulation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="colder-simulation-package">
+<h1>colder.simulation package<a class="headerlink" href="#colder-simulation-package" title="Permalink to this heading"></a></h1>
+<p>Implements all the interface classes to handle an annealing simulation.</p>
+<section id="module-colder.simulation.annealing">
+<span id="annealing-module"></span><h2>annealing module<a class="headerlink" href="#module-colder.simulation.annealing" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="colder.simulation.annealing.annealing">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">colder.simulation.annealing.</span></span><span class="sig-name descname"><span class="pre">annealing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'scipy'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend_options</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colder/simulation/annealing.html#annealing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.simulation.annealing.annealing" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Quantum annealing simulation. The total evolution time is provided by arg <cite>tau</cite>.
+Either one argument must be provided between <cite>P</cite> (total steps) and <cite>dt</cite> (timestep).</p>
+<p class="rubric">Example</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">colder.simulation.annealing</span>
+<span class="n">ann</span> <span class="o">=</span> <span class="n">colder</span><span class="o">.</span><span class="n">simulation</span><span class="o">.</span><span class="n">annealing</span><span class="o">.</span><span class="n">annealing</span><span class="p">(</span><span class="n">tau</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">P</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span> <span class="n">backend</span> <span class="o">=</span> <span class="s1">&#39;scipy&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">H_t</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="c1"># timedependent hamiltonian</span>
+    <span class="k">return</span> <span class="o">...</span>
+
+<span class="n">psi0</span> <span class="o">=</span> <span class="o">...</span>  <span class="c1"># the initial state</span>
+
+<span class="n">psi_final</span> <span class="o">=</span> <span class="n">ann</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">H_t</span><span class="p">,</span> <span class="n">psi0</span><span class="o">=</span><span class="n">psi0</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.simulation.annealing.annealing.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'scipy'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend_options</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/colder/simulation/annealing.html#annealing.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.simulation.annealing.annealing.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize a quantum annealing simulation. The total evolution time is provided by arg <cite>tau</cite>.
+Either one argument must be provided between <cite>P</cite> (total steps) and <cite>dt</cite> (timestep).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tau</strong> (<em>float</em>) – Total annealing time.</p></li>
+<li><p><strong>P</strong> (<em>Union</em><em>[</em><em>int</em><em>,</em><em>None</em><em>]</em><em>, </em><em>optional</em>) – Number of timesteps. Defaults to None. If provided, overrides the value of <cite>dt</cite>.</p></li>
+<li><p><strong>dt</strong> (<em>Union</em><em>[</em><em>float</em><em>,</em><em>None</em><em>]</em><em>, </em><em>optional</em>) – Timestep. Defaults to None.</p></li>
+<li><p><strong>backend</strong> (<em>str</em><em>, </em><em>optional</em>) – Select a backend. Defaults to ‘qibo’. Available backends: <cite>qibo</cite>, <cite>scipy</cite>, <cite>sparse</cite>, <cite>cupy</cite>.</p></li>
+<li><p><strong>backend_options</strong> (<em>dict</em><em>, </em><em>optional</em>) – Dictionary of kwargs to pass to backend. Defaults to {}.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>Exception</strong> – Must provide either the timestep <cite>dt</cite> or the total number of steps <cite>P</cite>. If both values are prompted, <cite>P</cite> is taken in consideration.</p></li>
+<li><p><strong>Exception</strong> – Not valid backend identifier.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.simulation.annealing.annealing.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">H</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'superpos'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hook_function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="_modules/colder/simulation/annealing.html#annealing.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.simulation.annealing.annealing.run" title="Permalink to this definition"></a></dt>
+<dd><p>Run the annealing simulation with time dependent hamiltonian. H must be a function of time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>H</strong> (<em>callable</em>) – Function that returns the hamiltonian at time t.</p></li>
+<li><p><strong>psi0</strong> (<em>Union</em><em>[</em><em>np.ndarray</em><em>, </em><em>str</em><em>]</em><em>, </em><em>optional</em>) – Initial state. Defaults to ‘superpos’.</p></li>
+<li><p><strong>hook_function</strong> (<em>Union</em><em>[</em><em>callable</em><em>,</em><em>None</em><em>]</em><em>, </em><em>optional</em>) – Function to execute at each time step. Arguments must be <cite>(t : float, state : np.ndarray)</cite>. Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Evolved quantum state.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-colder.simulation.cold">
+<span id="cold-module"></span><h2>COLD module<a class="headerlink" href="#module-colder.simulation.cold" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="colder.simulation.cold.get_functions_from_schedule">
+<span class="sig-prename descclassname"><span class="pre">colder.simulation.cold.</span></span><span class="sig-name descname"><span class="pre">get_functions_from_schedule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">schedules</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="_modules/colder/simulation/cold.html#get_functions_from_schedule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.simulation.cold.get_functions_from_schedule" title="Permalink to this definition"></a></dt>
+<dd><p>Extract the function for every interpolation.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="colder.simulation.cold.check_hamiltonian_input">
+<span class="sig-prename descclassname"><span class="pre">colder.simulation.cold.</span></span><span class="sig-name descname"><span class="pre">check_hamiltonian_input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="colder.core.physics.html#colder.core.physics.hamiltonian_collection" title="colder.core.physics.hamiltonian_collection"><span class="pre">hamiltonian_collection</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="_modules/colder/simulation/cold.html#check_hamiltonian_input"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.simulation.cold.check_hamiltonian_input" title="Permalink to this definition"></a></dt>
+<dd><p>Check input obj to be hamiltonian_collection or hamiltonian. Otherwise returns None (to be handled).</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="colder.simulation.cold.cold">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">colder.simulation.cold.</span></span><span class="sig-name descname"><span class="pre">cold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">system</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="colder.core.physics.html#colder.core.physics.hamiltonian_collection" title="colder.core.physics.hamiltonian_collection"><span class="pre">hamiltonian_collection</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ansatz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="colder.core.physics.html#colder.core.physics.hamiltonian_collection" title="colder.core.physics.hamiltonian_collection"><span class="pre">hamiltonian_collection</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">annealing_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nspin</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_cache_agp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="colder.gauge.html#colder.gauge.adiabatic_potential.cache_lcd_numpy" title="colder.gauge.adiabatic_potential.cache_lcd_numpy"><span class="pre">cache_lcd_numpy</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system_fargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qoc_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'scipy'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colder/simulation/cold.html#cold"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.simulation.cold.cold" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>COLD object to handle the annealing simulation and optimization.</p>
+<p class="rubric">Example</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">colder.simulation.cold</span> <span class="k">as</span> <span class="nn">ccold</span>
+
+<span class="n">tau</span> <span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.01</span>  <span class="c1"># annealing time</span>
+<span class="n">nsteps</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">200</span>  <span class="c1"># number of steps for discrete annealing simulation</span>
+<span class="n">Nk</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># frequencies to control in QOC functions</span>
+
+<span class="n">H</span> <span class="o">=</span> <span class="o">...</span>
+<span class="n">ansatz</span> <span class="o">=</span> <span class="o">...</span>
+
+<span class="n">csym</span> <span class="o">=</span> <span class="n">ccold</span><span class="o">.</span><span class="n">cold</span><span class="p">(</span>
+    <span class="n">system</span> <span class="o">=</span> <span class="n">H</span><span class="p">,</span> <span class="n">ansatz</span> <span class="o">=</span> <span class="n">ansatz</span><span class="p">,</span> <span class="n">annealing_time</span> <span class="o">=</span> <span class="n">tau</span><span class="p">,</span> <span class="n">nspin</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="n">system_fargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;tau&#39;</span> <span class="p">:</span> <span class="n">tau</span><span class="p">,</span> <span class="s1">&#39;beta&#39;</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">Nk</span><span class="p">)},</span>
+    <span class="c1"># name of the parameter to treat as QOC parameter to optimize</span>
+    <span class="n">qoc_parameters</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;beta&#39;</span><span class="p">],</span>
+    <span class="n">backend</span> <span class="o">=</span> <span class="s1">&#39;scipy&#39;</span>
+<span class="p">)</span>
+
+<span class="n">csym</span><span class="o">.</span><span class="n">be_ready</span><span class="p">()</span>
+
+<span class="n">psi0</span> <span class="o">=</span> <span class="n">csym</span><span class="o">.</span><span class="n">get_psi_zero</span><span class="p">()</span>
+<span class="n">truegs</span> <span class="o">=</span> <span class="n">csym</span><span class="o">.</span><span class="n">get_psi_final</span><span class="p">()</span>
+
+<span class="c1"># define the loss function to optimize</span>
+<span class="k">def</span> <span class="nf">loss_infidelity</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+<span class="c1"># note: the input of this function are the final state psi and the optimized parameter (beta, in this case)</span>
+    <span class="n">infidelity</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">colder</span><span class="o">.</span><span class="n">quantum</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">fidelity</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">truegs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">infidelity</span>
+
+<span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">Nk</span><span class="p">)</span> <span class="c1"># initial guess of parameters</span>
+<span class="n">optim</span> <span class="o">=</span> <span class="n">csym</span><span class="o">.</span><span class="n">run_cold_opti</span><span class="p">(</span><span class="n">init_parameters</span> <span class="o">=</span> <span class="n">x0</span><span class="p">,</span>
+    <span class="n">loss_function</span> <span class="o">=</span> <span class="n">loss_infidelity</span><span class="p">,</span> <span class="n">psi0</span> <span class="o">=</span> <span class="n">psi0</span><span class="p">,</span> <span class="n">annealer_nsteps</span> <span class="o">=</span> <span class="n">nsteps</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Remark: the loss function to be optimized must accept as arguments the final state and the optimized parameter.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.simulation.cold.cold.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">system</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="colder.core.physics.html#colder.core.physics.hamiltonian_collection" title="colder.core.physics.hamiltonian_collection"><span class="pre">hamiltonian_collection</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ansatz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="colder.core.physics.html#colder.core.physics.hamiltonian_collection" title="colder.core.physics.hamiltonian_collection"><span class="pre">hamiltonian_collection</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">annealing_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nspin</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_cache_agp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="colder.gauge.html#colder.gauge.adiabatic_potential.cache_lcd_numpy" title="colder.gauge.adiabatic_potential.cache_lcd_numpy"><span class="pre">cache_lcd_numpy</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system_fargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qoc_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'scipy'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/colder/simulation/cold.html#cold.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.simulation.cold.cold.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize a COLD annealing simulation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>system</strong> (<a class="reference internal" href="colder.core.physics.html#colder.core.physics.hamiltonian_collection" title="colder.core.physics.hamiltonian_collection"><em>colder.core.physics.hamiltonian_collection</em></a>) – hamiltonian representing the system</p></li>
+<li><p><strong>ansatz</strong> (<a class="reference internal" href="colder.core.physics.html#colder.core.physics.hamiltonian_collection" title="colder.core.physics.hamiltonian_collection"><em>colder.core.physics.hamiltonian_collection</em></a>) – hamiltonian representing the ansatz</p></li>
+<li><p><strong>annealing_time</strong> (<em>float</em>) – Total annealing time.</p></li>
+<li><p><strong>nspin</strong> (<em>int</em>) – Number of spins of the system.</p></li>
+<li><p><strong>use_cache_agp</strong> (<em>Union</em><em>[</em><em>bool</em><em>,</em><em>cgauge.cache_lcd_numpy</em><em>,</em><em>None</em><em>]</em><em>, </em><em>optional</em>) – If True/None, the adiabatic gauge potential will be cached after its computation. If False, the AGP will not be cached and will be recomputed at every initialization of the simulation. If a <cite>cache_lcd_numpy</cite> is provided, the argument AGP will be explicitly used as cached value. Defaults to None.</p></li>
+<li><p><strong>system_fargs</strong> (<em>dict</em><em>, </em><em>optional</em>) – Arguments to pass at system interpolated functions. Defaults to {}.</p></li>
+<li><p><strong>qoc_parameters</strong> (<em>list</em><em>, </em><em>optional</em>) – List of string containing the name of the parameter to use as QOC. Defaults to None.</p></li>
+<li><p><strong>backend</strong> (<em>str</em><em>, </em><em>optional</em>) – Choose a backend for simulations. Defaults to ‘qibo’.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.simulation.cold.cold.make_schedule_interpolation">
+<span class="sig-name descname"><span class="pre">make_schedule_interpolation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">agp_samples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/colder/simulation/cold.html#cold.make_schedule_interpolation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.simulation.cold.cold.make_schedule_interpolation" title="Permalink to this definition"></a></dt>
+<dd><p>Compute the numerical interpolation of the system driving parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>agp_samples</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of samples to use in the interpolation. Defaults to 50.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.simulation.cold.cold.retrieve_functions_from_schedule">
+<span class="sig-name descname"><span class="pre">retrieve_functions_from_schedule</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/colder/simulation/cold.html#cold.retrieve_functions_from_schedule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.simulation.cold.cold.retrieve_functions_from_schedule" title="Permalink to this definition"></a></dt>
+<dd><p>Retrieves the function from schedule objects, for both hamiltonian and ansatz.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.simulation.cold.cold.compute_schedules">
+<span class="sig-name descname"><span class="pre">compute_schedules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_time_points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="_modules/colder/simulation/cold.html#cold.compute_schedules"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.simulation.cold.cold.compute_schedules" title="Permalink to this definition"></a></dt>
+<dd><p>Given an array of time values, computes the schedule function values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time</strong> (<em>Union</em><em>[</em><em>np.ndarray</em><em>,</em><em>None</em>) – Array of time values. If None, the time points will be generated in [0,annealing time].</p></li>
+<li><p><strong>default_time_points</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of points to generate, if time array is not provided. Defaults to 100.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>System and ansatz parameters schedule.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Union[np.ndarray, np.ndarray]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.simulation.cold.cold.plot_schedules">
+<span class="sig-name descname"><span class="pre">plot_schedules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">npoints</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">101</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_lcd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/colder/simulation/cold.html#cold.plot_schedules"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.simulation.cold.cold.plot_schedules" title="Permalink to this definition"></a></dt>
+<dd><p>Plot the schedule functions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>npoints</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of points to sample. Defaults to 101.</p></li>
+<li><p><strong>plot_lcd</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, plots the LCD terms. Defaults to True.</p></li>
+<li><p><strong>legend</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, legend is enabled. Defaults to True.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.simulation.cold.cold.make_hamiltonians">
+<span class="sig-name descname"><span class="pre">make_hamiltonians</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/colder/simulation/cold.html#cold.make_hamiltonians"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.simulation.cold.cold.make_hamiltonians" title="Permalink to this definition"></a></dt>
+<dd><p>Evaluates the static component of hamiltonians (both system and ansatz).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.simulation.cold.cold.make_timedependent_hamiltonian">
+<span class="sig-name descname"><span class="pre">make_timedependent_hamiltonian</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">callable</span></span></span><a class="reference internal" href="_modules/colder/simulation/cold.html#cold.make_timedependent_hamiltonian"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.simulation.cold.cold.make_timedependent_hamiltonian" title="Permalink to this definition"></a></dt>
+<dd><p>Return the timedependent function that computes the hamiltonian for any backend.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Exception</strong> – The requirements to build the hamiltonian are not satisfied. Run <cite>make_hamiltonians()</cite> first.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Function that return the timedependent hamiltonian at time <cite>t</cite>. Its first and only argument is <cite>t</cite>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>callable</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.simulation.cold.cold.make_timedependent_hamiltonian_nogauge">
+<span class="sig-name descname"><span class="pre">make_timedependent_hamiltonian_nogauge</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">callable</span></span></span><a class="reference internal" href="_modules/colder/simulation/cold.html#cold.make_timedependent_hamiltonian_nogauge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.simulation.cold.cold.make_timedependent_hamiltonian_nogauge" title="Permalink to this definition"></a></dt>
+<dd><p>Return the timedependent function that computes the hamiltonian for any backend. The returned hamiltonian will not have the ansatz AGP terms.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Exception</strong> – The requirements to build the hamiltonian are not satisfied. Run <cite>make_hamiltonians()</cite> first.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Function that return the timedependent hamiltonian at time <cite>t</cite>. Its first and only argument is <cite>t</cite>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>callable</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.simulation.cold.cold.get_psi_zero">
+<span class="sig-name descname"><span class="pre">get_psi_zero</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="_modules/colder/simulation/cold.html#cold.get_psi_zero"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.simulation.cold.cold.get_psi_zero" title="Permalink to this definition"></a></dt>
+<dd><p>Computes the initial ground state of system hamiltonian via diagonalization.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The ground state.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.simulation.cold.cold.get_psi_final">
+<span class="sig-name descname"><span class="pre">get_psi_final</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="_modules/colder/simulation/cold.html#cold.get_psi_final"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.simulation.cold.cold.get_psi_final" title="Permalink to this definition"></a></dt>
+<dd><p>Computes the final ground state of system hamiltonian via diagonalization.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The ground state (at final annealing time).</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.simulation.cold.cold.get_spectrum">
+<span class="sig-name descname"><span class="pre">get_spectrum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_eig</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nsteps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_H0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="_modules/colder/simulation/cold.html#cold.get_spectrum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.simulation.cold.cold.get_spectrum" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the spectrum of the system hamiltonian in <cite>nsteps</cite> between time 0 and total annealing time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_eig</strong> (<em>int</em>) – Number of eigenvalues to compute.</p></li>
+<li><p><strong>nsteps</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of timesteps. Defaults to 100.</p></li>
+<li><p><strong>use_H0</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the hamiltonian is without the AGP. Defaults to False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Matrix of eigenvalues and simulation time, respectively.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Union[np.ndarray, np.ndarray]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.simulation.cold.cold.plot_spectrum">
+<span class="sig-name descname"><span class="pre">plot_spectrum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_eig</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nsteps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_H0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/colder/simulation/cold.html#cold.plot_spectrum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.simulation.cold.cold.plot_spectrum" title="Permalink to this definition"></a></dt>
+<dd><p>Plots the spectrum of the system hamiltonian in <cite>nsteps</cite> between time 0 and total annealing time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_eig</strong> (<em>int</em>) – Number of eigenvalues to compute.</p></li>
+<li><p><strong>nsteps</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of timesteps. Defaults to 100.</p></li>
+<li><p><strong>use_H0</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the hamiltonian is without the AGP. Defaults to False.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.simulation.cold.cold.be_ready">
+<span class="sig-name descname"><span class="pre">be_ready</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/colder/simulation/cold.html#cold.be_ready"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.simulation.cold.cold.be_ready" title="Permalink to this definition"></a></dt>
+<dd><p>Executes all the required pre-computation routines.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.simulation.cold.cold.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nsteps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_be_ready</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hook_function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="_modules/colder/simulation/cold.html#cold.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.simulation.cold.cold.run" title="Permalink to this definition"></a></dt>
+<dd><p>Run an annealing simulation for the current COLD object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nsteps</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of discretized annealing steps. Defaults to 100.</p></li>
+<li><p><strong>psi0</strong> (<em>Union</em><em>[</em><em>np.ndarray</em><em>, </em><em>None</em><em>]</em><em>, </em><em>optional</em>) – Initial state. If None, the initial state is compute diagonalizing the hamiltonian without Gauge potential. Defaults to None.</p></li>
+<li><p><strong>force_be_ready</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, be_ready() is executed before the annealing run. Defaults to False.</p></li>
+<li><p><strong>hook_function</strong> (<em>Union</em><em>[</em><em>callable</em><em>,</em><em>None</em><em>]</em><em>, </em><em>optional</em>) – If not None, this function will be called at every step of the annealing schedule. The callable arguments must be <cite>(t : float, state : np.ndarray)</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Exception</strong> – Simulation object is not initialized. Run <cite>be_ready()</cite> method before calling this function to fix this issue.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Final annealed state of the system.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.simulation.cold.cold.make_cold_optimization_function">
+<span class="sig-name descname"><span class="pre">make_cold_optimization_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loss_function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annealer_nsteps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loss_function_args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">callable</span></span></span><a class="reference internal" href="_modules/colder/simulation/cold.html#cold.make_cold_optimization_function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.simulation.cold.cold.make_cold_optimization_function" title="Permalink to this definition"></a></dt>
+<dd><p>Creates the function to be optimized, given a specific <cite>loss_function</cite> on the final state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>loss_function</strong> (<em>callable</em>) – Function to compute the loss. First input is the final state of annealing, second input is the current QOC parameters.</p></li>
+<li><p><strong>psi0</strong> (<em>np.array</em>) – Initial annealing state.</p></li>
+<li><p><strong>annealer_nsteps</strong> (<em>int</em>) – Number of discrete annealing steps.</p></li>
+<li><p><strong>loss_function_args</strong> (<em>tuple</em><em>, </em><em>optional</em>) – Extra arguments to be passed to optimization function. Defaults to ().</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Function to be optimized.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>callable</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.simulation.cold.cold.run_cold_opti">
+<span class="sig-name descname"><span class="pre">run_cold_opti</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loss_function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annealer_nsteps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Powell'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loss_function_args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update_param</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">OptimizeResult</span></span></span><a class="reference internal" href="_modules/colder/simulation/cold.html#cold.run_cold_opti"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.simulation.cold.cold.run_cold_opti" title="Permalink to this definition"></a></dt>
+<dd><p>Run the COLD optimization with backend <cite>scipy.optimize.minimize</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>loss_function</strong> (<em>callable</em>) – Loss function. Must take two arguments: <cite>psi</cite> (the final state of annealing) and <cite>params</cite> (parameters optimized by the routine).</p></li>
+<li><p><strong>annealer_nsteps</strong> (<em>int</em>) – Number of steps to perform in annealing time evolution.</p></li>
+<li><p><strong>psi0</strong> (<em>np.ndarray</em>) – Initial state of annealing. It is strongly suggested to compute it manually outside this routine.</p></li>
+<li><p><strong>init_parameters</strong> (<em>np.array</em>) – Initial parameters.</p></li>
+<li><p><strong>options</strong> (<em>dict</em><em>, </em><em>optional</em>) – Options to be passed to the optimization routine. Defaults to {}.</p></li>
+<li><p><strong>method</strong> (<em>str</em><em>, </em><em>optional</em>) – Method of <cite>scipy.optimize.minimize</cite> to be used. Defaults to ‘Powell’.</p></li>
+<li><p><strong>loss_function_args</strong> (<em>tuple</em><em>, </em><em>optional</em>) – Extra arguments to be passed to loss_function. Defaults to ().</p></li>
+<li><p><strong>update_param</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the parameters of the object are update with the result of optimization. Defaults to True.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Exception</strong> – QOC parameters are not specified.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Results of optimization, as provided by the backend module <cite>scipy.optimize.minimize</cite>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>scipy.optimize._optimize.OptimizeResult</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.simulation.cold.cold.run_cold_opti_bayes">
+<span class="sig-name descname"><span class="pre">run_cold_opti_bayes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loss_function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annealer_nsteps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dimensions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optim_options</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loss_function_args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update_param</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">OptimizeResult</span></span></span><a class="reference internal" href="_modules/colder/simulation/cold.html#cold.run_cold_opti_bayes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.simulation.cold.cold.run_cold_opti_bayes" title="Permalink to this definition"></a></dt>
+<dd><p>Run the COLD optimization with Bayesian Gaussian backend (<cite>skopt.gp_minimize</cite>).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>loss_function</strong> (<em>callable</em>) – Loss function. Must take two arguments: <cite>psi</cite> (the final state of annealing) and <cite>params</cite> (parameters optimized by the routine).</p></li>
+<li><p><strong>annealer_nsteps</strong> (<em>int</em>) – Number of steps to perform in annealing time evolution.</p></li>
+<li><p><strong>psi0</strong> (<em>np.ndarray</em>) – Initial state of annealing. It is strongly suggested to compute it manually outside this routine.</p></li>
+<li><p><strong>dimensions</strong> (<em>list</em>) – Bounds on each dimension of the parameters, as required by <cite>skopt.gp_minimize</cite>.</p></li>
+<li><p><strong>optim_options</strong> (<em>dict</em><em>, </em><em>optional</em>) – _description_. Defaults to {}. Suggested args to control: <cite>n_calls</cite> and <cite>n_initial_points</cite>.</p></li>
+<li><p><strong>loss_function_args</strong> (<em>tuple</em><em>, </em><em>optional</em>) – Extra arguments to be passed to loss_function. Defaults to ().</p></li>
+<li><p><strong>update_param</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the parameters of the object are update with the result of optimization. Defaults to True.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Exception</strong> – QOC parameters are not specified.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Results of optimization, as provided by the backend module <cite>scipy.optimize.minimize</cite>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>scipy.optimize._optimize.OptimizeResult</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-colder.simulation.numerical">
+<span id="numerical-module"></span><h2>numerical module<a class="headerlink" href="#module-colder.simulation.numerical" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="colder.simulation.numerical.interpolator1D">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">colder.simulation.numerical.</span></span><span class="sig-name descname"><span class="pre">interpolator1D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bc_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'not-a-knot'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colder/simulation/numerical.html#interpolator1D"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.simulation.numerical.interpolator1D" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.simulation.numerical.interpolator1D.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bc_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'not-a-knot'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colder/simulation/numerical.html#interpolator1D.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.simulation.numerical.interpolator1D.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize a 1D spline interpolator from input sample data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x_data</strong> (<em>np.array</em>) – Sample data, x.</p></li>
+<li><p><strong>y_data</strong> (<em>np.array</em>) – Sample data, y.</p></li>
+<li><p><strong>bc_type</strong> (<em>str</em><em>, </em><em>optional</em>) – Passed to <cite>scipy.interpolate.CubicSpline</cite>. Defaults to ‘not-a-knot’.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.simulation.numerical.interpolator1D.from_function">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_range</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_interp_points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colder/simulation/numerical.html#interpolator1D.from_function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.simulation.numerical.interpolator1D.from_function" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize a 1D spline interpolator from input function and n points sampled in range <cite>x_range</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>function</strong> (<em>callable</em>) – callable function to interpolate. The arguments must be (<cite>x_data</cite>, fargs).</p></li>
+<li><p><strong>x_range</strong> (<em>tuple</em>) – Tuple containing the range of x data to be sampled.</p></li>
+<li><p><strong>n_interp_points</strong> (<em>int</em><em>, </em><em>optional</em>) – How many x data points to sample. Defaults to 50.</p></li>
+<li><p><strong>fargs</strong> (<em>dict</em><em>, </em><em>optional</em>) – keyword dictionary passed to <cite>function</cite>. Defaults to {}.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>interpolator1D</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.simulation.numerical.interpolator1D.get_function">
+<span class="sig-name descname"><span class="pre">get_function</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">callable</span></span></span><a class="reference internal" href="_modules/colder/simulation/numerical.html#interpolator1D.get_function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.simulation.numerical.interpolator1D.get_function" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a lambda function calling the spline function. The function first and only argument will be the x point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Lambda function wrapping the spline (interpolated) function.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>callable</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.simulation.numerical.interpolator1D.get_derivative">
+<span class="sig-name descname"><span class="pre">get_derivative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ord</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">callable</span></span></span><a class="reference internal" href="_modules/colder/simulation/numerical.html#interpolator1D.get_derivative"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.simulation.numerical.interpolator1D.get_derivative" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a lambda function calling the spline function for derivative of order <cite>ord</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ord</strong> (<em>int</em><em>, </em><em>optional</em>) – Order of the derivative. Defaults to 1.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Lambda function wrapping the spline (interpolated) function.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>callable</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.simulation.numerical.interpolator1D.plot">
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot_derivative</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">['f',</span> <span class="pre">'df']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plt_obj</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colder/simulation/numerical.html#interpolator1D.plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.simulation.numerical.interpolator1D.plot" title="Permalink to this definition"></a></dt>
+<dd><p>Plot the interpolated functions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>plot_derivative</strong> (<em>bool</em><em>, </em><em>optional</em>) – If true, the derivatives are plotted. Defaults to True.</p></li>
+<li><p><strong>plot_data</strong> (<em>bool</em><em>, </em><em>optional</em>) – If true, plots the original points before interpolation. Defaults to False.</p></li>
+<li><p><strong>labels</strong> (<em>List</em><em>[</em><em>str</em><em>]</em><em>, </em><em>optional</em>) – Labels for the curve and their derivatives. Defaults to [“f”, “df”].</p></li>
+<li><p><strong>plt_obj</strong> (<em>_type_</em><em>, </em><em>optional</em>) – Use a matplotlib plt instance instead of the default one. Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><cite>matplotlib.pyplot</cite> figure</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>matplotlib.pyplot</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="colder.html" class="btn btn-neutral float-left" title="colder package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="colder.models.html" class="btn btn-neutral float-right" title="colder.models package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Francesco Pio Barone.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>colder.simulation.cold &mdash; colder 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            colder
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro.html">Counterdiabatic Optimized Local Driving annealER</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Package documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../colder.html">colder package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">colder</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">colder.simulation.cold</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for colder.simulation.cold</h1><div class="highlight"><pre>
+<span></span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy</span>
+<span class="kn">import</span> <span class="nn">skopt</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">import</span> <span class="nn">colder.core.physics</span> <span class="k">as</span> <span class="nn">cphys</span>
+<span class="kn">import</span> <span class="nn">colder.gauge</span> <span class="k">as</span> <span class="nn">cgauge</span>
+<span class="kn">import</span> <span class="nn">colder.backend</span>
+<span class="kn">import</span> <span class="nn">colder.simulation.annealing</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span>
+
+
+
+
+<div class="viewcode-block" id="get_functions_from_schedule"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.get_functions_from_schedule">[docs]</a><span class="k">def</span> <span class="nf">get_functions_from_schedule</span><span class="p">(</span><span class="n">schedules</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Extract the function for every interpolation.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">{</span> <span class="n">k</span> <span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">get_function</span><span class="p">()</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">schedules</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="check_hamiltonian_input"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.check_hamiltonian_input">[docs]</a><span class="k">def</span> <span class="nf">check_hamiltonian_input</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">cphys</span><span class="o">.</span><span class="n">hamiltonian_collection</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check input obj to be hamiltonian_collection or hamiltonian. Otherwise returns None (to be handled).&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">cphys</span><span class="o">.</span><span class="n">hamiltonian_collection</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">obj</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">cphys</span><span class="o">.</span><span class="n">hamiltonian</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">cphys</span><span class="o">.</span><span class="n">hamiltonian_collection</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
+
+
+<div class="viewcode-block" id="cold"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold">[docs]</a><span class="k">class</span> <span class="nc">cold</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    COLD object to handle the annealing simulation and optimization. </span>
+<span class="sd">    </span>
+<span class="sd">    Example:</span>
+<span class="sd">        .. highlight:: python</span>
+<span class="sd">        .. code-block:: python</span>
+<span class="sd">        </span>
+<span class="sd">            import colder.simulation.cold as ccold</span>
+<span class="sd">        </span>
+<span class="sd">            tau : float = 0.01  # annealing time</span>
+<span class="sd">            nsteps : int = 200  # number of steps for discrete annealing simulation</span>
+<span class="sd">            Nk : int = 1  # frequencies to control in QOC functions</span>
+<span class="sd">            </span>
+<span class="sd">            H = ...</span>
+<span class="sd">            ansatz = ...</span>
+<span class="sd">            </span>
+<span class="sd">            csym = ccold.cold(</span>
+<span class="sd">                system = H, ansatz = ansatz, annealing_time = tau, nspin = 5,</span>
+<span class="sd">                system_fargs = {&#39;tau&#39; : tau, &#39;beta&#39; : np.zeros(Nk)}, </span>
+<span class="sd">                # name of the parameter to treat as QOC parameter to optimize</span>
+<span class="sd">                qoc_parameters = [&#39;beta&#39;],</span>
+<span class="sd">                backend = &#39;scipy&#39;</span>
+<span class="sd">            )</span>
+<span class="sd">            </span>
+<span class="sd">            csym.be_ready()</span>
+<span class="sd">            </span>
+<span class="sd">            psi0 = csym.get_psi_zero()</span>
+<span class="sd">            truegs = csym.get_psi_final()</span>
+
+<span class="sd">            # define the loss function to optimize</span>
+<span class="sd">            def loss_infidelity(psi, param):</span>
+<span class="sd">            # note: the input of this function are the final state psi and the optimized parameter (beta, in this case)</span>
+<span class="sd">                infidelity = 1 - colder.quantum.math.fidelity(psi, truegs)</span>
+<span class="sd">                return infidelity</span>
+<span class="sd">            </span>
+<span class="sd">            x0 = np.random.uniform(size=Nk) # initial guess of parameters</span>
+<span class="sd">            optim = csym.run_cold_opti(init_parameters = x0,</span>
+<span class="sd">                loss_function = loss_infidelity, psi0 = psi0, annealer_nsteps = nsteps,</span>
+<span class="sd">            )</span>
+<span class="sd">        </span>
+<span class="sd">        Remark: the loss function to be optimized must accept as arguments the final state and the optimized parameter.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+<div class="viewcode-block" id="cold.__init__"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+            <span class="n">system</span> <span class="p">:</span> <span class="n">cphys</span><span class="o">.</span><span class="n">hamiltonian_collection</span><span class="p">,</span> <span class="n">ansatz</span> <span class="p">:</span> <span class="n">cphys</span><span class="o">.</span><span class="n">hamiltonian_collection</span><span class="p">,</span>
+            <span class="n">annealing_time</span> <span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">nspin</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+            <span class="n">use_cache_agp</span> <span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span><span class="n">cgauge</span><span class="o">.</span><span class="n">cache_lcd_numpy</span><span class="p">,</span><span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">system_fargs</span> <span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{},</span> <span class="n">qoc_parameters</span> <span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">backend</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;scipy&#39;</span>
+        <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize a COLD annealing simulation.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            system (colder.core.physics.hamiltonian_collection): hamiltonian representing the system</span>
+<span class="sd">            ansatz (colder.core.physics.hamiltonian_collection): hamiltonian representing the ansatz</span>
+<span class="sd">            annealing_time (float): Total annealing time.</span>
+<span class="sd">            nspin (int): Number of spins of the system.</span>
+<span class="sd">            use_cache_agp (Union[bool,cgauge.cache_lcd_numpy,None], optional): If True/None, the adiabatic gauge potential will be cached after its computation. If False, the AGP will not be cached and will be recomputed at every initialization of the simulation. If a `cache_lcd_numpy` is provided, the argument AGP will be explicitly used as cached value. Defaults to None.</span>
+<span class="sd">            system_fargs (dict, optional): Arguments to pass at system interpolated functions. Defaults to {}.</span>
+<span class="sd">            qoc_parameters (list, optional): List of string containing the name of the parameter to use as QOC. Defaults to None.</span>
+<span class="sd">            backend (str, optional): Choose a backend for simulations. Defaults to &#39;qibo&#39;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># processing input args</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">system</span> <span class="p">:</span> <span class="n">cphys</span><span class="o">.</span><span class="n">hamiltonian_collection</span> <span class="o">=</span> <span class="n">check_hamiltonian_input</span><span class="p">(</span><span class="n">system</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">system</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;system instance is not valid, must be hamiltonian or collection&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">system_fargs</span> <span class="o">=</span> <span class="n">system_fargs</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">ansatz</span> <span class="p">:</span> <span class="n">cphys</span><span class="o">.</span><span class="n">hamiltonian_collection</span> <span class="o">=</span> <span class="n">check_hamiltonian_input</span><span class="p">(</span><span class="n">ansatz</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ansatz</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;ansatz instance is not valid, must be hamiltonian or collection&#39;</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">nspin</span> <span class="o">=</span> <span class="n">nspin</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__annealing_time</span> <span class="o">=</span> <span class="n">annealing_time</span>
+        
+        <span class="c1"># manage agp here</span>
+        <span class="k">if</span> <span class="n">use_cache_agp</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">agp</span> <span class="o">=</span> <span class="n">cgauge</span><span class="o">.</span><span class="n">adiabaticgp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nspin</span><span class="p">,</span> <span class="n">system</span><span class="p">,</span> <span class="n">ansatz</span><span class="p">,</span> <span class="n">enable_cache</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">use_cache_agp</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">agp</span> <span class="o">=</span> <span class="n">cgauge</span><span class="o">.</span><span class="n">adiabaticgp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nspin</span><span class="p">,</span> <span class="n">system</span><span class="p">,</span> <span class="n">ansatz</span><span class="p">,</span> <span class="n">enable_cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">use_cache_agp</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># default class option is used</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">agp</span> <span class="o">=</span> <span class="n">cgauge</span><span class="o">.</span><span class="n">adiabaticgp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nspin</span><span class="p">,</span> <span class="n">system</span><span class="p">,</span> <span class="n">ansatz</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">use_cache_agp</span><span class="p">,</span> <span class="n">cgauge</span><span class="o">.</span><span class="n">cache_lcd_numpy</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">agp</span> <span class="o">=</span> <span class="n">cgauge</span><span class="o">.</span><span class="n">adiabaticgp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nspin</span><span class="p">,</span> <span class="n">system</span><span class="p">,</span> <span class="n">ansatz</span><span class="p">,</span> <span class="n">enable_cache</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inject_cache</span><span class="o">=</span><span class="n">use_cache_agp</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;cache AGP arg is not an adiabatic gauge potential&#39;</span><span class="p">)</span>
+        
+        
+        <span class="c1"># manage qoc_parameters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">qoc_parameters</span> <span class="o">=</span> <span class="n">qoc_parameters</span>
+        <span class="k">if</span> <span class="n">qoc_parameters</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">qoc_parameters</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;so far, only one parameter is supported&#39;</span>
+            
+            <span class="c1"># check that system_fargs contains qoc_parameters</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">parname</span> <span class="ow">in</span> <span class="n">system_fargs</span> <span class="k">for</span> <span class="n">parname</span> <span class="ow">in</span> <span class="n">qoc_parameters</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;missing required control parameter in input qoc list&#39;</span><span class="p">)</span>
+        
+        <span class="c1"># these attributes will be filled with pre-computed results</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">system_interpolators</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">system_hamiltonians</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ansatz_interpolators</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ansatz_hamiltonians</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__finalize_routine</span> <span class="o">=</span> <span class="kc">None</span>
+        
+        <span class="c1"># choose backend</span>
+        <span class="k">assert</span> <span class="n">backend</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;scipy&#39;</span><span class="p">,</span> <span class="s1">&#39;sparse&#39;</span><span class="p">,</span> <span class="s1">&#39;qibo&#39;</span><span class="p">,</span> <span class="s1">&#39;cupy&#39;</span><span class="p">],</span> <span class="s1">&#39;not valid backend&#39;</span>
+        <span class="k">if</span> <span class="n">backend</span> <span class="o">==</span> <span class="s1">&#39;qibo&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">interface</span> <span class="o">=</span> <span class="n">colder</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">qibo</span><span class="o">.</span><span class="n">interface</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">routines</span> <span class="o">=</span> <span class="n">colder</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">qibo</span><span class="o">.</span><span class="n">routines</span>
+        <span class="k">elif</span> <span class="n">backend</span> <span class="o">==</span> <span class="s1">&#39;scipy&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">interface</span> <span class="o">=</span> <span class="n">colder</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">scipy</span><span class="o">.</span><span class="n">interface</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">routines</span> <span class="o">=</span> <span class="n">colder</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">scipy</span><span class="o">.</span><span class="n">routines</span>
+        <span class="k">elif</span> <span class="n">backend</span> <span class="o">==</span> <span class="s1">&#39;sparse&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">interface</span> <span class="o">=</span> <span class="n">colder</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">interface</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">routines</span> <span class="o">=</span> <span class="n">colder</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">routines</span>
+        <span class="k">elif</span> <span class="n">backend</span> <span class="o">==</span> <span class="s1">&#39;cupy&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">interface</span> <span class="o">=</span> <span class="n">colder</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">cupy</span><span class="o">.</span><span class="n">interface</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">routines</span> <span class="o">=</span> <span class="n">colder</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">cupy</span><span class="o">.</span><span class="n">routines</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;not valid backend interface&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">backend</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">backend</span></div>
+    
+    <span class="c1"># function to check runtime requirements</span>
+    <span class="k">def</span> <span class="nf">__runtime_requirements_int</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check the interpolation &amp; numerical requirements.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: True if the requirements are satisfied.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span> <span class="bp">self</span><span class="o">.</span><span class="n">system_interpolators</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ansatz_interpolators</span> <span class="p">]</span>
+        <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="n">elem</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">requirements</span><span class="p">)</span> 
+    
+    <span class="k">def</span> <span class="nf">__runtime_requirements_ham</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check the hamiltonian requirements.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: True if the requirements are satisfied.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span> <span class="bp">self</span><span class="o">.</span><span class="n">system_hamiltonians</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ansatz_hamiltonians</span> <span class="p">]</span>
+        <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="n">elem</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">requirements</span><span class="p">)</span>
+    
+    
+<div class="viewcode-block" id="cold.make_schedule_interpolation"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.make_schedule_interpolation">[docs]</a>    <span class="k">def</span> <span class="nf">make_schedule_interpolation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">agp_samples</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">50</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute the numerical interpolation of the system driving parameters.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            agp_samples (int, optional): Number of samples to use in the interpolation. Defaults to 50.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="n">trange</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">__annealing_time</span><span class="p">])</span>   <span class="c1"># time range of interpolation</span>
+        <span class="n">system_interpolators</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">make_coefficients_interpolation</span><span class="p">(</span><span class="n">trange</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">system_fargs</span> <span class="p">)</span>
+        
+        <span class="n">finj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">agp</span><span class="o">.</span><span class="n">match_interpolated_injections</span><span class="p">(</span><span class="n">system_interpolators</span><span class="p">)</span> <span class="c1"># system functions and their derivatives</span>
+        <span class="n">ansatz_interpolators</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">agp</span><span class="o">.</span><span class="n">lcd_interpolated_solver</span><span class="p">(</span><span class="n">trange</span><span class="o">=</span><span class="n">trange</span><span class="p">,</span> <span class="n">nsamples</span><span class="o">=</span><span class="n">agp_samples</span><span class="p">,</span> <span class="n">finj</span><span class="o">=</span><span class="n">finj</span><span class="p">)</span>
+        
+        <span class="c1"># the interpolators are stored as object attributes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">system_interpolators</span> <span class="o">=</span> <span class="n">system_interpolators</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ansatz_interpolators</span> <span class="o">=</span> <span class="n">ansatz_interpolators</span></div>
+    
+    
+<div class="viewcode-block" id="cold.retrieve_functions_from_schedule"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.retrieve_functions_from_schedule">[docs]</a>    <span class="k">def</span> <span class="nf">retrieve_functions_from_schedule</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieves the function from schedule objects, for both hamiltonian and ansatz.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__runtime_requirements_int</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;system_interpolators and/or ansatz_interpolators is None. Run make_schedule_interpolation() first.&#39;</span><span class="p">)</span>
+        
+        <span class="n">system_coeffs_functions</span> <span class="o">=</span> <span class="n">get_functions_from_schedule</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">system_interpolators</span><span class="p">)</span>
+        <span class="n">ansatz_coeffs_functions</span> <span class="o">=</span> <span class="n">get_functions_from_schedule</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ansatz_interpolators</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">system_coeffs_functions</span><span class="p">,</span> <span class="n">ansatz_coeffs_functions</span></div>
+        
+<div class="viewcode-block" id="cold.compute_schedules"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.compute_schedules">[docs]</a>    <span class="k">def</span> <span class="nf">compute_schedules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span> <span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">default_time_points</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Given an array of time values, computes the schedule function values.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            time (Union[np.ndarray,None): Array of time values. If None, the time points will be generated in [0,annealing time].</span>
+<span class="sd">            default_time_points (int, optional): Number of points to generate, if time array is not provided. Defaults to 100.</span>
+
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Union[np.ndarray, np.ndarray]: System and ansatz parameters schedule.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="k">if</span> <span class="n">time</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;generating </span><span class="si">{</span><span class="n">default_time_points</span><span class="si">}</span><span class="s1"> sample time points&#39;</span><span class="p">)</span>
+            <span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__annealing_time</span><span class="p">,</span> <span class="n">default_time_points</span><span class="p">)</span>
+        
+        <span class="n">system_coeffs_functions</span><span class="p">,</span> <span class="n">ansatz_coeffs_functions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">retrieve_functions_from_schedule</span><span class="p">()</span>
+        
+        <span class="n">sys_sch</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">system_coeffs_functions</span><span class="p">))</span> <span class="p">)</span>
+        <span class="n">ans_sch</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">ansatz_coeffs_functions</span><span class="p">))</span> <span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">ii</span><span class="p">,</span> <span class="n">tt</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">time</span><span class="p">):</span>
+            <span class="n">sys_sch</span><span class="p">[</span><span class="n">ii</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="n">ff</span><span class="p">(</span><span class="n">tt</span><span class="p">)</span> <span class="k">for</span> <span class="n">ff</span> <span class="ow">in</span> <span class="n">system_coeffs_functions</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="p">])</span>
+            <span class="n">ans_sch</span><span class="p">[</span><span class="n">ii</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="n">ff</span><span class="p">(</span><span class="n">tt</span><span class="p">)</span> <span class="k">for</span> <span class="n">ff</span> <span class="ow">in</span> <span class="n">ansatz_coeffs_functions</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="p">])</span>
+         
+        <span class="k">return</span> <span class="n">sys_sch</span><span class="p">,</span> <span class="n">ans_sch</span></div>
+    
+    
+<div class="viewcode-block" id="cold.plot_schedules"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.plot_schedules">[docs]</a>    <span class="k">def</span> <span class="nf">plot_schedules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">npoints</span> <span class="o">=</span> <span class="mi">101</span><span class="p">,</span> <span class="n">plot_lcd</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">legend</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Plot the schedule functions.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            npoints (int, optional): Number of points to sample. Defaults to 101.</span>
+<span class="sd">            plot_lcd (bool, optional): If True, plots the LCD terms. Defaults to True.</span>
+<span class="sd">            legend (bool, optional): If True, legend is enabled. Defaults to True.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__annealing_time</span><span class="p">,</span> <span class="n">npoints</span><span class="p">)</span>
+        <span class="n">sys_sch</span><span class="p">,</span> <span class="n">ans_sch</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_schedules</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+        
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">sys_sch</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">system_interpolators</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="p">)</span>
+        <span class="k">if</span> <span class="n">plot_lcd</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">ans_sch</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ansatz_interpolators</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">legend</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span></div>
+    
+    
+
+<div class="viewcode-block" id="cold.make_hamiltonians"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.make_hamiltonians">[docs]</a>    <span class="k">def</span> <span class="nf">make_hamiltonians</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Evaluates the static component of hamiltonians (both system and ansatz).&quot;&quot;&quot;</span>
+        <span class="n">sys_int</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interface</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nspin</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">system</span><span class="p">)</span>
+        <span class="n">ans_int</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interface</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nspin</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ansatz</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">system_hamiltonians</span> <span class="o">=</span> <span class="n">sys_int</span><span class="o">.</span><span class="n">COLD_make_hamiltonian</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ansatz_hamiltonians</span> <span class="o">=</span> <span class="n">ans_int</span><span class="o">.</span><span class="n">COLD_make_hamiltonian</span><span class="p">()</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">__finalize_routine</span> <span class="o">=</span> <span class="n">sys_int</span><span class="o">.</span><span class="n">COLD_get_finalize_method</span><span class="p">()</span></div>
+    
+    
+<div class="viewcode-block" id="cold.make_timedependent_hamiltonian"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.make_timedependent_hamiltonian">[docs]</a>    <span class="k">def</span> <span class="nf">make_timedependent_hamiltonian</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">callable</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the timedependent function that computes the hamiltonian for any backend.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            Exception: The requirements to build the hamiltonian are not satisfied. Run `make_hamiltonians()` first.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            callable: Function that return the timedependent hamiltonian at time `t`. Its first and only argument is `t`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># collect interpolators and hamiltonians</span>
+        <span class="n">system_coeffs_functions</span><span class="p">,</span> <span class="n">ansatz_coeffs_functions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">retrieve_functions_from_schedule</span><span class="p">()</span>
+        <span class="c1">#   note: this requires the interpolators to be already initialized</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__runtime_requirements_ham</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;system_hamiltonians and/or ansatz_hamiltonians not computed. Run make_hamiltonians() first.&#39;</span><span class="p">)</span>
+        
+        <span class="c1"># note: the .item() in the coefficient is used to get rid of numpy layer (allows mult with cupy arrays)</span>
+        <span class="k">def</span> <span class="nf">tdh</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+            <span class="n">tsys</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span> <span class="n">system_coeffs_functions</span><span class="p">[</span><span class="n">coeff</span><span class="p">](</span><span class="n">t</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="o">*</span><span class="n">expr</span> <span class="k">for</span> <span class="n">coeff</span><span class="p">,</span> <span class="n">expr</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">system_hamiltonians</span> <span class="p">)</span>
+            <span class="n">tans</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span> <span class="n">ansatz_coeffs_functions</span><span class="p">[</span><span class="n">coeff</span><span class="p">](</span><span class="n">t</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="o">*</span><span class="n">expr</span> <span class="k">for</span> <span class="n">coeff</span><span class="p">,</span> <span class="n">expr</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ansatz_hamiltonians</span> <span class="p">)</span>
+            
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__finalize_routine</span><span class="p">(</span><span class="n">tsys</span> <span class="o">+</span> <span class="n">tans</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">tdh</span></div>
+    
+    
+    
+    
+<div class="viewcode-block" id="cold.make_timedependent_hamiltonian_nogauge"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.make_timedependent_hamiltonian_nogauge">[docs]</a>    <span class="k">def</span> <span class="nf">make_timedependent_hamiltonian_nogauge</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">callable</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the timedependent function that computes the hamiltonian for any backend. The returned hamiltonian will not have the ansatz AGP terms.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            Exception: The requirements to build the hamiltonian are not satisfied. Run `make_hamiltonians()` first.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            callable: Function that return the timedependent hamiltonian at time `t`. Its first and only argument is `t`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># collect interpolators and hamiltonians</span>
+        <span class="n">system_coeffs_functions</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">retrieve_functions_from_schedule</span><span class="p">()</span>
+        <span class="c1">#   note: this requires the interpolators to be already initialized</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">system_hamiltonians</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;system_hamiltonians not computed. Run make_hamiltonians() first.&#39;</span><span class="p">)</span>
+        
+        <span class="k">def</span> <span class="nf">tdhg</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+            <span class="n">terms</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span> <span class="n">system_coeffs_functions</span><span class="p">[</span><span class="n">coeff</span><span class="p">](</span><span class="n">t</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="o">*</span><span class="n">expr</span> <span class="k">for</span> <span class="n">coeff</span><span class="p">,</span> <span class="n">expr</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">system_hamiltonians</span> <span class="p">)</span> <span class="c1"># FIXME</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__finalize_routine</span><span class="p">(</span><span class="n">terms</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">tdhg</span></div>
+    
+    
+<div class="viewcode-block" id="cold.get_psi_zero"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.get_psi_zero">[docs]</a>    <span class="k">def</span> <span class="nf">get_psi_zero</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Computes the initial ground state of system hamiltonian via diagonalization.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray: The ground state.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">H0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_timedependent_hamiltonian_nogauge</span><span class="p">()</span>
+        <span class="n">psi0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">routines</span><span class="o">.</span><span class="n">get_groundstate_superposition</span><span class="p">(</span> <span class="n">H0</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">)</span>
+        <span class="k">return</span> <span class="n">psi0</span></div>
+    
+<div class="viewcode-block" id="cold.get_psi_final"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.get_psi_final">[docs]</a>    <span class="k">def</span> <span class="nf">get_psi_final</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Computes the final ground state of system hamiltonian via diagonalization.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray: The ground state (at final annealing time).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">H0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_timedependent_hamiltonian_nogauge</span><span class="p">()</span>
+        <span class="n">psiF</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">routines</span><span class="o">.</span><span class="n">get_groundstate_superposition</span><span class="p">(</span> <span class="n">H0</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__annealing_time</span><span class="p">)</span> <span class="p">)</span>
+        <span class="k">return</span> <span class="n">psiF</span></div>
+    
+    
+    
+    
+<div class="viewcode-block" id="cold.get_spectrum"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.get_spectrum">[docs]</a>    <span class="k">def</span> <span class="nf">get_spectrum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_eig</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">nsteps</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">use_H0</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the spectrum of the system hamiltonian in `nsteps` between time 0 and total annealing time.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            n_eig (int): Number of eigenvalues to compute.</span>
+<span class="sd">            nsteps (int, optional): Number of timesteps. Defaults to 100.</span>
+<span class="sd">            use_H0 (bool, optional): If True, the hamiltonian is without the AGP. Defaults to False.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Union[np.ndarray, np.ndarray]: Matrix of eigenvalues and simulation time, respectively.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">use_H0</span><span class="p">:</span>
+            <span class="n">Ht</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_timedependent_hamiltonian_nogauge</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">Ht</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_timedependent_hamiltonian</span><span class="p">()</span>
+            
+        <span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">__annealing_time</span><span class="p">,</span> <span class="n">nsteps</span><span class="p">)</span>
+        <span class="n">evalues</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">tt</span> <span class="ow">in</span> <span class="n">time</span><span class="p">:</span>
+            <span class="n">ev</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">routines</span><span class="o">.</span><span class="n">get_lower_eigen</span><span class="p">(</span><span class="n">Ht</span><span class="p">(</span><span class="n">tt</span><span class="p">),</span> <span class="n">k</span> <span class="o">=</span> <span class="n">n_eig</span><span class="p">)</span>
+            <span class="n">evalues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ev</span><span class="p">)</span>
+            
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">evalues</span><span class="p">),</span> <span class="n">time</span></div>
+    
+<div class="viewcode-block" id="cold.plot_spectrum"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.plot_spectrum">[docs]</a>    <span class="k">def</span> <span class="nf">plot_spectrum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_eig</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span> <span class="n">nsteps</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">use_H0</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Plots the spectrum of the system hamiltonian in `nsteps` between time 0 and total annealing time.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            n_eig (int): Number of eigenvalues to compute.</span>
+<span class="sd">            nsteps (int, optional): Number of timesteps. Defaults to 100.</span>
+<span class="sd">            use_H0 (bool, optional): If True, the hamiltonian is without the AGP. Defaults to False.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ev</span><span class="p">,</span> <span class="n">time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_spectrum</span><span class="p">(</span><span class="n">n_eig</span> <span class="o">=</span> <span class="n">n_eig</span><span class="p">,</span> <span class="n">nsteps</span> <span class="o">=</span> <span class="n">nsteps</span><span class="p">,</span> <span class="n">use_H0</span> <span class="o">=</span> <span class="n">use_H0</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">ev</span><span class="p">)</span></div>
+
+    
+    
+<div class="viewcode-block" id="cold.be_ready"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.be_ready">[docs]</a>    <span class="k">def</span> <span class="nf">be_ready</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Executes all the required pre-computation routines.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">make_schedule_interpolation</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">make_hamiltonians</span><span class="p">()</span></div>
+        
+    
+<div class="viewcode-block" id="cold.run"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nsteps</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">psi0</span> <span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">dt</span> <span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span><span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
+            <span class="n">force_be_ready</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">hook_function</span> <span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">callable</span><span class="p">,</span><span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Run an annealing simulation for the current COLD object.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            nsteps (int, optional): Number of discretized annealing steps. Defaults to 100.</span>
+<span class="sd">            psi0 (Union[np.ndarray, None], optional): Initial state. If None, the initial state is compute diagonalizing the hamiltonian without Gauge potential. Defaults to None.</span>
+<span class="sd">            force_be_ready (bool, optional): If True, be_ready() is executed before the annealing run. Defaults to False.</span>
+<span class="sd">            hook_function (Union[callable,None], optional): If not None, this function will be called at every step of the annealing schedule. The callable arguments must be `(t : float, state : np.ndarray)`.</span>
+<span class="sd">        </span>
+<span class="sd">        Raises:</span>
+<span class="sd">            Exception: Simulation object is not initialized. Run `be_ready()` method before calling this function to fix this issue.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray: Final annealed state of the system.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># check be_ready has been executed already (or force it anyways)</span>
+        <span class="k">if</span> <span class="n">force_be_ready</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">be_ready</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">any</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">__runtime_requirements_int</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">__runtime_requirements_ham</span><span class="p">()]):</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Schedules and/or hamiltonians not computed. Run be_ready() first.&#39;</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">dt</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># overrides nsteps</span>
+            <span class="n">nsteps</span> <span class="o">=</span> <span class="kc">None</span>
+            
+        <span class="n">H_t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_timedependent_hamiltonian</span><span class="p">()</span>  <span class="c1"># timedependent hamiltonian function</span>
+        <span class="n">ann</span> <span class="o">=</span> <span class="n">colder</span><span class="o">.</span><span class="n">simulation</span><span class="o">.</span><span class="n">annealing</span><span class="o">.</span><span class="n">annealing</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__annealing_time</span><span class="p">,</span> <span class="n">P</span> <span class="o">=</span> <span class="n">nsteps</span><span class="p">,</span> <span class="n">dt</span> <span class="o">=</span> <span class="n">dt</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">backend</span><span class="p">)</span> <span class="c1"># annealer module</span>
+        
+        <span class="c1"># compute the ground state if not provided as input</span>
+        <span class="k">if</span> <span class="n">psi0</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>   <span class="n">psi0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_psi_zero</span><span class="p">()</span>
+        
+        <span class="c1"># execute and return evolved state</span>
+        <span class="n">psi</span> <span class="o">=</span> <span class="n">ann</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">H_t</span><span class="p">,</span> <span class="n">psi0</span><span class="o">=</span><span class="n">psi0</span><span class="p">,</span> <span class="n">hook_function</span><span class="o">=</span><span class="n">hook_function</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">psi</span></div>
+    
+    
+    
+<div class="viewcode-block" id="cold.make_cold_optimization_function"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.make_cold_optimization_function">[docs]</a>    <span class="k">def</span> <span class="nf">make_cold_optimization_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loss_function</span> <span class="p">:</span> <span class="nb">callable</span><span class="p">,</span> <span class="n">psi0</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">annealer_nsteps</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+            <span class="n">loss_function_args</span> <span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="p">()</span>
+        <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">callable</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates the function to be optimized, given a specific `loss_function` on the final state.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            loss_function (callable): Function to compute the loss. First input is the final state of annealing, second input is the current QOC parameters.</span>
+<span class="sd">            psi0 (np.array): Initial annealing state.</span>
+<span class="sd">            annealer_nsteps (int): Number of discrete annealing steps.</span>
+<span class="sd">            loss_function_args (tuple, optional): Extra arguments to be passed to optimization function. Defaults to ().</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            callable: Function to be optimized.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">def</span> <span class="nf">f0</span><span class="p">(</span><span class="n">params_to_optimize</span><span class="p">):</span>
+            <span class="c1"># remake the schedule object with updated parameters</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">system_fargs</span><span class="p">[</span> <span class="bp">self</span><span class="o">.</span><span class="n">qoc_parameters</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">]</span> <span class="o">=</span> <span class="n">params_to_optimize</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">make_schedule_interpolation</span><span class="p">()</span>
+            
+            <span class="c1"># run the annealing schedule and compute loss function</span>
+            <span class="n">psi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">nsteps</span> <span class="o">=</span> <span class="n">annealer_nsteps</span><span class="p">,</span> <span class="n">psi0</span><span class="o">=</span><span class="n">psi0</span><span class="p">)</span>
+            <span class="c1"># the loss function args are:  final_annealing_state, parameters, custom_args</span>
+            <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_function</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">params_to_optimize</span><span class="p">,</span> <span class="o">*</span><span class="n">loss_function_args</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">loss</span>
+        
+        <span class="k">return</span> <span class="n">f0</span></div>
+    
+    
+<div class="viewcode-block" id="cold.run_cold_opti"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.run_cold_opti">[docs]</a>    <span class="k">def</span> <span class="nf">run_cold_opti</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+            <span class="n">loss_function</span> <span class="p">:</span> <span class="nb">callable</span><span class="p">,</span> <span class="n">annealer_nsteps</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">psi0</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> 
+            <span class="n">init_parameters</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">options</span> <span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{},</span> <span class="n">method</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;Powell&#39;</span><span class="p">,</span>
+            <span class="n">loss_function_args</span> <span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="p">(),</span> <span class="n">update_param</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">scipy</span><span class="o">.</span><span class="n">optimize</span><span class="o">.</span><span class="n">_optimize</span><span class="o">.</span><span class="n">OptimizeResult</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Run the COLD optimization with backend `scipy.optimize.minimize`.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            loss_function (callable): Loss function. Must take two arguments: `psi` (the final state of annealing) and `params` (parameters optimized by the routine).</span>
+<span class="sd">            annealer_nsteps (int): Number of steps to perform in annealing time evolution.</span>
+<span class="sd">            psi0 (np.ndarray): Initial state of annealing. It is strongly suggested to compute it manually outside this routine.</span>
+<span class="sd">            init_parameters (np.array): Initial parameters.</span>
+<span class="sd">            options (dict, optional): Options to be passed to the optimization routine. Defaults to {}.</span>
+<span class="sd">            method (str, optional): Method of `scipy.optimize.minimize` to be used. Defaults to &#39;Powell&#39;.</span>
+<span class="sd">            loss_function_args (tuple, optional): Extra arguments to be passed to loss_function. Defaults to ().</span>
+<span class="sd">            update_param (bool, optional): If True, the parameters of the object are update with the result of optimization. Defaults to True.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            Exception: QOC parameters are not specified.</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            scipy.optimize._optimize.OptimizeResult: Results of optimization, as provided by the backend module `scipy.optimize.minimize`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">qoc_parameters</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;missing qoc parameters, cannot run COLD optimization&#39;</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">update_param</span><span class="p">:</span>
+            <span class="c1"># backup the current parameter to be restored later</span>
+            <span class="n">bak_system_fargs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">system_fargs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        
+        <span class="n">f0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_cold_optimization_function</span><span class="p">(</span><span class="n">loss_function</span><span class="o">=</span><span class="n">loss_function</span><span class="p">,</span> <span class="n">psi0</span><span class="o">=</span><span class="n">psi0</span><span class="p">,</span> <span class="n">annealer_nsteps</span><span class="o">=</span><span class="n">annealer_nsteps</span><span class="p">,</span> <span class="n">loss_function_args</span><span class="o">=</span><span class="n">loss_function_args</span><span class="p">)</span>
+        
+        <span class="c1"># deprecated: just Powell optimization, moving to more general minimizer</span>
+        <span class="c1">#optim = scipy.optimize.fmin_powell(f0, init_parameters, full_output = True, disp = False)</span>
+        
+        <span class="n">optim</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">optimize</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">f0</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="n">init_parameters</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">update_param</span><span class="p">:</span>
+            <span class="c1"># update qoc using the optimal parameters</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">system_fargs</span><span class="p">[</span> <span class="bp">self</span><span class="o">.</span><span class="n">qoc_parameters</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">]</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">x</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">make_schedule_interpolation</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># restore old system fargs</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">system_fargs</span> <span class="o">=</span> <span class="n">bak_system_fargs</span>
+            
+        <span class="k">return</span> <span class="n">optim</span></div>
+
+
+
+<div class="viewcode-block" id="cold.run_cold_opti_bayes"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.run_cold_opti_bayes">[docs]</a>    <span class="k">def</span> <span class="nf">run_cold_opti_bayes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> 
+            <span class="n">loss_function</span> <span class="p">:</span> <span class="nb">callable</span><span class="p">,</span> <span class="n">annealer_nsteps</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">psi0</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> 
+            <span class="n">dimensions</span> <span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">optim_options</span> <span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{},</span>
+            <span class="n">loss_function_args</span> <span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="p">(),</span> <span class="n">update_param</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> 
+        <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">scipy</span><span class="o">.</span><span class="n">optimize</span><span class="o">.</span><span class="n">_optimize</span><span class="o">.</span><span class="n">OptimizeResult</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Run the COLD optimization with Bayesian Gaussian backend (`skopt.gp_minimize`).</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            loss_function (callable): Loss function. Must take two arguments: `psi` (the final state of annealing) and `params` (parameters optimized by the routine).</span>
+<span class="sd">            annealer_nsteps (int): Number of steps to perform in annealing time evolution.</span>
+<span class="sd">            psi0 (np.ndarray): Initial state of annealing. It is strongly suggested to compute it manually outside this routine.</span>
+<span class="sd">            dimensions (list): Bounds on each dimension of the parameters, as required by `skopt.gp_minimize`.</span>
+<span class="sd">            optim_options (dict, optional): _description_. Defaults to {}. Suggested args to control: `n_calls` and `n_initial_points`.</span>
+<span class="sd">            loss_function_args (tuple, optional): Extra arguments to be passed to loss_function. Defaults to ().</span>
+<span class="sd">            update_param (bool, optional): If True, the parameters of the object are update with the result of optimization. Defaults to True.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            Exception: QOC parameters are not specified.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            scipy.optimize._optimize.OptimizeResult: Results of optimization, as provided by the backend module `scipy.optimize.minimize`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">qoc_parameters</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;missing qoc parameters, cannot run COLD optimization&#39;</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">update_param</span><span class="p">:</span>
+            <span class="c1"># backup the current parameter to be restored later</span>
+            <span class="n">bak_system_fargs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">system_fargs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        
+        <span class="n">f0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_cold_optimization_function</span><span class="p">(</span><span class="n">loss_function</span><span class="o">=</span><span class="n">loss_function</span><span class="p">,</span> <span class="n">psi0</span><span class="o">=</span><span class="n">psi0</span><span class="p">,</span> <span class="n">annealer_nsteps</span><span class="o">=</span><span class="n">annealer_nsteps</span><span class="p">,</span> <span class="n">loss_function_args</span><span class="o">=</span><span class="n">loss_function_args</span><span class="p">)</span>
+
+        <span class="c1"># ref: https://scikit-optimize.github.io/stable/modules/generated/skopt.gp_minimize.html</span>
+        <span class="n">optim</span> <span class="o">=</span> <span class="n">skopt</span><span class="o">.</span><span class="n">gp_minimize</span><span class="p">(</span><span class="n">f0</span><span class="p">,</span>         <span class="c1"># the function to minimize</span>
+            <span class="n">dimensions</span> <span class="o">=</span> <span class="n">dimensions</span><span class="p">,</span>    <span class="c1"># bounds on each dimension of x</span>
+            <span class="o">**</span><span class="n">optim_options</span>
+        <span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">update_param</span><span class="p">:</span>
+            <span class="c1"># update qoc using the optimal parameters</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">system_fargs</span><span class="p">[</span> <span class="bp">self</span><span class="o">.</span><span class="n">qoc_parameters</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">]</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">x</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">make_schedule_interpolation</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># restore old system fargs</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">system_fargs</span> <span class="o">=</span> <span class="n">bak_system_fargs</span>
+            
+        <span class="k">return</span> <span class="n">optim</span></div></div>
+        
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Francesco Pio Barone.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>core package &mdash; colder 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="colder.core.quantum package" href="colder.core.quantum.html" />
+    <link rel="prev" title="core physics package" href="colder.core.physics.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            colder
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Counterdiabatic Optimized Local Driving annealER</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Package documentation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="colder.html">colder package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="colder.html#main-modules">main modules</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="colder.html#support-modules">support modules</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">core package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#core-backbone-package">core backbone package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#colder-core-quantum-module">colder.core.quantum module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-colder.core.pauli_algebra">colder.core.pauli_algebra module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-colder.core.subroutines">colder.core.subroutines module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="colder.backend.html">backend package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">colder</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="colder.html">colder package</a></li>
+      <li class="breadcrumb-item active">core package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/colder.core.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p>The core package provides fundamental data structures and classes to input systems to each component of <cite>colder</cite>.</p>
+<section id="core-package">
+<h1>core package<a class="headerlink" href="#core-package" title="Permalink to this heading"></a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">colder.core.physics</span></code> module provides the <code class="docutils literal notranslate"><span class="pre">hamiltonian</span></code> objects that describe spin systems.</p>
+<p>Given the importance of this module, its documentation is provided within the <strong>main modules</strong> section. Click <a class="reference internal" href="colder.core.physics.html"><span class="doc">here</span></a> for the documentation.</p>
+</section>
+<section id="core-backbone-package">
+<h1>core backbone package<a class="headerlink" href="#core-backbone-package" title="Permalink to this heading"></a></h1>
+<p>The core package requires additional modules that process the <cite>physics</cite> hamiltonian objects. These packages are listed here.</p>
+<section id="colder-core-quantum-module">
+<h2>colder.core.quantum module<a class="headerlink" href="#colder-core-quantum-module" title="Permalink to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="colder.core.quantum.html">colder.core.quantum package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="colder.core.quantum.html#module-colder.core.quantum.cupy">colder.core.quantum.cupy module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colder.core.quantum.html#module-colder.core.quantum.numpy">colder.core.quantum.numpy module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colder.core.quantum.html#module-colder.core.quantum.sparse">colder.core.quantum.sparse module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colder.core.quantum.html#module-colder.core.quantum">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="module-colder.core.pauli_algebra">
+<span id="colder-core-pauli-algebra-module"></span><h2>colder.core.pauli_algebra module<a class="headerlink" href="#module-colder.core.pauli_algebra" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="colder.core.pauli_algebra.pauli_product">
+<span class="sig-prename descclassname"><span class="pre">colder.core.pauli_algebra.</span></span><span class="sig-name descname"><span class="pre">pauli_product</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">complex</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/colder/core/pauli_algebra.html#pauli_product"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.core.pauli_algebra.pauli_product" title="Permalink to this definition"></a></dt>
+<dd><p>Simplify the product between the Pauli operators sigma_a and sigma_b and compute the coefficient.
+The operators are ancoded using integer values:  1 -&gt; sigma_x, 2 -&gt; sigma_y, 3 -&gt; sigma_z.
+0 is the Identity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>int</em>) – first Pauli operator</p></li>
+<li><p><strong>b</strong> (<em>int</em>) – second Pauli operator (order matters)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>coefficient and resulting operator</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tuple[complex, int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="colder.core.pauli_algebra.pauli_sites_product">
+<span class="sig-prename descclassname"><span class="pre">colder.core.pauli_algebra.</span></span><span class="sig-name descname"><span class="pre">pauli_sites_product</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coeff</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">complex</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/colder/core/pauli_algebra.html#pauli_sites_product"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.core.pauli_algebra.pauli_sites_product" title="Permalink to this definition"></a></dt>
+<dd><p>Given two input strings encoding Pauli operators in local sites, computes the local product of Pauli operators and returns the coefficient and resulting operator string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> (<em>str</em>) – String encoding Pauli operator (example: ‘IIXY’)</p></li>
+<li><p><strong>B</strong> (<em>str</em>) – _description_</p></li>
+<li><p><strong>coeff</strong> (<em>complex</em><em>, </em><em>optional</em>) – Global coefficient to be multiplied to the final result coefficient. Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The coefficient and the final operator string.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tuple[complex, str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="colder.core.pauli_algebra.operator_product">
+<span class="sig-prename descclassname"><span class="pre">colder.core.pauli_algebra.</span></span><span class="sig-name descname"><span class="pre">operator_product</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">complex</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">complex</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coeff</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">complex</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove_null</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">complex</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/colder/core/pauli_algebra.html#operator_product"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.core.pauli_algebra.operator_product" title="Permalink to this definition"></a></dt>
+<dd><p>Compute product between string prompted as dictionaries.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>complex</em><em>]</em>) – First set of strings.</p></li>
+<li><p><strong>b</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>complex</em><em>]</em>) – Second set of strings (order matters).</p></li>
+<li><p><strong>expr</strong> (<em>dict</em><em>, </em><em>optional</em>) – Dictionary to expand with terms. Defaults to None.</p></li>
+<li><p><strong>coeff</strong> (<em>complex</em><em>, </em><em>optional</em>) – Global coefficient for strings. Defaults to +1.</p></li>
+<li><p><strong>remove_null</strong> (<em>bool</em><em>, </em><em>optional</em>) – Remove null terms. Defaults to True.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary of string and associated coefficients.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict[str, complex]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="colder.core.pauli_algebra.operator_commutator">
+<span class="sig-prename descclassname"><span class="pre">colder.core.pauli_algebra.</span></span><span class="sig-name descname"><span class="pre">operator_commutator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">complex</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">complex</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coeff</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">complex</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove_null</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">complex</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/colder/core/pauli_algebra.html#operator_commutator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.core.pauli_algebra.operator_commutator" title="Permalink to this definition"></a></dt>
+<dd><p>Compute commutator (ab-ba) between strings prompted as dictionaries.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>complex</em><em>]</em>) – _description_</p></li>
+<li><p><strong>b</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>complex</em><em>]</em>) – _description_</p></li>
+<li><p><strong>coeff</strong> (<em>complex</em><em>, </em><em>optional</em>) – _description_. Defaults to 1.</p></li>
+<li><p><strong>remove_null</strong> (<em>bool</em><em>, </em><em>optional</em>) – _description_. Defaults to True.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>_description_</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict[str, complex]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-colder.core.subroutines">
+<span id="colder-core-subroutines-module"></span><h2>colder.core.subroutines module<a class="headerlink" href="#module-colder.core.subroutines" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="colder.core.subroutines.remove_null_values_dictionary">
+<span class="sig-prename descclassname"><span class="pre">colder.core.subroutines.</span></span><span class="sig-name descname"><span class="pre">remove_null_values_dictionary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="_modules/colder/core/subroutines.html#remove_null_values_dictionary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.core.subroutines.remove_null_values_dictionary" title="Permalink to this definition"></a></dt>
+<dd><p>Removes entries with null coefficients from expression dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>expr</strong> (<em>dict</em>) – Dictionary of strings and related coefficients.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary without null values.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="colder.core.subroutines.build_string_from_operator_and_target">
+<span class="sig-prename descclassname"><span class="pre">colder.core.subroutines.</span></span><span class="sig-name descname"><span class="pre">build_string_from_operator_and_target</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">strlen</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operator_sequence</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_op</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'I'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/colder/core/subroutines.html#build_string_from_operator_and_target"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.core.subroutines.build_string_from_operator_and_target" title="Permalink to this definition"></a></dt>
+<dd><p>Create a string inserting the operator_sequence operators in target indices.</p>
+<p>For instance, calling the function with arguments  5, (1,3), ‘XY’ will return ‘IXIYII’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>strlen</strong> (<em>int</em>) – Total length of the string</p></li>
+<li><p><strong>target</strong> (<em>tuple</em>) – Indices of string to replace</p></li>
+<li><p><strong>operator_sequence</strong> (<em>str</em>) – Operators to replace (shoul have the same number of characters as target tuple elements)</p></li>
+<li><p><strong>default_op</strong> (<em>str</em><em>, </em><em>optional</em>) – default single site operator. Defaults to ‘I’ (identity in the algebra).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>String with operator in target position.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="colder.core.subroutines.build_string_from_regular_pattern">
+<span class="sig-prename descclassname"><span class="pre">colder.core.subroutines.</span></span><span class="sig-name descname"><span class="pre">build_string_from_regular_pattern</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pattern</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_op</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'I'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coeff</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">complex</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">complex</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/colder/core/subroutines.html#build_string_from_regular_pattern"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.core.subroutines.build_string_from_regular_pattern" title="Permalink to this definition"></a></dt>
+<dd><p>Given a string pattern, builds all the strings in which the pattern is repeated through all the N sites.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>N</strong> (<em>int</em>) – maximum length of string</p></li>
+<li><p><strong>pattern</strong> (<em>str</em>) – pattern (of length L) to be repeated</p></li>
+<li><p><strong>default_op</strong> (<em>str</em><em>, </em><em>optional</em>) – Default operator to fill the string. Defaults to ‘I’, for identity operator.</p></li>
+<li><p><strong>coeff</strong> (<em>complex</em><em>, </em><em>optional</em>) – Default coefficient to assign. Defaults to 1.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary of strings and related coefficients.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict[str, complex]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="colder.core.subroutines.make_sum_expression">
+<span class="sig-prename descclassname"><span class="pre">colder.core.subroutines.</span></span><span class="sig-name descname"><span class="pre">make_sum_expression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ops</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">complex</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">global_coeff</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">complex</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symbol_prefix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'sigma_'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colder/core/subroutines.html#make_sum_expression"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.core.subroutines.make_sum_expression" title="Permalink to this definition"></a></dt>
+<dd><p>Sum the operators in input dictionary with related coefficients.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ops</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>complex</em><em>]</em>) – Strings to be cast as operators</p></li>
+<li><p><strong>coeff</strong> (<em>complex</em><em>, </em><em>optional</em>) – Global coefficient. Defaults to 1.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>_description_</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="colder.core.subroutines.expression_singular_square">
+<span class="sig-prename descclassname"><span class="pre">colder.core.subroutines.</span></span><span class="sig-name descname"><span class="pre">expression_singular_square</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collectors</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colder/core/subroutines.html#expression_singular_square"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.core.subroutines.expression_singular_square" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="colder.core.subroutines.expressions_to_linear_system_matrix">
+<span class="sig-prename descclassname"><span class="pre">colder.core.subroutines.</span></span><span class="sig-name descname"><span class="pre">expressions_to_linear_system_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expressions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variables</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">&lt;module</span> <span class="pre">'sympy.matrices'</span> <span class="pre">from</span> <span class="pre">'/afs/cern.ch/user/f/fbarone/.local/lib/python3.9/site-packages/sympy/matrices/__init__.py'&gt;</span></span></span><a class="reference internal" href="_modules/colder/core/subroutines.html#expressions_to_linear_system_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.core.subroutines.expressions_to_linear_system_matrix" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="colder.core.subroutines.make_linear_system">
+<span class="sig-prename descclassname"><span class="pre">colder.core.subroutines.</span></span><span class="sig-name descname"><span class="pre">make_linear_system</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A:</span> <span class="pre">&lt;module</span> <span class="pre">'sympy.matrices'</span> <span class="pre">from</span> <span class="pre">'/afs/cern.ch/user/f/fbarone/.local/lib/python3.9/site-packages/sympy/matrices/__init__.py'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B:</span> <span class="pre">&lt;module</span> <span class="pre">'sympy.matrices'</span> <span class="pre">from</span> <span class="pre">'/afs/cern.ch/user/f/fbarone/.local/lib/python3.9/site-packages/sympy/matrices/__init__.py'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variables</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Equality</span></span></span><a class="reference internal" href="_modules/colder/core/subroutines.html#make_linear_system"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.core.subroutines.make_linear_system" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="colder.core.subroutines.get_operators_from_expr_with_prefix">
+<span class="sig-prename descclassname"><span class="pre">colder.core.subroutines.</span></span><span class="sig-name descname"><span class="pre">get_operators_from_expr_with_prefix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operator_prefix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span></span></span><a class="reference internal" href="_modules/colder/core/subroutines.html#get_operators_from_expr_with_prefix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.core.subroutines.get_operators_from_expr_with_prefix" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a list of operators (as Sympy symbols) in expr starting with operator_prefix.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="colder.core.subroutines.replace_operators_in_expr">
+<span class="sig-prename descclassname"><span class="pre">colder.core.subroutines.</span></span><span class="sig-name descname"><span class="pre">replace_operators_in_expr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operator_prefix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replacement_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colder/core/subroutines.html#replace_operators_in_expr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.core.subroutines.replace_operators_in_expr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="colder.core.subroutines.get_free_symbols_name">
+<span class="sig-prename descclassname"><span class="pre">colder.core.subroutines.</span></span><span class="sig-name descname"><span class="pre">get_free_symbols_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expr</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">set</span></span></span><a class="reference internal" href="_modules/colder/core/subroutines.html#get_free_symbols_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.core.subroutines.get_free_symbols_name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="colder.core.physics.html" class="btn btn-neutral float-left" title="core physics package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="colder.core.quantum.html" class="btn btn-neutral float-right" title="colder.core.quantum package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Francesco Pio Barone.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

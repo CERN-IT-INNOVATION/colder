@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>colder.gauge package &mdash; colder 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="quantum package" href="colder.quantum.html" />
+    <link rel="prev" title="colder.models package" href="colder.models.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            colder
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Counterdiabatic Optimized Local Driving annealER</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Package documentation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="colder.html">colder package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="colder.html#main-modules">main modules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="colder.simulation.html">colder.simulation package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.models.html">colder.models package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">colder.gauge package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-colder.gauge.adiabatic_potential">adiabatic gauge potential module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="colder.quantum.html">quantum package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.core.physics.html">core physics package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="colder.html#support-modules">support modules</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">colder</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="colder.html">colder package</a></li>
+      <li class="breadcrumb-item active">colder.gauge package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/colder.gauge.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="colder-gauge-package">
+<h1>colder.gauge package<a class="headerlink" href="#colder-gauge-package" title="Permalink to this heading"></a></h1>
+<section id="module-colder.gauge.adiabatic_potential">
+<span id="adiabatic-gauge-potential-module"></span><h2>adiabatic gauge potential module<a class="headerlink" href="#module-colder.gauge.adiabatic_potential" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="colder.gauge.adiabatic_potential.cache_lcd_numpy">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">colder.gauge.adiabatic_potential.</span></span><span class="sig-name descname"><span class="pre">cache_lcd_numpy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">agpobj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colder/gauge/adiabatic_potential.html#cache_lcd_numpy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.gauge.adiabatic_potential.cache_lcd_numpy" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class collects the intermidiate result of AGP to be cached.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.gauge.adiabatic_potential.cache_lcd_numpy.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">agpobj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colder/gauge/adiabatic_potential.html#cache_lcd_numpy.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.gauge.adiabatic_potential.cache_lcd_numpy.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Makes the LCD cache from AGP.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>agpobj</strong> (<a class="reference internal" href="#colder.gauge.adiabatic_potential.adiabaticgp" title="colder.gauge.adiabatic_potential.adiabaticgp"><em>adiabaticgp</em></a>) – adiabaticgp object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="colder.gauge.adiabatic_potential.adiabaticgp">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">colder.gauge.adiabatic_potential.</span></span><span class="sig-name descname"><span class="pre">adiabaticgp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">total_sites</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="colder.core.physics.html#colder.core.physics.hamiltonian_collection" title="colder.core.physics.hamiltonian_collection"><span class="pre">hamiltonian_collection</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ansatz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="colder.core.physics.html#colder.core.physics.hamiltonian_collection" title="colder.core.physics.hamiltonian_collection"><span class="pre">hamiltonian_collection</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort_params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_cache</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inject_cache</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">None</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#colder.gauge.adiabatic_potential.cache_lcd_numpy" title="colder.gauge.adiabatic_potential.cache_lcd_numpy"><span class="pre">cache_lcd_numpy</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colder/gauge/adiabatic_potential.html#adiabaticgp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.gauge.adiabatic_potential.adiabaticgp" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.gauge.adiabatic_potential.adiabaticgp.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">total_sites</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="colder.core.physics.html#colder.core.physics.hamiltonian_collection" title="colder.core.physics.hamiltonian_collection"><span class="pre">hamiltonian_collection</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ansatz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="colder.core.physics.html#colder.core.physics.hamiltonian_collection" title="colder.core.physics.hamiltonian_collection"><span class="pre">hamiltonian_collection</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort_params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_cache</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inject_cache</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">None</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#colder.gauge.adiabatic_potential.cache_lcd_numpy" title="colder.gauge.adiabatic_potential.cache_lcd_numpy"><span class="pre">cache_lcd_numpy</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/colder/gauge/adiabatic_potential.html#adiabaticgp.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.gauge.adiabatic_potential.adiabaticgp.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Creates an Adiabatic Gauge Potential for system <cite>H</cite> and GP <cite>ansatz</cite>. The total number of spins must be provided.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>total_sites</strong> (<em>int</em>) – Number of sites.</p></li>
+<li><p><strong>H</strong> (<a class="reference internal" href="colder.core.physics.html#colder.core.physics.hamiltonian_collection" title="colder.core.physics.hamiltonian_collection"><em>colder.core.physics.hamiltonian_collection</em></a>) – System hamiltonian.</p></li>
+<li><p><strong>ansatz</strong> (<a class="reference internal" href="colder.core.physics.html#colder.core.physics.hamiltonian_collection" title="colder.core.physics.hamiltonian_collection"><em>colder.core.physics.hamiltonian_collection</em></a>) – Ansatz hamiltonian.</p></li>
+<li><p><strong>sort_params</strong> (<em>bool</em><em>, </em><em>optional</em>) – Sort parameters in alphabetic order. Defaults to True.</p></li>
+<li><p><strong>enable_cache</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, caching is enabled. Defaults to True.</p></li>
+<li><p><strong>inject_cache</strong> (<em>Union</em><em>[</em><em>None</em><em>,</em><a class="reference internal" href="#colder.gauge.adiabatic_potential.cache_lcd_numpy" title="colder.gauge.adiabatic_potential.cache_lcd_numpy"><em>cache_lcd_numpy</em></a><em>]</em><em>, </em><em>optional</em>) – If not None, use a cache object instead of computing the AGP from scratch. Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Exception</strong> – The APG cache object is not valid.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.gauge.adiabatic_potential.adiabaticgp.make_cache">
+<span class="sig-name descname"><span class="pre">make_cache</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/colder/gauge/adiabatic_potential.html#adiabaticgp.make_cache"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.gauge.adiabatic_potential.adiabaticgp.make_cache" title="Permalink to this definition"></a></dt>
+<dd><p>Computing the AGP and store it in cache.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.gauge.adiabatic_potential.adiabaticgp.clear_cache">
+<span class="sig-name descname"><span class="pre">clear_cache</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/colder/gauge/adiabatic_potential.html#adiabaticgp.clear_cache"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.gauge.adiabatic_potential.adiabaticgp.clear_cache" title="Permalink to this definition"></a></dt>
+<dd><p>Remove cached LCD. On next call, the AGP will be computed from scratch.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.gauge.adiabatic_potential.adiabaticgp.set_cache">
+<span class="sig-name descname"><span class="pre">set_cache</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#colder.gauge.adiabatic_potential.cache_lcd_numpy" title="colder.gauge.adiabatic_potential.cache_lcd_numpy"><span class="pre">cache_lcd_numpy</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/colder/gauge/adiabatic_potential.html#adiabaticgp.set_cache"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.gauge.adiabatic_potential.adiabaticgp.set_cache" title="Permalink to this definition"></a></dt>
+<dd><p>Inject a cache object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cc</strong> (<a class="reference internal" href="#colder.gauge.adiabatic_potential.cache_lcd_numpy" title="colder.gauge.adiabatic_potential.cache_lcd_numpy"><em>cache_lcd_numpy</em></a>) – AGP cache.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.gauge.adiabatic_potential.adiabaticgp.get_cache">
+<span class="sig-name descname"><span class="pre">get_cache</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#colder.gauge.adiabatic_potential.cache_lcd_numpy" title="colder.gauge.adiabatic_potential.cache_lcd_numpy"><span class="pre">cache_lcd_numpy</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="_modules/colder/gauge/adiabatic_potential.html#adiabaticgp.get_cache"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.gauge.adiabatic_potential.adiabaticgp.get_cache" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the AGP cache, if computed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>AGP cache or None if not yet computed.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Union[<a class="reference internal" href="#colder.gauge.adiabatic_potential.cache_lcd_numpy" title="colder.gauge.adiabatic_potential.cache_lcd_numpy">cache_lcd_numpy</a>, None]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.gauge.adiabatic_potential.adiabaticgp.compute">
+<span class="sig-name descname"><span class="pre">compute</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/colder/gauge/adiabatic_potential.html#adiabaticgp.compute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.gauge.adiabatic_potential.adiabaticgp.compute" title="Permalink to this definition"></a></dt>
+<dd><p>Compute simbolically <span class="math notranslate nohighlight">\(G\)</span> as expression.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.gauge.adiabatic_potential.adiabaticgp.compute_square_trace">
+<span class="sig-name descname"><span class="pre">compute_square_trace</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/colder/gauge/adiabatic_potential.html#adiabaticgp.compute_square_trace"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.gauge.adiabatic_potential.adiabaticgp.compute_square_trace" title="Permalink to this definition"></a></dt>
+<dd><p>Compute simbolically <span class="math notranslate nohighlight">\(Tr[G^2]\)</span>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.gauge.adiabatic_potential.adiabaticgp.get_lcd_equation_byvar">
+<span class="sig-name descname"><span class="pre">get_lcd_equation_byvar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colder/gauge/adiabatic_potential.html#adiabaticgp.get_lcd_equation_byvar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.gauge.adiabatic_potential.adiabaticgp.get_lcd_equation_byvar" title="Permalink to this definition"></a></dt>
+<dd><p>Computes the LCD equations for variable <cite>var</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>var</strong> (<em>str</em>) – Name of the variable to be collected.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.gauge.adiabatic_potential.adiabaticgp.get_lcd_equations">
+<span class="sig-name descname"><span class="pre">get_lcd_equations</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span></span></span><a class="reference internal" href="_modules/colder/gauge/adiabatic_potential.html#adiabaticgp.get_lcd_equations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.gauge.adiabatic_potential.adiabaticgp.get_lcd_equations" title="Permalink to this definition"></a></dt>
+<dd><p>Compute the LCD equations for all variables.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of symbolic equations for each variable in ansatz.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.gauge.adiabatic_potential.adiabaticgp.make_lcd_system">
+<span class="sig-name descname"><span class="pre">make_lcd_system</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/colder/gauge/adiabatic_potential.html#adiabaticgp.make_lcd_system"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.gauge.adiabatic_potential.adiabaticgp.make_lcd_system" title="Permalink to this definition"></a></dt>
+<dd><p>Compute simbolically the LCD equations as a linear system.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.gauge.adiabatic_potential.adiabaticgp.retrieve_model_symbols">
+<span class="sig-name descname"><span class="pre">retrieve_model_symbols</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span></span></span><a class="reference internal" href="_modules/colder/gauge/adiabatic_potential.html#adiabaticgp.retrieve_model_symbols"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.gauge.adiabatic_potential.adiabaticgp.retrieve_model_symbols" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the list of all symbols for this AGP model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of symbols in this AGP model.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.gauge.adiabatic_potential.adiabaticgp.make_lcd_numpy">
+<span class="sig-name descname"><span class="pre">make_lcd_numpy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbols_check</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modules</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'numpy'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args_override</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span></span></span><a class="reference internal" href="_modules/colder/gauge/adiabatic_potential.html#adiabaticgp.make_lcd_numpy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.gauge.adiabatic_potential.adiabaticgp.make_lcd_numpy" title="Permalink to this definition"></a></dt>
+<dd><p>Compute simbolically the LCD equations as a linear system and lambdify the matrices to numpy array depending on system symbols.
+Remark: this is the cached object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>symbols_check</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, symbol consistency is checked. Defaults to True.</p></li>
+<li><p><strong>modules</strong> (<em>str</em><em>, </em><em>optional</em>) – Module for lambidify target. Defaults to ‘numpy’. Strongly suggest to not change this, unless you know what you are doing.</p></li>
+<li><p><strong>args_override</strong> (<em>List</em><em>, </em><em>optional</em>) – Override <cite>expected_symbols</cite>. Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Exception</strong> – Unexpected symbols in equation.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Callable functions for A, B. List of symbols to provide as arguments to A and B.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Union[callable, callable, List]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.gauge.adiabatic_potential.adiabaticgp.lcd_numerical_solver">
+<span class="sig-name descname"><span class="pre">lcd_numerical_solver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">finj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nocache</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="_modules/colder/gauge/adiabatic_potential.html#adiabaticgp.lcd_numerical_solver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.gauge.adiabatic_potential.adiabaticgp.lcd_numerical_solver" title="Permalink to this definition"></a></dt>
+<dd><p>Solve LCD equations for <cite>time</cite>, given a schedule injected through <cite>finj</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time</strong> (<em>np.ndarray</em>) – Time array to solve for.</p></li>
+<li><p><strong>finj</strong> (<em>dict</em>) – Dictionary of callable functions to be called for each time step.</p></li>
+<li><p><strong>fargs</strong> (<em>dict</em><em>, </em><em>optional</em>) – Arguments of the interpolator functions. Defaults to {}.</p></li>
+<li><p><strong>nocache</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, forces the computation of LCD from scratch. Otherwise, cache is used, if available. Defaults to False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Exception</strong> – Injection dictionary has unexpected arguments. Are you sure the cache is correct?</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Numerical solution for each unique parameter of this model.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.gauge.adiabatic_potential.adiabaticgp.lcd_numerical_solver_from_range">
+<span class="sig-name descname"><span class="pre">lcd_numerical_solver_from_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trange</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nsamples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">finj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="_modules/colder/gauge/adiabatic_potential.html#adiabaticgp.lcd_numerical_solver_from_range"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.gauge.adiabatic_potential.adiabaticgp.lcd_numerical_solver_from_range" title="Permalink to this definition"></a></dt>
+<dd><p>Call <cite>lcd_numerical_solver</cite> for a time array in range <cite>trange</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>trange</strong> (<em>tuple</em>) – Range of time to solve for.</p></li>
+<li><p><strong>nsamples</strong> (<em>int</em>) – Number of time steps.</p></li>
+<li><p><strong>finj</strong> (<em>dict</em>) – Dictionary of callable functions to be called for each time step.</p></li>
+<li><p><strong>fargs</strong> (<em>dict</em><em>, </em><em>optional</em>) – Arguments of the interpolator functions. Defaults to {}.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Numerical solution for each unique parameter of this model.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.gauge.adiabatic_potential.adiabaticgp.lcd_interpolated_solver">
+<span class="sig-name descname"><span class="pre">lcd_interpolated_solver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trange</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nsamples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">finj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bc_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'clamped'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="colder.simulation.html#colder.simulation.numerical.interpolator1D" title="colder.simulation.numerical.interpolator1D"><span class="pre">colder.simulation.numerical.interpolator1D</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/colder/gauge/adiabatic_potential.html#adiabaticgp.lcd_interpolated_solver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.gauge.adiabatic_potential.adiabaticgp.lcd_interpolated_solver" title="Permalink to this definition"></a></dt>
+<dd><p>Solve numerically the LCD for time in <cite>trange</cite> and return a dictionary of values for each unique parameter of the system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>trange</strong> (<em>tuple</em>) – Range of time to solve.</p></li>
+<li><p><strong>nsamples</strong> (<em>int</em>) – Number of time samples.</p></li>
+<li><p><strong>finj</strong> (<em>dict</em>) – Dictionary of callable functions to be called for each time step.</p></li>
+<li><p><strong>fargs</strong> (<em>dict</em><em>, </em><em>optional</em>) – Arguments of the interpolator functions. Defaults to {}.</p></li>
+<li><p><strong>bc_type</strong> (<em>str</em><em>, </em><em>optional</em>) – Spline option. Defaults to ‘clamped’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary for each interpolator associated to unique driving parameters of the system.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict[str, cnum.interpolator1D]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.gauge.adiabatic_potential.adiabaticgp.match_interpolated_injections">
+<span class="sig-name descname"><span class="pre">match_interpolated_injections</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">system_interpolators</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="_modules/colder/gauge/adiabatic_potential.html#adiabaticgp.match_interpolated_injections"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.gauge.adiabatic_potential.adiabaticgp.match_interpolated_injections" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a dictionary for of callable function for the parameters in system and their derivatives.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>system_interpolators</strong> (<em>dict</em>) – Dictionary of interpolators.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary of interpolators for function and derivatives.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="colder.gauge.adiabatic_potential.plot_interpolators">
+<span class="sig-prename descclassname"><span class="pre">colder.gauge.adiabatic_potential.</span></span><span class="sig-name descname"><span class="pre">plot_interpolators</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colder/gauge/adiabatic_potential.html#plot_interpolators"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.gauge.adiabatic_potential.plot_interpolators" title="Permalink to this definition"></a></dt>
+<dd><p>Plot the interpolated data in time array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>dict</em>) – Dictionary of arrays.</p></li>
+<li><p><strong>time</strong> (<em>np.array</em>) – Time values.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="colder.models.html" class="btn btn-neutral float-left" title="colder.models package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="colder.quantum.html" class="btn btn-neutral float-right" title="quantum package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Francesco Pio Barone.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

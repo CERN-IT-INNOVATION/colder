@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>colder.models package &mdash; colder 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="colder.gauge package" href="colder.gauge.html" />
+    <link rel="prev" title="colder.simulation package" href="colder.simulation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            colder
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Counterdiabatic Optimized Local Driving annealER</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Package documentation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="colder.html">colder package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="colder.html#main-modules">main modules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="colder.simulation.html">colder.simulation package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">colder.models package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-colder.models.lattice">lattice tool module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="colder.gauge.html">colder.gauge package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.quantum.html">quantum package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.core.physics.html">core physics package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="colder.html#support-modules">support modules</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">colder</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="colder.html">colder package</a></li>
+      <li class="breadcrumb-item active">colder.models package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/colder.models.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="colder-models-package">
+<h1>colder.models package<a class="headerlink" href="#colder-models-package" title="Permalink to this heading"></a></h1>
+<section id="module-colder.models.lattice">
+<span id="lattice-tool-module"></span><h2>lattice tool module<a class="headerlink" href="#module-colder.models.lattice" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="colder.models.lattice.convert_array_to_target_list">
+<span class="sig-prename descclassname"><span class="pre">colder.models.lattice.</span></span><span class="sig-name descname"><span class="pre">convert_array_to_target_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/colder/models/lattice.html#convert_array_to_target_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.models.lattice.convert_array_to_target_list" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="colder.models.lattice.make_unique_permutations">
+<span class="sig-prename descclassname"><span class="pre">colder.models.lattice.</span></span><span class="sig-name descname"><span class="pre">make_unique_permutations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sites</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/colder/models/lattice.html#make_unique_permutations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.models.lattice.make_unique_permutations" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="colder.models.lattice.lattice">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">colder.models.lattice.</span></span><span class="sig-name descname"><span class="pre">lattice</span></span><a class="reference internal" href="_modules/colder/models/lattice.html#lattice"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.models.lattice.lattice" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Mother class for any lattice class. Defines the core methods to be inherited by the other classes.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.models.lattice.lattice.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/colder/models/lattice.html#lattice.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.models.lattice.lattice.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Shall be defined specifically for each ineriting class.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.models.lattice.lattice.invert">
+<span class="sig-name descname"><span class="pre">invert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interactions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/colder/models/lattice.html#lattice.invert"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.models.lattice.lattice.invert" title="Permalink to this definition"></a></dt>
+<dd><p>Inverts list of interaction terms.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>interactions</strong> (<em>List</em><em>[</em><em>Tuple</em><em>]</em>) – List of tuples to invert.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of inverted interactions.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[Tuple]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.models.lattice.lattice.add_invert">
+<span class="sig-name descname"><span class="pre">add_invert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interactions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/colder/models/lattice.html#lattice.add_invert"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.models.lattice.lattice.add_invert" title="Permalink to this definition"></a></dt>
+<dd><p>Return interaction terms and their inversion.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>interactions</strong> (<em>List</em><em>[</em><em>Tuple</em><em>]</em>) – List of tuples to invert.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of interactions.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[Tuple]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="colder.models.lattice.chain">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">colder.models.lattice.</span></span><span class="sig-name descname"><span class="pre">chain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nspin</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">periodic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colder/models/lattice.html#chain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.models.lattice.chain" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#colder.models.lattice.lattice" title="colder.models.lattice.lattice"><code class="xref py py-class docutils literal notranslate"><span class="pre">lattice</span></code></a></p>
+<p>1D chain lattice model.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="colder.models.lattice.chain.single_site">
+<span class="sig-name descname"><span class="pre">single_site</span></span><a class="headerlink" href="#colder.models.lattice.chain.single_site" title="Permalink to this definition"></a></dt>
+<dd><p>single site indices</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="colder.models.lattice.chain.nearest_neighbor">
+<span class="sig-name descname"><span class="pre">nearest_neighbor</span></span><a class="headerlink" href="#colder.models.lattice.chain.nearest_neighbor" title="Permalink to this definition"></a></dt>
+<dd><p>nearest neighbor interactions</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="colder.models.lattice.chain.next_nearest_neighbor">
+<span class="sig-name descname"><span class="pre">next_nearest_neighbor</span></span><a class="headerlink" href="#colder.models.lattice.chain.next_nearest_neighbor" title="Permalink to this definition"></a></dt>
+<dd><p>next nearest neighbor interactions</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="colder.models.lattice.chain.annni">
+<span class="sig-name descname"><span class="pre">annni</span></span><a class="headerlink" href="#colder.models.lattice.chain.annni" title="Permalink to this definition"></a></dt>
+<dd><p>return both nearest and next nearest neighbor indices</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="colder.models.lattice.chain.full_connected">
+<span class="sig-name descname"><span class="pre">full_connected</span></span><a class="headerlink" href="#colder.models.lattice.chain.full_connected" title="Permalink to this definition"></a></dt>
+<dd><p>pairwise interactions of a fully connected model</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="colder.models.lattice.chain.three_neighbor">
+<span class="sig-name descname"><span class="pre">three_neighbor</span></span><a class="headerlink" href="#colder.models.lattice.chain.three_neighbor" title="Permalink to this definition"></a></dt>
+<dd><p>build interactions with 3 adjacent spins</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.models.lattice.chain.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nspin</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">periodic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/colder/models/lattice.html#chain.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.models.lattice.chain.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize a 1D chain with <cite>nspin</cite> spins.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nspin</strong> (<em>int</em>) – Number of spins.</p></li>
+<li><p><strong>periodic</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, periodic conditions are assumed at boundary. Defaults to False.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="colder.models.lattice.square">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">colder.models.lattice.</span></span><span class="sig-name descname"><span class="pre">square</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colder/models/lattice.html#square"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.models.lattice.square" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#colder.models.lattice.lattice" title="colder.models.lattice.lattice"><code class="xref py py-class docutils literal notranslate"><span class="pre">lattice</span></code></a></p>
+<p>2D square lattice model.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="colder.models.lattice.square.single_site">
+<span class="sig-name descname"><span class="pre">single_site</span></span><a class="headerlink" href="#colder.models.lattice.square.single_site" title="Permalink to this definition"></a></dt>
+<dd><p>single site indices</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="colder.models.lattice.square.nearest_neighbor">
+<span class="sig-name descname"><span class="pre">nearest_neighbor</span></span><a class="headerlink" href="#colder.models.lattice.square.nearest_neighbor" title="Permalink to this definition"></a></dt>
+<dd><p>nearest neighbor interactions</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="colder.models.lattice.square.next_nearest_neighbor">
+<span class="sig-name descname"><span class="pre">next_nearest_neighbor</span></span><a class="headerlink" href="#colder.models.lattice.square.next_nearest_neighbor" title="Permalink to this definition"></a></dt>
+<dd><p>next nearest neighbor interactions</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="colder.models.lattice.square.annni">
+<span class="sig-name descname"><span class="pre">annni</span></span><a class="headerlink" href="#colder.models.lattice.square.annni" title="Permalink to this definition"></a></dt>
+<dd><p>return both nearest and next nearest neighbor indices</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="colder.models.lattice.square.full_connected">
+<span class="sig-name descname"><span class="pre">full_connected</span></span><a class="headerlink" href="#colder.models.lattice.square.full_connected" title="Permalink to this definition"></a></dt>
+<dd><p>pairwise interactions of a fully connected model</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.models.lattice.square.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/colder/models/lattice.html#square.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.models.lattice.square.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize a 2D square lattice with <cite>nspin</cite> spins.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nspin</strong> (<em>int</em>) – Number of spins.</p></li>
+<li><p><strong>periodic</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, periodic conditions are assumed at boundary. Defaults to False.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="colder.simulation.html" class="btn btn-neutral float-left" title="colder.simulation package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="colder.gauge.html" class="btn btn-neutral float-right" title="colder.gauge package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Francesco Pio Barone.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

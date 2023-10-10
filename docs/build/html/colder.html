@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>colder package &mdash; colder 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="colder.simulation package" href="colder.simulation.html" />
+    <link rel="prev" title="Counterdiabatic Optimized Local Driving annealER" href="intro.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            colder
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Counterdiabatic Optimized Local Driving annealER</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Package documentation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">colder package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#main-modules">main modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="colder.simulation.html">colder.simulation package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.models.html">colder.models package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.gauge.html">colder.gauge package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.quantum.html">quantum package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.core.physics.html">core physics package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#support-modules">support modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="colder.core.html">core package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.core.html#core-backbone-package">core backbone package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.backend.html">backend package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">colder</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">colder package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/colder.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="colder-package">
+<h1>colder package<a class="headerlink" href="#colder-package" title="Permalink to this heading"></a></h1>
+<p>Welcome to the package documentation of <cite>colder</cite>.
+The library is structured as follows: some modules are provided to the user in order to input the physical system configuration and perform the main operations.
+This is the case of the <cite>main modules</cite> (simulation and models).
+The <cite>support models</cite> are the backbone of the library and provide lower level interface to various backends and core functionalities.</p>
+<section id="main-modules">
+<h2>main modules<a class="headerlink" href="#main-modules" title="Permalink to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="colder.simulation.html">colder.simulation package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="colder.simulation.html#module-colder.simulation.annealing">annealing module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="colder.simulation.html#colder.simulation.annealing.annealing"><code class="docutils literal notranslate"><span class="pre">annealing</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="colder.simulation.html#module-colder.simulation.cold">COLD module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="colder.simulation.html#colder.simulation.cold.get_functions_from_schedule"><code class="docutils literal notranslate"><span class="pre">get_functions_from_schedule()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.simulation.html#colder.simulation.cold.check_hamiltonian_input"><code class="docutils literal notranslate"><span class="pre">check_hamiltonian_input()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.simulation.html#colder.simulation.cold.cold"><code class="docutils literal notranslate"><span class="pre">cold</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="colder.simulation.html#module-colder.simulation.numerical">numerical module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="colder.simulation.html#colder.simulation.numerical.interpolator1D"><code class="docutils literal notranslate"><span class="pre">interpolator1D</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="colder.models.html">colder.models package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="colder.models.html#module-colder.models.lattice">lattice tool module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="colder.models.html#colder.models.lattice.convert_array_to_target_list"><code class="docutils literal notranslate"><span class="pre">convert_array_to_target_list()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.models.html#colder.models.lattice.make_unique_permutations"><code class="docutils literal notranslate"><span class="pre">make_unique_permutations()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.models.html#colder.models.lattice.lattice"><code class="docutils literal notranslate"><span class="pre">lattice</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.models.html#colder.models.lattice.chain"><code class="docutils literal notranslate"><span class="pre">chain</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.models.html#colder.models.lattice.square"><code class="docutils literal notranslate"><span class="pre">square</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="colder.gauge.html">colder.gauge package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="colder.gauge.html#module-colder.gauge.adiabatic_potential">adiabatic gauge potential module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="colder.gauge.html#colder.gauge.adiabatic_potential.cache_lcd_numpy"><code class="docutils literal notranslate"><span class="pre">cache_lcd_numpy</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.gauge.html#colder.gauge.adiabatic_potential.adiabaticgp"><code class="docutils literal notranslate"><span class="pre">adiabaticgp</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.gauge.html#colder.gauge.adiabatic_potential.plot_interpolators"><code class="docutils literal notranslate"><span class="pre">plot_interpolators()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="colder.quantum.html">quantum package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="colder.quantum.html#module-colder.quantum.math">colder.quantum.math module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="colder.quantum.html#colder.quantum.math.fidelity"><code class="docutils literal notranslate"><span class="pre">fidelity()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.quantum.html#colder.quantum.math.infidelity"><code class="docutils literal notranslate"><span class="pre">infidelity()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="colder.core.physics.html">core physics package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="colder.core.physics.html#module-colder.core.physics">colder.core.physics module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="colder.core.physics.html#colder.core.physics.hamiltonian"><code class="docutils literal notranslate"><span class="pre">hamiltonian</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.core.physics.html#colder.core.physics.hamiltonian_collection"><code class="docutils literal notranslate"><span class="pre">hamiltonian_collection</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.core.physics.html#colder.core.physics.empty_hamiltonian"><code class="docutils literal notranslate"><span class="pre">empty_hamiltonian</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="support-modules">
+<h2>support modules<a class="headerlink" href="#support-modules" title="Permalink to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="colder.core.html">core package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colder.core.html#core-backbone-package">core backbone package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="colder.core.html#colder-core-quantum-module">colder.core.quantum module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="colder.core.quantum.html">colder.core.quantum package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="colder.core.html#module-colder.core.pauli_algebra">colder.core.pauli_algebra module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="colder.core.html#colder.core.pauli_algebra.pauli_product"><code class="docutils literal notranslate"><span class="pre">pauli_product()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.core.html#colder.core.pauli_algebra.pauli_sites_product"><code class="docutils literal notranslate"><span class="pre">pauli_sites_product()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.core.html#colder.core.pauli_algebra.operator_product"><code class="docutils literal notranslate"><span class="pre">operator_product()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.core.html#colder.core.pauli_algebra.operator_commutator"><code class="docutils literal notranslate"><span class="pre">operator_commutator()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="colder.core.html#module-colder.core.subroutines">colder.core.subroutines module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="colder.core.html#colder.core.subroutines.remove_null_values_dictionary"><code class="docutils literal notranslate"><span class="pre">remove_null_values_dictionary()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.core.html#colder.core.subroutines.build_string_from_operator_and_target"><code class="docutils literal notranslate"><span class="pre">build_string_from_operator_and_target()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.core.html#colder.core.subroutines.build_string_from_regular_pattern"><code class="docutils literal notranslate"><span class="pre">build_string_from_regular_pattern()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.core.html#colder.core.subroutines.make_sum_expression"><code class="docutils literal notranslate"><span class="pre">make_sum_expression()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.core.html#colder.core.subroutines.expression_singular_square"><code class="docutils literal notranslate"><span class="pre">expression_singular_square()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.core.html#colder.core.subroutines.expressions_to_linear_system_matrix"><code class="docutils literal notranslate"><span class="pre">expressions_to_linear_system_matrix()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.core.html#colder.core.subroutines.make_linear_system"><code class="docutils literal notranslate"><span class="pre">make_linear_system()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.core.html#colder.core.subroutines.get_operators_from_expr_with_prefix"><code class="docutils literal notranslate"><span class="pre">get_operators_from_expr_with_prefix()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.core.html#colder.core.subroutines.replace_operators_in_expr"><code class="docutils literal notranslate"><span class="pre">replace_operators_in_expr()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.core.html#colder.core.subroutines.get_free_symbols_name"><code class="docutils literal notranslate"><span class="pre">get_free_symbols_name()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="colder.backend.html">backend package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="colder.backend.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="colder.backend.scipy.html">colder.backend.scipy package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.backend.sparse.html">colder.backend.sparse package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.backend.cupy.html">colder.backend.cupy package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="colder.backend.qibo.html">colder.backend.qibo package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="colder.backend.html#module-colder.backend">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="intro.html" class="btn btn-neutral float-left" title="Counterdiabatic Optimized Local Driving annealER" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="colder.simulation.html" class="btn btn-neutral float-right" title="colder.simulation package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Francesco Pio Barone.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

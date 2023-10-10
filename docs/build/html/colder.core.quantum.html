@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>colder.core.quantum package &mdash; colder 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="backend package" href="colder.backend.html" />
+    <link rel="prev" title="core package" href="colder.core.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            colder
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Counterdiabatic Optimized Local Driving annealER</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Package documentation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="colder.html">colder package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="colder.html#main-modules">main modules</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="colder.html#support-modules">support modules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="colder.core.html">core package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="colder.core.html#core-backbone-package">core backbone package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="colder.core.html#colder-core-quantum-module">colder.core.quantum module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="colder.core.html#module-colder.core.pauli_algebra">colder.core.pauli_algebra module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="colder.core.html#module-colder.core.subroutines">colder.core.subroutines module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="colder.backend.html">backend package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">colder</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="colder.html">colder package</a></li>
+          <li class="breadcrumb-item"><a href="colder.core.html">core package</a></li>
+      <li class="breadcrumb-item active">colder.core.quantum package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/colder.core.quantum.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="colder-core-quantum-package">
+<h1>colder.core.quantum package<a class="headerlink" href="#colder-core-quantum-package" title="Permalink to this heading"></a></h1>
+<section id="module-colder.core.quantum.cupy">
+<span id="colder-core-quantum-cupy-module"></span><h2>colder.core.quantum.cupy module<a class="headerlink" href="#module-colder.core.quantum.cupy" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="colder.core.quantum.cupy.operators">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">colder.core.quantum.cupy.</span></span><span class="sig-name descname"><span class="pre">operators</span></span><a class="reference internal" href="_modules/colder/core/quantum/cupy.html#operators"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.core.quantum.cupy.operators" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="colder.core.quantum.cupy.operators.X">
+<span class="sig-name descname"><span class="pre">X</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">array([[0.+0.j,</span> <span class="pre">1.+0.j],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[1.+0.j,</span> <span class="pre">0.+0.j]])</span></em><a class="headerlink" href="#colder.core.quantum.cupy.operators.X" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="colder.core.quantum.cupy.operators.Y">
+<span class="sig-name descname"><span class="pre">Y</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">array([[</span> <span class="pre">0.+0.j,</span> <span class="pre">-0.-1.j],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[</span> <span class="pre">0.+1.j,</span>&#160; <span class="pre">0.+0.j]])</span></em><a class="headerlink" href="#colder.core.quantum.cupy.operators.Y" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="colder.core.quantum.cupy.operators.Z">
+<span class="sig-name descname"><span class="pre">Z</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">array([[</span> <span class="pre">1.+0.j,</span>&#160; <span class="pre">0.+0.j],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[</span> <span class="pre">0.+0.j,</span> <span class="pre">-1.+0.j]])</span></em><a class="headerlink" href="#colder.core.quantum.cupy.operators.Z" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="colder.core.quantum.cupy.operators.Id">
+<span class="sig-name descname"><span class="pre">Id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">array([[1.+0.j,</span> <span class="pre">0.+0.j],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[0.+0.j,</span> <span class="pre">1.+0.j]])</span></em><a class="headerlink" href="#colder.core.quantum.cupy.operators.Id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="colder.core.quantum.cupy.quantum_sparse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">colder.core.quantum.cupy.</span></span><span class="sig-name descname"><span class="pre">quantum_sparse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colder/core/quantum/cupy.html#quantum_sparse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.core.quantum.cupy.quantum_sparse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.core.quantum.cupy.quantum_sparse.kron_site">
+<span class="sig-name descname"><span class="pre">kron_site</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">operator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">site</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="_modules/colder/core/quantum/cupy.html#quantum_sparse.kron_site"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.core.quantum.cupy.quantum_sparse.kron_site" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.core.quantum.cupy.quantum_sparse.kron_list">
+<span class="sig-name descname"><span class="pre">kron_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">operators</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sites</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="_modules/colder/core/quantum/cupy.html#quantum_sparse.kron_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.core.quantum.cupy.quantum_sparse.kron_list" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-colder.core.quantum.numpy">
+<span id="colder-core-quantum-numpy-module"></span><h2>colder.core.quantum.numpy module<a class="headerlink" href="#module-colder.core.quantum.numpy" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="colder.core.quantum.numpy.operators">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">colder.core.quantum.numpy.</span></span><span class="sig-name descname"><span class="pre">operators</span></span><a class="reference internal" href="_modules/colder/core/quantum/numpy.html#operators"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.core.quantum.numpy.operators" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="colder.core.quantum.numpy.operators.X">
+<span class="sig-name descname"><span class="pre">X</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">array([[0.+0.j,</span> <span class="pre">1.+0.j],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[1.+0.j,</span> <span class="pre">0.+0.j]])</span></em><a class="headerlink" href="#colder.core.quantum.numpy.operators.X" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="colder.core.quantum.numpy.operators.Y">
+<span class="sig-name descname"><span class="pre">Y</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">array([[</span> <span class="pre">0.+0.j,</span> <span class="pre">-0.-1.j],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[</span> <span class="pre">0.+1.j,</span>&#160; <span class="pre">0.+0.j]])</span></em><a class="headerlink" href="#colder.core.quantum.numpy.operators.Y" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="colder.core.quantum.numpy.operators.Z">
+<span class="sig-name descname"><span class="pre">Z</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">array([[</span> <span class="pre">1.+0.j,</span>&#160; <span class="pre">0.+0.j],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[</span> <span class="pre">0.+0.j,</span> <span class="pre">-1.+0.j]])</span></em><a class="headerlink" href="#colder.core.quantum.numpy.operators.Z" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="colder.core.quantum.numpy.operators.Id">
+<span class="sig-name descname"><span class="pre">Id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">array([[1.+0.j,</span> <span class="pre">0.+0.j],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[0.+0.j,</span> <span class="pre">1.+0.j]])</span></em><a class="headerlink" href="#colder.core.quantum.numpy.operators.Id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="colder.core.quantum.numpy.quantum_sparse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">colder.core.quantum.numpy.</span></span><span class="sig-name descname"><span class="pre">quantum_sparse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colder/core/quantum/numpy.html#quantum_sparse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.core.quantum.numpy.quantum_sparse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.core.quantum.numpy.quantum_sparse.kron_site">
+<span class="sig-name descname"><span class="pre">kron_site</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">operator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">site</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="_modules/colder/core/quantum/numpy.html#quantum_sparse.kron_site"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.core.quantum.numpy.quantum_sparse.kron_site" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.core.quantum.numpy.quantum_sparse.kron_list">
+<span class="sig-name descname"><span class="pre">kron_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">operators</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sites</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="_modules/colder/core/quantum/numpy.html#quantum_sparse.kron_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.core.quantum.numpy.quantum_sparse.kron_list" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-colder.core.quantum.sparse">
+<span id="colder-core-quantum-sparse-module"></span><h2>colder.core.quantum.sparse module<a class="headerlink" href="#module-colder.core.quantum.sparse" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="colder.core.quantum.sparse.operators">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">colder.core.quantum.sparse.</span></span><span class="sig-name descname"><span class="pre">operators</span></span><a class="reference internal" href="_modules/colder/core/quantum/sparse.html#operators"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.core.quantum.sparse.operators" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="colder.core.quantum.sparse.operators.X">
+<span class="sig-name descname"><span class="pre">X</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">spmatrix</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;2x2</span> <span class="pre">sparse</span> <span class="pre">matrix</span> <span class="pre">of</span> <span class="pre">type</span> <span class="pre">'&lt;class</span> <span class="pre">'numpy.complex128'&gt;'</span> <span class="pre">	with</span> <span class="pre">2</span> <span class="pre">stored</span> <span class="pre">elements</span> <span class="pre">in</span> <span class="pre">Compressed</span> <span class="pre">Sparse</span> <span class="pre">Row</span> <span class="pre">format&gt;</span></em><a class="headerlink" href="#colder.core.quantum.sparse.operators.X" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="colder.core.quantum.sparse.operators.Y">
+<span class="sig-name descname"><span class="pre">Y</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">spmatrix</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;2x2</span> <span class="pre">sparse</span> <span class="pre">matrix</span> <span class="pre">of</span> <span class="pre">type</span> <span class="pre">'&lt;class</span> <span class="pre">'numpy.complex128'&gt;'</span> <span class="pre">	with</span> <span class="pre">2</span> <span class="pre">stored</span> <span class="pre">elements</span> <span class="pre">in</span> <span class="pre">Compressed</span> <span class="pre">Sparse</span> <span class="pre">Row</span> <span class="pre">format&gt;</span></em><a class="headerlink" href="#colder.core.quantum.sparse.operators.Y" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="colder.core.quantum.sparse.operators.Z">
+<span class="sig-name descname"><span class="pre">Z</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">spmatrix</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;2x2</span> <span class="pre">sparse</span> <span class="pre">matrix</span> <span class="pre">of</span> <span class="pre">type</span> <span class="pre">'&lt;class</span> <span class="pre">'numpy.complex128'&gt;'</span> <span class="pre">	with</span> <span class="pre">2</span> <span class="pre">stored</span> <span class="pre">elements</span> <span class="pre">in</span> <span class="pre">Compressed</span> <span class="pre">Sparse</span> <span class="pre">Row</span> <span class="pre">format&gt;</span></em><a class="headerlink" href="#colder.core.quantum.sparse.operators.Z" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="colder.core.quantum.sparse.operators.Id">
+<span class="sig-name descname"><span class="pre">Id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">spmatrix</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;2x2</span> <span class="pre">sparse</span> <span class="pre">matrix</span> <span class="pre">of</span> <span class="pre">type</span> <span class="pre">'&lt;class</span> <span class="pre">'numpy.complex128'&gt;'</span> <span class="pre">	with</span> <span class="pre">2</span> <span class="pre">stored</span> <span class="pre">elements</span> <span class="pre">(1</span> <span class="pre">diagonals)</span> <span class="pre">in</span> <span class="pre">DIAgonal</span> <span class="pre">format&gt;</span></em><a class="headerlink" href="#colder.core.quantum.sparse.operators.Id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="colder.core.quantum.sparse.quantum_sparse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">colder.core.quantum.sparse.</span></span><span class="sig-name descname"><span class="pre">quantum_sparse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colder/core/quantum/sparse.html#quantum_sparse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.core.quantum.sparse.quantum_sparse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.core.quantum.sparse.quantum_sparse.kron_site">
+<span class="sig-name descname"><span class="pre">kron_site</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">operator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spmatrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">site</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">spmatrix</span></span></span><a class="reference internal" href="_modules/colder/core/quantum/sparse.html#quantum_sparse.kron_site"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.core.quantum.sparse.quantum_sparse.kron_site" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colder.core.quantum.sparse.quantum_sparse.kron_list">
+<span class="sig-name descname"><span class="pre">kron_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">operators</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">spmatrix</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sites</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">spmatrix</span></span></span><a class="reference internal" href="_modules/colder/core/quantum/sparse.html#quantum_sparse.kron_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.core.quantum.sparse.quantum_sparse.kron_list" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-colder.core.quantum">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-colder.core.quantum" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="colder.core.html" class="btn btn-neutral float-left" title="core package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="colder.backend.html" class="btn btn-neutral float-right" title="backend package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Francesco Pio Barone.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

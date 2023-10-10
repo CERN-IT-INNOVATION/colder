@@ -1,0 +1,7 @@
+colder
+======
+
+.. toctree::
+   :maxdepth: 4
+
+   colder

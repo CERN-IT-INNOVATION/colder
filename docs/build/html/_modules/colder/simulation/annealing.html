@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>colder.simulation.annealing &mdash; colder 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            colder
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro.html">Counterdiabatic Optimized Local Driving annealER</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Package documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../colder.html">colder package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">colder</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">colder.simulation.annealing</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for colder.simulation.annealing</h1><div class="highlight"><pre>
+<span></span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">colder.backend</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
+
+
+
+<div class="viewcode-block" id="annealing"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.annealing.annealing">[docs]</a><span class="k">class</span> <span class="nc">annealing</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Quantum annealing simulation. The total evolution time is provided by arg `tau`.</span>
+<span class="sd">    Either one argument must be provided between `P` (total steps) and `dt` (timestep).</span>
+<span class="sd">    </span>
+<span class="sd">    Example:</span>
+<span class="sd">        .. highlight:: python</span>
+<span class="sd">        .. code-block:: python</span>
+<span class="sd">        </span>
+<span class="sd">            import colder.simulation.annealing</span>
+<span class="sd">            ann = colder.simulation.annealing.annealing(tau = 0.01, P = 200, backend = &#39;scipy&#39;)</span>
+<span class="sd">            </span>
+<span class="sd">            def H_t(t):</span>
+<span class="sd">                # timedependent hamiltonian</span>
+<span class="sd">                return ...</span>
+<span class="sd">            </span>
+<span class="sd">            psi0 = ...  # the initial state</span>
+<span class="sd">            </span>
+<span class="sd">            psi_final = ann.run(H_t, psi0=psi0)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    
+    
+<div class="viewcode-block" id="annealing.__init__"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.annealing.annealing.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tau</span> <span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">P</span> <span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span><span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">dt</span> <span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span><span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">backend</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;scipy&#39;</span><span class="p">,</span> <span class="n">backend_options</span> <span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{})</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize a quantum annealing simulation. The total evolution time is provided by arg `tau`.</span>
+<span class="sd">        Either one argument must be provided between `P` (total steps) and `dt` (timestep).</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            tau (float): Total annealing time.</span>
+<span class="sd">            P (Union[int,None], optional): Number of timesteps. Defaults to None. If provided, overrides the value of `dt`.</span>
+<span class="sd">            dt (Union[float,None], optional): Timestep. Defaults to None. </span>
+<span class="sd">            backend (str, optional): Select a backend. Defaults to &#39;qibo&#39;. Available backends: `qibo`, `scipy`, `sparse`, `cupy`.</span>
+<span class="sd">            backend_options (dict, optional): Dictionary of kwargs to pass to backend. Defaults to {}.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            Exception: Must provide either the timestep `dt` or the total number of steps `P`. If both values are prompted, `P` is taken in consideration.</span>
+<span class="sd">            Exception: Not valid backend identifier.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">tau</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;total annealing time must be positive&#39;</span>
+        <span class="k">if</span> <span class="n">P</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">dt</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;must provide at least the number of steps (P) or the timestep (dt).&#39;</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">tau</span> <span class="o">=</span> <span class="n">tau</span>   <span class="c1"># total annealing time</span>
+        <span class="k">if</span> <span class="n">P</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dt</span> <span class="o">=</span> <span class="n">dt</span>     <span class="c1"># effective time step</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">P</span> <span class="o">=</span> <span class="n">tau</span><span class="o">//</span><span class="n">dt</span> <span class="c1"># number of steps</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">P</span> <span class="o">=</span> <span class="n">P</span>       <span class="c1"># number of steps</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dt</span> <span class="o">=</span> <span class="n">tau</span><span class="o">/</span><span class="n">P</span>  <span class="c1"># effective time step</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">backend_options</span> <span class="o">=</span> <span class="n">backend_options</span>
+        
+        <span class="k">if</span> <span class="n">backend</span> <span class="o">==</span> <span class="s1">&#39;qibo&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">backend_time_evolution</span> <span class="o">=</span> <span class="n">colder</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">qibo</span><span class="o">.</span><span class="n">routines</span><span class="o">.</span><span class="n">timedependent_evolution</span>
+        <span class="k">elif</span> <span class="n">backend</span> <span class="o">==</span> <span class="s1">&#39;scipy&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">backend_time_evolution</span> <span class="o">=</span> <span class="n">colder</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">scipy</span><span class="o">.</span><span class="n">routines</span><span class="o">.</span><span class="n">timedependent_evolution</span>
+        <span class="k">elif</span> <span class="n">backend</span> <span class="o">==</span> <span class="s1">&#39;sparse&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">backend_time_evolution</span> <span class="o">=</span> <span class="n">colder</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">routines</span><span class="o">.</span><span class="n">timedependent_evolution</span>
+        <span class="k">elif</span> <span class="n">backend</span> <span class="o">==</span> <span class="s1">&#39;cupy&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">backend_time_evolution</span> <span class="o">=</span> <span class="n">colder</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">cupy</span><span class="o">.</span><span class="n">routines</span><span class="o">.</span><span class="n">timedependent_evolution</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;not valid backend identifier&#39;</span><span class="p">)</span></div>
+        
+    
+    
+<div class="viewcode-block" id="annealing.run"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.annealing.annealing.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H</span> <span class="p">:</span> <span class="nb">callable</span><span class="p">,</span> <span class="n">psi0</span> <span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;superpos&#39;</span><span class="p">,</span> <span class="n">hook_function</span> <span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">callable</span><span class="p">,</span><span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Run the annealing simulation with time dependent hamiltonian. H must be a function of time.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            H (callable): Function that returns the hamiltonian at time t.</span>
+<span class="sd">            psi0 (Union[np.ndarray, str], optional): Initial state. Defaults to &#39;superpos&#39;.</span>
+<span class="sd">            hook_function (Union[callable,None], optional): Function to execute at each time step. Arguments must be `(t : float, state : np.ndarray)`. Defaults to None.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray: Evolved quantum state.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">backend_time_evolution</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">T</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tau</span><span class="p">,</span> <span class="n">P</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">P</span><span class="p">,</span> <span class="n">psi0</span> <span class="o">=</span> <span class="n">psi0</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">backend_options</span><span class="p">,</span> <span class="n">hook_function</span> <span class="o">=</span> <span class="n">hook_function</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Francesco Pio Barone.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

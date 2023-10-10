@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Counterdiabatic Optimized Local Driving annealER &mdash; colder 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="colder package" href="colder.html" />
+    <link rel="prev" title="COLDER" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            colder
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Counterdiabatic Optimized Local Driving annealER</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-install">How to install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#get-started">Get started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#prompt-systems-through-hamiltonians">Prompt systems through hamiltonians</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#use-of-lattice-module-for-spin-indexing">Use of lattice module for spin indexing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#timedependent-coefficient">Timedependent coefficient</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#initialize-a-cold-simulation">Initialize a COLD simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#complete-examples">Complete examples</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Package documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="colder.html">colder package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">colder</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Counterdiabatic Optimized Local Driving annealER</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/intro.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="counterdiabatic-optimized-local-driving-annealer">
+<h1>Counterdiabatic Optimized Local Driving annealER<a class="headerlink" href="#counterdiabatic-optimized-local-driving-annealer" title="Permalink to this heading"></a></h1>
+<p>This package provides tool for Spin system simulation and optimization through a combination of Quantum Optimal Control and Counterdiabatic Driving techniques.
+The framework allows to prompt the system through a simplified interface and automatically compute the minimization of the Adiabatic Gauge Potential (AGP) for a given ansatz.</p>
+<section id="how-to-install">
+<h2>How to install<a class="headerlink" href="#how-to-install" title="Permalink to this heading"></a></h2>
+<p>Clone from GitHub and move inside the project folder</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/CERN-IT-INNOVATION/colder
+<span class="nb">cd</span><span class="w"> </span>colder
+</pre></div>
+</div>
+<p>Install the required packages</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>.
+</pre></div>
+</div>
+</section>
+<section id="get-started">
+<h2>Get started<a class="headerlink" href="#get-started" title="Permalink to this heading"></a></h2>
+<p>In this section we will discuss the main interface of <cite>colder</cite>, building examples to gradually introduce the user to its features.
+It is strongly suggested to integrate the information of this paragraphs with the provided examples, in order to see the full picture and grasp all the details of this interface.</p>
+<section id="prompt-systems-through-hamiltonians">
+<h3>Prompt systems through hamiltonians<a class="headerlink" href="#prompt-systems-through-hamiltonians" title="Permalink to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">physics</span></code> module of <cite>colder</cite> provides the interface to build generic systems of spins.
+The hamiltonian object can be later used for all the next stages of analysis, i.e. building the gauge potential or simulating the quantum annealing schedule.</p>
+<p>Let us start from the basics. Import the <code class="docutils literal notranslate"><span class="pre">physics</span></code> module.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">colder.core.physics</span> <span class="k">as</span> <span class="nn">cphys</span>
+</pre></div>
+</div>
+<p>Suppose that you want to build the following hamiltonian,</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{H}_z = A \cdot \left( \sigma_z^{(0)} + \sigma_z^{(1)} + \sigma_z^{(2)} \right)\]</div>
+<p>which consists of two Pauli Z operators applied on 3 spins, multiplied by a coefficient A. The hamiltonian object would be written in <cite>colder</cite> as</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">H_z</span> <span class="o">=</span> <span class="n">cphys</span><span class="o">.</span><span class="n">hamiltonian</span><span class="p">(</span><span class="s1">&#39;Z&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="n">coeff</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that at this stage we are not specifying the total number of spins. This is because the <cite>colder</cite> hamiltonians are just storing the symbols for the later steps.
+The user will be asked to provide the total number of spins when needed.</p>
+<p>In the same fashion, we can build hamiltonians which involve interaction of more spins. For instance,</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{H}_{int} = J \cdot \left( \sigma_x^{(0)} \sigma_x^{(1)} + \sigma_x^{(1)} \sigma_x^{(2)} \right)\]</div>
+<p>would be written as</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">H_int</span> <span class="o">=</span> <span class="n">cphys</span><span class="o">.</span><span class="n">hamiltonian</span><span class="p">(</span><span class="s1">&#39;ZZ&#39;</span><span class="p">,</span> <span class="p">[</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="p">],</span> <span class="n">coeff</span><span class="o">=</span><span class="s1">&#39;J&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The user can prompt more complex patterns just by changing the disposition of spin indices and the operator strings.
+For instance, the hamiltonian</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{H}_{fancy} = p \cdot \left( \sigma_x^{(0)} \sigma_y^{(1)} + \sigma_y^{(0)} \sigma_x^{(2)} \right)\]</div>
+<p>writes as</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">H_fancy</span> <span class="o">=</span> <span class="n">cphys</span><span class="o">.</span><span class="n">hamiltonian</span><span class="p">(</span><span class="s1">&#39;XY&#39;</span><span class="p">,</span> <span class="p">[</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="p">],</span> <span class="n">coeff</span><span class="o">=</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, hamiltonian objects can be summed to compose more complex hamiltonians.
+The user can perform this operation either using the <code class="docutils literal notranslate"><span class="pre">+</span></code> symbol, or invoking the <code class="docutils literal notranslate"><span class="pre">hamiltonian_collection</span></code> class:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">H_sys</span> <span class="o">=</span> <span class="n">H_z</span> <span class="o">+</span> <span class="n">H_int</span>
+<span class="c1"># result is the same as</span>
+<span class="n">H_sys</span> <span class="o">=</span> <span class="n">hamiltonian_collection</span><span class="p">(</span><span class="n">H_z</span><span class="p">,</span> <span class="n">H_int</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The user can print on display a dummy expression of the hamiltonian object, using the <code class="docutils literal notranslate"><span class="pre">expression()</span></code> method.</p>
+</section>
+<section id="use-of-lattice-module-for-spin-indexing">
+<h3>Use of lattice module for spin indexing<a class="headerlink" href="#use-of-lattice-module-for-spin-indexing" title="Permalink to this heading"></a></h3>
+<p>Since the input of spin indices in hamiltonian objects is an essential but tiresome operation, we provide an interface that builds the lists of spins from scratch.
+Suppose that you have a 5 spin system, disposed in a linear chain.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">colder.models.lattice</span> <span class="k">as</span> <span class="nn">cll</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lattice</span> <span class="o">=</span> <span class="n">cll</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="n">nspin</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lattice</span><span class="o">.</span><span class="n">single_site</span>
+<span class="go">[(0,), (1,), (2,), (3,), (4,)]</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lattice</span><span class="o">.</span><span class="n">nearest_neighbor</span>
+<span class="go">[(0, 1), (1, 2), (2, 3), (3, 4)]</span>
+</pre></div>
+</div>
+<p>The module also supports periodic boundary conditions, that can be set using the option <code class="docutils literal notranslate"><span class="pre">periodic</span> <span class="pre">=</span> <span class="pre">True</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">colder.models.lattice</span> <span class="k">as</span> <span class="nn">cll</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lattice</span> <span class="o">=</span> <span class="n">cll</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="n">nspin</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">periodic</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lattice</span><span class="o">.</span><span class="n">nearest_neighbor</span>
+<span class="go">[(0, 1), (1, 2), (2, 3), (3, 4), (4, 0)]</span>
+</pre></div>
+</div>
+<p>Thus, the input of hamiltonians is simplified:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">lattice</span> <span class="o">=</span> <span class="n">cll</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="n">nspin</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">periodic</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">H_z</span> <span class="o">=</span> <span class="n">cphys</span><span class="o">.</span><span class="n">hamiltonian</span><span class="p">(</span><span class="s1">&#39;Z&#39;</span><span class="p">,</span> <span class="n">lattice</span><span class="o">.</span><span class="n">single_site</span><span class="p">,</span> <span class="n">coeff</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
+<span class="n">H_int</span> <span class="o">=</span> <span class="n">cphys</span><span class="o">.</span><span class="n">hamiltonian</span><span class="p">(</span><span class="s1">&#39;ZZ&#39;</span><span class="p">,</span> <span class="n">lattice</span><span class="o">.</span><span class="n">nearest_neighbor</span><span class="p">,</span> <span class="n">coeff</span><span class="o">=</span><span class="s1">&#39;J&#39;</span><span class="p">)</span>
+
+<span class="n">H_sys</span> <span class="o">=</span> <span class="n">H_int</span> <span class="o">+</span> <span class="n">H_z</span>
+</pre></div>
+</div>
+</section>
+<section id="timedependent-coefficient">
+<h3>Timedependent coefficient<a class="headerlink" href="#timedependent-coefficient" title="Permalink to this heading"></a></h3>
+<p>So far, we have prompted for each term of the hamiltonian a symbolic coefficient through a string.
+For instance, in <code class="docutils literal notranslate"><span class="pre">H_z</span> <span class="pre">=</span> <span class="pre">cphys.hamiltonian('Z',</span> <span class="pre">lattice.single_site,</span> <span class="pre">coeff='A')</span></code> the coefficient is a symbol associated to the letter <span class="math notranslate nohighlight">\(A\)</span>.
+However, in order to execute an annealing schedule, that coefficient has to be a function of time.
+In <cite>colder</cite>, the time dependence can be prompted as a regular Python function defined by the user.
+The function has to be linked to each term of the hamiltonian using the <code class="docutils literal notranslate"><span class="pre">coeff_function</span></code> argument.</p>
+<p>As a very minimal example, this is a valid coefficient function initialization:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tau</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="k">def</span> <span class="nf">linear_function</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+   <span class="k">return</span> <span class="n">t</span><span class="o">/</span><span class="n">tau</span>
+
+<span class="n">H_test</span> <span class="o">=</span> <span class="n">cphys</span><span class="o">.</span><span class="n">hamiltonian</span><span class="p">(</span><span class="s1">&#39;ZZ&#39;</span><span class="p">,</span> <span class="n">lattice</span><span class="o">.</span><span class="n">nearest_neighbor</span><span class="p">,</span>
+   <span class="n">coeff</span> <span class="o">=</span> <span class="s1">&#39;J&#39;</span><span class="p">,</span> <span class="n">coeff_function</span> <span class="o">=</span> <span class="n">linear_function</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>When building more complex systems, there are nevertheless some constraints to follow:</dt><dd><ul class="simple">
+<li><p>The first argument of the function must be the time <code class="docutils literal notranslate"><span class="pre">t</span></code>. All the following arguments will be treated as extra arguments and have to be passed to the simulation object (see note after the example).</p></li>
+<li><p>All the coefficient functions in a <code class="docutils literal notranslate"><span class="pre">hamiltonian_collection</span></code> must have the same I/O.</p></li>
+<li><p>The function has to be vector-safe (i.e. if the input <code class="docutils literal notranslate"><span class="pre">t</span></code> is a numpy array, also the return value shall be a numpy array with same dimensions).</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">xf</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">tau</span><span class="p">):</span>
+   <span class="k">return</span> <span class="n">Xfsys</span><span class="o">*</span><span class="n">scale_f</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">tau</span><span class="p">)</span>
+
+<span class="n">H_X</span> <span class="o">=</span> <span class="n">cphys</span><span class="o">.</span><span class="n">hamiltonian</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="n">lattice</span><span class="o">.</span><span class="n">single_site</span><span class="p">,</span> <span class="n">coeff</span> <span class="o">=</span> <span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="n">coeff_function</span><span class="o">=</span><span class="n">xf</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">Jf</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">tau</span><span class="p">):</span>
+   <span class="k">return</span> <span class="o">-</span><span class="n">Jsys</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+   <span class="c1">#            ^^^ trick to be vector-safe</span>
+<span class="k">def</span> <span class="nf">zf</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">tau</span><span class="p">):</span>
+   <span class="k">return</span> <span class="n">Z0sys</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+   <span class="c1">#            ^^^ trick to be vector-safe</span>
+
+<span class="n">H_J</span> <span class="o">=</span> <span class="n">cphys</span><span class="o">.</span><span class="n">hamiltonian</span><span class="p">(</span><span class="s1">&#39;ZZ&#39;</span><span class="p">,</span> <span class="n">lattice</span><span class="o">.</span><span class="n">nearest_neighbor</span><span class="p">,</span> <span class="n">coeff</span> <span class="o">=</span> <span class="s1">&#39;J&#39;</span><span class="p">,</span> <span class="n">coeff_function</span><span class="o">=</span><span class="n">Jf</span><span class="p">)</span>
+<span class="n">H_Z</span> <span class="o">=</span> <span class="n">cphys</span><span class="o">.</span><span class="n">hamiltonian</span><span class="p">(</span><span class="s1">&#39;Z&#39;</span><span class="p">,</span> <span class="n">lattice</span><span class="o">.</span><span class="n">single_site</span><span class="p">,</span> <span class="n">coeff</span> <span class="o">=</span> <span class="s1">&#39;Z&#39;</span><span class="p">,</span> <span class="n">coeff_function</span><span class="o">=</span><span class="n">zf</span><span class="p">)</span>
+
+<span class="n">H</span> <span class="o">=</span> <span class="n">H_J</span> <span class="o">+</span> <span class="n">H_Z</span> <span class="o">+</span> <span class="n">H_X</span>  <span class="c1"># the final system hamiltonian</span>
+</pre></div>
+</div>
+<p>As a final remark, you may notice that all the coefficient functions of <code class="docutils literal notranslate"><span class="pre">H</span></code> have the same I/O, and in particular they require an additional argument <code class="docutils literal notranslate"><span class="pre">tau</span></code>.
+When running a <cite>colder</cite> simulation, that extra argument can be prompted using the argument <code class="docutils literal notranslate"><span class="pre">system_fargs</span></code>, for instance  <code class="docutils literal notranslate"><span class="pre">system_fargs</span> <span class="pre">=</span> <span class="pre">{'tau'</span> <span class="pre">:</span> <span class="pre">0.01}</span></code>.</p>
+</section>
+<section id="initialize-a-cold-simulation">
+<h3>Initialize a COLD simulation<a class="headerlink" href="#initialize-a-cold-simulation" title="Permalink to this heading"></a></h3>
+<p>After creating the system hamiltonian and the ansatz through the <code class="docutils literal notranslate"><span class="pre">physics</span></code> interface, the <code class="docutils literal notranslate"><span class="pre">cold</span></code> module allows to initialize a simulation.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">colder.simulation.cold</span> <span class="k">as</span> <span class="nn">ccold</span>
+
+<span class="n">H</span> <span class="o">=</span> <span class="o">...</span>
+<span class="n">ansatz</span> <span class="o">=</span> <span class="o">...</span>
+
+<span class="n">tau</span> <span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.01</span> <span class="c1"># annealing time</span>
+<span class="n">nspin</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="n">csym</span> <span class="o">=</span> <span class="n">ccold</span><span class="o">.</span><span class="n">cold</span><span class="p">(</span>
+   <span class="n">system</span> <span class="o">=</span> <span class="n">H</span><span class="p">,</span> <span class="n">ansatz</span> <span class="o">=</span> <span class="n">ansatz</span><span class="p">,</span> <span class="n">annealing_time</span> <span class="o">=</span> <span class="n">tau</span><span class="p">,</span> <span class="n">nspin</span> <span class="o">=</span> <span class="n">nspin</span><span class="p">,</span>
+   <span class="c1"># the following parameters are to be passed at the system coefficient functions as extra arguments</span>
+   <span class="n">system_fargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;tau&#39;</span> <span class="p">:</span> <span class="n">tau</span> <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>To see the simulation in action, I recommend to take a look at the Ising 1D example notebook.</p>
+</section>
+</section>
+<section id="complete-examples">
+<h2>Complete examples<a class="headerlink" href="#complete-examples" title="Permalink to this heading"></a></h2>
+<p>The user will find Jupyter notebooks in the <cite>examples</cite> folder on the GitHub repository.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/CERN-IT-INNOVATION/colder/blob/main/examples/ising-1d.ipynb">1D Ising model</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="COLDER" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="colder.html" class="btn btn-neutral float-right" title="colder package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Francesco Pio Barone.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

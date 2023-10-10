@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>colder.core.physics &mdash; colder 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            colder
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro.html">Counterdiabatic Optimized Local Driving annealER</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Package documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../colder.html">colder package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">colder</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">colder.core.physics</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for colder.core.physics</h1><div class="highlight"><pre>
+<span></span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">sympy</span>
+<span class="kn">import</span> <span class="nn">inspect</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">import</span> <span class="nn">colder.core.pauli_algebra</span> <span class="k">as</span> <span class="nn">palg</span>
+<span class="kn">import</span> <span class="nn">colder.simulation.numerical</span> <span class="k">as</span> <span class="nn">cnum</span>
+<span class="kn">from</span> <span class="nn">colder.core.subroutines</span> <span class="kn">import</span> <span class="o">*</span>
+
+
+
+
+
+<div class="viewcode-block" id="hamiltonian"><a class="viewcode-back" href="../../../colder.core.physics.html#colder.core.physics.hamiltonian">[docs]</a><span class="k">class</span> <span class="nc">hamiltonian</span><span class="p">:</span>
+<div class="viewcode-block" id="hamiltonian.__init__"><a class="viewcode-back" href="../../../colder.core.physics.html#colder.core.physics.hamiltonian.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator</span> <span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">targets</span> <span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">coeff</span> <span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+            <span class="n">coeff_function</span> <span class="p">:</span> <span class="nb">callable</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">target_coeffs</span> <span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span><span class="kc">None</span><span class="p">,</span><span class="nb">int</span><span class="p">,</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Hamiltonian object.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            operator (str): String defining the Pauli operators to apply.</span>
+<span class="sd">            targets (list): List of spin targets to apply the operators. The length of the tuples has to match the length of `operator` string.</span>
+<span class="sd">            coeff (str): Coefficient symbol.</span>
+<span class="sd">            coeff_function (callable, optional): Function to associate to coefficient. To use COLD simulation, this argument has to be provided. Defaults to None.</span>
+<span class="sd">            target_coeffs (Union[np.ndarray,None,int,float], optional): Coefficients to associate to the target spins. Defaults to None.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            Exception: First argument of `coeff_function`, if provided, must be `t` (time dependence).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">targets</span> <span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">targets</span>     <span class="c1"># list of tuples</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">targets</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">tuple</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">targets</span> <span class="o">=</span> <span class="p">[</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">e</span><span class="p">])</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">targets</span> <span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">operator</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">operator</span>    <span class="c1"># string of operators to apply for each tuple in target site list</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_terms</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">targets</span><span class="p">)</span>          <span class="c1"># number of targets</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">operator_order</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">operator</span><span class="p">)</span>  <span class="c1"># how many operators are multiplied in a single tensor product</span>
+        
+        <span class="c1"># inject coefficient name and callable functions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">coeff</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">coeff</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">coeff_function</span> <span class="p">:</span> <span class="nb">callable</span> <span class="o">=</span> <span class="n">coeff_function</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">coeff_function</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">arg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_coeff_function_arguments</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">arg</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;t&#39;</span><span class="p">:</span>  <span class="c1"># TODO: is this really necessary?</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;first argument must be t&#39;</span><span class="p">)</span>
+        
+        <span class="c1"># process target coefficient</span>
+        <span class="k">if</span> <span class="n">target_coeffs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">target_coeffs</span><span class="p">,</span> <span class="s1">&#39;__iter__&#39;</span><span class="p">):</span>
+                <span class="c1"># if it is iterable, check for len</span>
+                <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_coeffs</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_terms</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># if it is not iterable, broadcast to np.ndarray</span>
+                <span class="n">target_coeffs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_terms</span><span class="p">)</span><span class="o">*</span><span class="n">target_coeffs</span> 
+            
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_coeffs</span> <span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span><span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="n">target_coeffs</span></div>
+
+    
+    
+<div class="viewcode-block" id="hamiltonian.expression"><a class="viewcode-back" href="../../../colder.core.physics.html#colder.core.physics.hamiltonian.expression">[docs]</a>    <span class="k">def</span> <span class="nf">expression</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sum_symbol</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="n">weight_symbol</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">operator_symbol</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;sigma_&#39;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Print a dummy expression for current hamiltonian.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            sum_symbol (str, optional): Symbol to use in the sum. Defaults to `i`.</span>
+<span class="sd">            weight_symbol (str, optional): Placeholder letter for symbols. Defaults to `w`.</span>
+<span class="sd">            operator_symbol (str, optional): Spin operator symbol. Defaults to `sigma_`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">sum_expression</span> <span class="o">=</span> <span class="n">operator_symbol</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">operator</span> <span class="o">+</span> <span class="s1">&#39;^i&#39;</span>
+        <span class="n">global_coeff</span> <span class="o">=</span> <span class="kc">None</span>
+        
+        <span class="c1"># add weights, if any</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_coeffs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_coeffs</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_coeffs</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+                <span class="c1"># all elements are equal</span>
+                <span class="n">global_coeff</span> <span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_coeffs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">sum_expression</span> <span class="o">=</span> <span class="n">weight_symbol</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="n">sum_symbol</span> <span class="o">+</span> <span class="s1">&#39;*&#39;</span> <span class="o">+</span> <span class="n">sum_expression</span>
+        
+        <span class="k">if</span> <span class="n">global_coeff</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">coeff</span><span class="p">)</span> <span class="o">*</span><span class="n">global_coeff</span><span class="o">*</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Sum</span><span class="p">(</span><span class="n">sum_expression</span><span class="p">,</span> <span class="p">(</span><span class="n">sympy</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="n">sum_symbol</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">targets</span><span class="p">))</span> <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">coeff</span><span class="p">)</span> <span class="o">*</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Sum</span><span class="p">(</span><span class="n">sum_expression</span><span class="p">,</span> <span class="p">(</span><span class="n">sympy</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="n">sum_symbol</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">targets</span><span class="p">))</span> <span class="p">)</span></div>
+    
+    
+<div class="viewcode-block" id="hamiltonian.get_strings"><a class="viewcode-back" href="../../../colder.core.physics.html#colder.core.physics.hamiltonian.get_strings">[docs]</a>    <span class="k">def</span> <span class="nf">get_strings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">total_sites</span> <span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">complex</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns full strings with coefficients from current hamiltonian.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            total_sites (int): Number of total spin sites.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict[str, complex]: Dictionary of expressions and coefficients.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_coeffs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>   <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_terms</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>                            <span class="n">w</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_coeffs</span>
+        <span class="k">return</span> <span class="p">{</span> <span class="n">palg</span><span class="o">.</span><span class="n">build_string_from_operator_and_target</span><span class="p">(</span><span class="n">strlen</span><span class="o">=</span><span class="n">total_sites</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">tt</span><span class="p">,</span> <span class="n">operator_sequence</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">operator</span><span class="p">)</span> <span class="p">:</span> <span class="n">cc</span> <span class="k">for</span> <span class="n">tt</span><span class="p">,</span> <span class="n">cc</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">targets</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span> <span class="p">}</span></div>
+    
+    
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;(operator=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">operator</span><span class="si">}</span><span class="s2">, coeff=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">coeff</span><span class="si">}</span><span class="s2">)&quot;</span>
+        <span class="p">)</span>
+        
+    
+    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">otherH</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">otherH</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>  <span class="k">return</span> <span class="bp">self</span>
+        <span class="k">return</span> <span class="n">hamiltonian_collection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">otherH</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="fm">__iadd__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">otherH</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">otherH</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>  <span class="k">return</span> <span class="bp">self</span>
+        <span class="k">return</span> <span class="n">hamiltonian_collection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">otherH</span><span class="p">)</span>
+    
+    
+<div class="viewcode-block" id="hamiltonian.get_coeff"><a class="viewcode-back" href="../../../colder.core.physics.html#colder.core.physics.hamiltonian.get_coeff">[docs]</a>    <span class="k">def</span> <span class="nf">get_coeff</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the coefficient of this hamiltonian.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: Coefficient string.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">coeff</span></div>
+    
+    
+<div class="viewcode-block" id="hamiltonian.get_coeff_function_arguments"><a class="viewcode-back" href="../../../colder.core.physics.html#colder.core.physics.hamiltonian.get_coeff_function_arguments">[docs]</a>    <span class="k">def</span> <span class="nf">get_coeff_function_arguments</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exception_if_none</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the argument name for the coefficient function.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            exception_if_none (bool, optional): If True, raises an exception if there exist no function coefficient. Else, returns an empty list. Defaults to True.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            Exception: If `exception_if_none`, the exception is raised if no coefficient function is provided.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[str]: List of arguments for the coefficient function.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">coeff_function</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">exception_if_none</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;coeff function not provided in __init__&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">return</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getfullargspec</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">coeff_function</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
+    
+    
+<div class="viewcode-block" id="hamiltonian.make_coefficient_interpolation"><a class="viewcode-back" href="../../../colder.core.physics.html#colder.core.physics.hamiltonian.make_coefficient_interpolation">[docs]</a>    <span class="k">def</span> <span class="nf">make_coefficient_interpolation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trange</span> <span class="p">:</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">fargs</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">n_interp_points</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">cnum</span><span class="o">.</span><span class="n">interpolator1D</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Interpolates the coefficient function in time range `trange`.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            trange (tuple): Range of time to interpolate.</span>
+<span class="sd">            fargs (dict): Arguments to be passed to the coefficient function.</span>
+<span class="sd">            n_interp_points (int, optional): Number of points to interpolate. Defaults to 50.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            Exception: Coefficient function must be provided to use this feature.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            cnum.interpolator1D: Numerical spline interpolator for coefficient function.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">coeff_function</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;coeff function </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">coeff</span><span class="si">}</span><span class="s1"> not provided in __init__&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cnum</span><span class="o">.</span><span class="n">interpolator1D</span><span class="o">.</span><span class="n">from_function</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">coeff_function</span><span class="p">,</span> <span class="n">trange</span><span class="p">,</span> <span class="n">n_interp_points</span> <span class="o">=</span> <span class="n">n_interp_points</span><span class="p">,</span> <span class="n">fargs</span><span class="o">=</span><span class="n">fargs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
+
+
+
+
+
+
+<div class="viewcode-block" id="hamiltonian_collection"><a class="viewcode-back" href="../../../colder.core.physics.html#colder.core.physics.hamiltonian_collection">[docs]</a><span class="k">class</span> <span class="nc">hamiltonian_collection</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This class creates collection of hamiltonian object that have to be summed.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        .. highlight:: python</span>
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">        import colder.core.physics as cphys</span>
+<span class="sd">        </span>
+<span class="sd">        H_Z = cphys.hamiltonian(&#39;Z&#39;, [(0,) , (1,)], coeff = &#39;Z&#39;)</span>
+<span class="sd">        H_X = cphys.hamiltonian(&#39;X&#39;, [(0,) , (1,)], coeff = &#39;X&#39;)      </span>
+<span class="sd">        </span>
+<span class="sd">        H = H_Z + H_X   # this is a collection (type: cphys.hamiltonian_collection)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+<div class="viewcode-block" id="hamiltonian_collection.__init__"><a class="viewcode-back" href="../../../colder.core.physics.html#colder.core.physics.hamiltonian_collection.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates an hamiltonian collection &quot;summing&quot; instances of hamiltonians.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">terms</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="k">for</span> <span class="n">tt</span> <span class="ow">in</span> <span class="nb">locals</span><span class="p">()[</span><span class="s1">&#39;args&#39;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span> <span class="n">hamiltonian_collection</span><span class="p">):</span>
+                <span class="c1"># hamiltonian collections are unwrapped</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">terms</span> <span class="o">+=</span> <span class="n">tt</span><span class="o">.</span><span class="n">terms</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tt</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="hamiltonian_collection.get_coeffs"><a class="viewcode-back" href="../../../colder.core.physics.html#colder.core.physics.hamiltonian_collection.get_coeffs">[docs]</a>    <span class="k">def</span> <span class="nf">get_coeffs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="p">[</span> <span class="n">term</span><span class="o">.</span><span class="n">coeff</span> <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span> <span class="p">]</span></div>
+    
+<div class="viewcode-block" id="hamiltonian_collection.get_unique_coeffs"><a class="viewcode-back" href="../../../colder.core.physics.html#colder.core.physics.hamiltonian_collection.get_unique_coeffs">[docs]</a>    <span class="k">def</span> <span class="nf">get_unique_coeffs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span> <span class="nb">set</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_coeffs</span><span class="p">()</span> <span class="p">)</span> <span class="p">)</span></div>
+    
+<div class="viewcode-block" id="hamiltonian_collection.get_strings"><a class="viewcode-back" href="../../../colder.core.physics.html#colder.core.physics.hamiltonian_collection.get_strings">[docs]</a>    <span class="k">def</span> <span class="nf">get_strings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">total_sites</span> <span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">complex</span><span class="p">]</span> <span class="p">]:</span>
+        <span class="k">return</span> <span class="p">[</span> <span class="n">term</span><span class="o">.</span><span class="n">get_strings</span><span class="p">(</span><span class="n">total_sites</span><span class="p">)</span> <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span> <span class="p">]</span></div>
+    
+<div class="viewcode-block" id="hamiltonian_collection.expression"><a class="viewcode-back" href="../../../colder.core.physics.html#colder.core.physics.hamiltonian_collection.expression">[docs]</a>    <span class="k">def</span> <span class="nf">expression</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group_coefficients</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Print a dummy expression for current hamiltonian.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            group_coefficients (bool, optional): If True, coefficients are grouped, if needed. Defaults to True.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">expr</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span> <span class="n">ee</span><span class="o">.</span><span class="n">expression</span><span class="p">()</span> <span class="k">for</span> <span class="n">ee</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span> <span class="p">)</span>
+        <span class="k">if</span> <span class="n">group_coefficients</span><span class="p">:</span>
+            <span class="n">expr</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">collect</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="p">[</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="n">ee</span><span class="p">)</span> <span class="k">for</span> <span class="n">ee</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_unique_coeffs</span><span class="p">()</span> <span class="p">]</span> <span class="p">)</span>
+        <span class="k">return</span> <span class="n">expr</span></div>
+
+<div class="viewcode-block" id="hamiltonian_collection.make_symbolic_expression"><a class="viewcode-back" href="../../../colder.core.physics.html#colder.core.physics.hamiltonian_collection.make_symbolic_expression">[docs]</a>    <span class="k">def</span> <span class="nf">make_symbolic_expression</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">total_sites</span> <span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the symbolic expression for this hamiltonian collection.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            total_sites (int): Total number of spin sites.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="n">cc</span><span class="p">)</span><span class="o">*</span><span class="n">make_sum_expression</span><span class="p">(</span><span class="n">st</span><span class="p">)</span> <span class="k">for</span> <span class="n">cc</span><span class="p">,</span> <span class="n">st</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_coeffs</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_strings</span><span class="p">(</span><span class="n">total_sites</span><span class="p">))</span> <span class="p">)</span></div>
+    
+    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">otherH</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">hamiltonian_collection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">otherH</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;(terms=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="si">}</span><span class="s2">, coeff=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">get_unique_coeffs</span><span class="p">()</span><span class="si">}</span><span class="s2">)&quot;</span>
+        <span class="p">)</span>
+        
+<div class="viewcode-block" id="hamiltonian_collection.make_coefficients_interpolation"><a class="viewcode-back" href="../../../colder.core.physics.html#colder.core.physics.hamiltonian_collection.make_coefficients_interpolation">[docs]</a>    <span class="k">def</span> <span class="nf">make_coefficients_interpolation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trange</span> <span class="p">:</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">fargs</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">make_unique</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">cnum</span><span class="o">.</span><span class="n">interpolator1D</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Interpolates the coefficient function in time range `trange` for each unique coefficient of hamiltonian collection.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            trange (tuple): Range of time to interpolate.</span>
+<span class="sd">            fargs (dict): Arguments to be passed to the coefficient function.</span>
+<span class="sd">            make_unique (bool, optional): If True, uses unique coefficients to avoid multiple computation of the same interpolation. Defaults to True.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict[str, cnum.interpolator1D]: Dictionary of interpolated functions.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">make_unique</span><span class="p">:</span>
+            <span class="c1"># strongly suggested, to avoid interpolating many times the same parameter</span>
+            <span class="n">unique_coeff_objects</span> <span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="n">hh</span><span class="o">.</span><span class="n">coeff</span> <span class="p">:</span> <span class="n">hh</span> <span class="k">for</span> <span class="n">hh</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span> <span class="p">}</span>
+            <span class="k">return</span> <span class="p">{</span> <span class="n">kk</span> <span class="p">:</span> <span class="n">hh</span><span class="o">.</span><span class="n">make_coefficient_interpolation</span><span class="p">(</span><span class="n">trange</span><span class="o">=</span><span class="n">trange</span><span class="p">,</span> <span class="n">fargs</span><span class="o">=</span><span class="n">fargs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="k">for</span> <span class="n">kk</span><span class="p">,</span> <span class="n">hh</span> <span class="ow">in</span> <span class="n">unique_coeff_objects</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="p">}</span>
+        
+        <span class="k">return</span> <span class="p">{</span> <span class="n">hh</span><span class="o">.</span><span class="n">coeff</span> <span class="p">:</span> <span class="n">hh</span><span class="o">.</span><span class="n">make_coefficient_interpolation</span><span class="p">(</span><span class="n">trange</span><span class="o">=</span><span class="n">trange</span><span class="p">,</span> <span class="n">fargs</span><span class="o">=</span><span class="n">fargs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="k">for</span> <span class="n">hh</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span> <span class="p">}</span></div></div>
+
+
+
+
+
+<div class="viewcode-block" id="empty_hamiltonian"><a class="viewcode-back" href="../../../colder.core.physics.html#colder.core.physics.empty_hamiltonian">[docs]</a><span class="k">class</span> <span class="nc">empty_hamiltonian</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Empty hamiltonian class. The purpuse of this dummy class is to provide a custom empty object to be summed with hamiltonians.</span>
+<span class="sd">    </span>
+<span class="sd">    Example:</span>
+<span class="sd">        .. highlight:: python</span>
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            import colder.core.physics as cphys</span>
+<span class="sd">            </span>
+<span class="sd">            H = cphys.empty_hamiltonian()</span>
+<span class="sd">            </span>
+<span class="sd">            # just a terrible example:</span>
+<span class="sd">            for i in range(3):</span>
+<span class="sd">                H += cphys.hamiltonian(&#39;XX&#39;, [(i,i+1)], coeff = &#39;J&#39;, coeff_function=Jf, target_coeffs= 1/(i+1) )</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">pass</span>
+    
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot; use + or += operator to add a hamiltonian obj&quot;</span>
+        <span class="p">)</span>
+    
+    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">other</span>
+    
+    <span class="k">def</span> <span class="fm">__iadd__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">other</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Francesco Pio Barone.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
