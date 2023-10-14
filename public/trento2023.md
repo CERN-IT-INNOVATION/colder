@@ -5,7 +5,7 @@ Extra resources for the poster presented at the Quantum Error Correction | Mitig
 ### general definitions
 
 We define the following quantities:
-$$\varepsilon\_x = \frac{\bra{\psi(\tau)}H(\tau)\ket{\psi(\tau)}\_x - E_{min}}{E\_{max} - E\_{min}}$$
+$$\varepsilon\_x = \frac{\bra{\psi(\tau)}H(\tau)\ket{\psi(\tau)}\_x - E\_{min}(\tau)}{E\_{max}(\tau) - E\_{min}(\tau)}$$
 
 $$\mathcal{G}_x = 1 - \varepsilon_x$$
 
