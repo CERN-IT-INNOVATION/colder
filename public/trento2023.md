@@ -12,12 +12,15 @@ $$\mathcal{G}_x = 1 - \varepsilon_x$$
 ## ANNNI model annealing
 
 We prepare the ANNNI model
+
 $$H_f^{\text{(ANNNI)}} = -J^*\sum_i \sigma^x_i \sigma^x_{i+1} + k\sum_i \sigma^x_i \sigma^x_{i+2} + h\sum_i \sigma^z_i$$
+
 with fixed $J^*=1$, chinging the $h$ and $k$ to test different phases of the final ground state.
 
 ### local ansatz
 
 Let us start from a simple AGP ansatz:
+
 $$\mathcal{A}_{\text{local}} = \alpha_1\sum_i\sigma_i^y$$
 
 <p align="center">
@@ -38,9 +41,9 @@ $$\mathcal{A}_{\text{local}} = \alpha_1\sum_i\sigma_i^y$$
 
 ### 'nearest' ansatz
 
-Let us make the AGP ansatz a little bit more complicated.
+Let us make the AGP ansatz a little bit more complicated, by adding nearest-neighbor interactions.
 
-$$    \mathcal{A}_{near} = \alpha_1\sum_i\sigma_i^y + \alpha_2\sum_i\left( \sigma_i^x\sigma_{i+1}^y + \sigma_i^y\sigma_{i+1}^x \right) + \alpha_3\sum_i\left( \sigma_i^y\sigma_{i+1}^z + \sigma_i^z\sigma_{i+1}^y \right) $$
+$$\mathcal{A}_{next} = \alpha\_1\sum\_i\sigma_i^y + \alpha\_2\sum\_i\left( \sigma\_i^x\sigma\_{i+1}^y + \sigma\_i^y\sigma\_{i+1}^x \right) + \alpha\_3\sum\_i\left( \sigma\_i^y\sigma\_{i+1}^z + \sigma\_i^z\sigma\_{i+1}^y \right)$$
 
 We see an increase fidelity of the prepared state with COLD across all the points.
 
@@ -58,7 +61,9 @@ We see an increase fidelity of the prepared state with COLD across all the point
 
 ### 'next' ansatz
 
-$$\mathcal{A}_{next} = \alpha_1\sum_i\sigma_i^y \nonumber + \alpha_2\sum_i\left( \sigma_i^x\sigma_{i+1}^y + \sigma_i^y\sigma_{i+1}^x \right) + \alpha_3\sum_i\left( \sigma_i^y\sigma_{i+1}^z + \sigma_i^z\sigma_{i+1}^y \right) + \alpha_4\sum_i\left( \sigma_i^x\sigma_{i+2}^y + \sigma_i^y\sigma_{i+2}^x \right) + \alpha_5\sum_i\left( \sigma_i^y\sigma_{i+2}^z + \sigma_i^z\sigma_{i+2}^y \right)$$
+What if we overshoot a bit? Let us add next-nearest-neighbor terms too in the potential!
+
+$$\mathcal{A}_{next} = \alpha\_1\sum\_i\sigma_i^y + \alpha\_2\sum\_i\left( \sigma\_i^x\sigma\_{i+1}^y + \sigma\_i^y\sigma\_{i+1}^x \right) + \alpha\_3\sum\_i\left( \sigma\_i^y\sigma\_{i+1}^z + \sigma\_i^z\sigma\_{i+1}^y \right) + \alpha\_4\sum\_i\left( \sigma\_i^x\sigma\_{i+2}^y + \sigma\_i^y\sigma\_{i+2}^x \right) + \alpha\_5\sum\_i\left( \sigma\_i^y\sigma\_{i+2}^z + \sigma\_i^z\sigma\_{i+2}^y \right)$$
 
 <p align="center">
   <img src="annni_next-ansatz_1.svg">
