@@ -2,11 +2,14 @@
 
 Extra resources for the poster presented at the Quantum Error Correction | Mitigation Workshop workshop in Trento, October 2023.
 
-## general definitions
+### general definitions
 
-$$\varepsilon_x = \frac{\bra{\psi(\tau)}H(\tau)\ket{\psi(\tau)}_x - E_{min}}{E_{max} - E_{min}}$$
+We define the following quantities:
+$$\varepsilon\_x = \frac{\bra{\psi(\tau)}H(\tau)\ket{\psi(\tau)}\_x - E_{min}}{E\_{max} - E\_{min}}$$
 
 $$\mathcal{G}_x = 1 - \varepsilon_x$$
+
+The $\mathcal{F}_x$ denotes the prepared fidelity.
 
 
 ## ANNNI model annealing
