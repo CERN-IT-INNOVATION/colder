@@ -5,3 +5,5 @@ matplotlib>=3.7.1
 ipykernel==6.23
 qibo==0.1.15
 scikit-optimize==0.9.0
+nbsphinx
+sphinx_rtd_theme
