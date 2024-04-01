@@ -1,21 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Counterdiabatic Optimized Local Driving annealER &mdash; colder 1.0.0 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="_static/jquery.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=8d563738"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -90,11 +92,11 @@
            <div itemprop="articleBody">
              
   <section id="counterdiabatic-optimized-local-driving-annealer">
-<h1>Counterdiabatic Optimized Local Driving annealER<a class="headerlink" href="#counterdiabatic-optimized-local-driving-annealer" title="Permalink to this heading"></a></h1>
+<h1>Counterdiabatic Optimized Local Driving annealER<a class="headerlink" href="#counterdiabatic-optimized-local-driving-annealer" title="Link to this heading"></a></h1>
 <p>This package provides tool for Spin system simulation and optimization through a combination of Quantum Optimal Control and Counterdiabatic Driving techniques.
 The framework allows to prompt the system through a simplified interface and automatically compute the minimization of the Adiabatic Gauge Potential (AGP) for a given ansatz.</p>
 <section id="how-to-install">
-<h2>How to install<a class="headerlink" href="#how-to-install" title="Permalink to this heading"></a></h2>
+<h2>How to install<a class="headerlink" href="#how-to-install" title="Link to this heading"></a></h2>
 <p>Clone from GitHub and move inside the project folder</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/CERN-IT-INNOVATION/colder
 <span class="nb">cd</span><span class="w"> </span>colder
@@ -106,11 +108,11 @@ The framework allows to prompt the system through a simplified interface and aut
 </div>
 </section>
 <section id="get-started">
-<h2>Get started<a class="headerlink" href="#get-started" title="Permalink to this heading"></a></h2>
+<h2>Get started<a class="headerlink" href="#get-started" title="Link to this heading"></a></h2>
 <p>In this section we will discuss the main interface of <cite>colder</cite>, building examples to gradually introduce the user to its features.
 It is strongly suggested to integrate the information of this paragraphs with the provided examples, in order to see the full picture and grasp all the details of this interface.</p>
 <section id="prompt-systems-through-hamiltonians">
-<h3>Prompt systems through hamiltonians<a class="headerlink" href="#prompt-systems-through-hamiltonians" title="Permalink to this heading"></a></h3>
+<h3>Prompt systems through hamiltonians<a class="headerlink" href="#prompt-systems-through-hamiltonians" title="Link to this heading"></a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">physics</span></code> module of <cite>colder</cite> provides the interface to build generic systems of spins.
 The hamiltonian object can be later used for all the next stages of analysis, i.e. building the gauge potential or simulating the quantum annealing schedule.</p>
 <p>Let us start from the basics. Import the <code class="docutils literal notranslate"><span class="pre">physics</span></code> module.</p>
@@ -151,7 +153,7 @@ The user can perform this operation either using the <code class="docutils liter
 <p>The user can print on display a dummy expression of the hamiltonian object, using the <code class="docutils literal notranslate"><span class="pre">expression()</span></code> method.</p>
 </section>
 <section id="use-of-lattice-module-for-spin-indexing">
-<h3>Use of lattice module for spin indexing<a class="headerlink" href="#use-of-lattice-module-for-spin-indexing" title="Permalink to this heading"></a></h3>
+<h3>Use of lattice module for spin indexing<a class="headerlink" href="#use-of-lattice-module-for-spin-indexing" title="Link to this heading"></a></h3>
 <p>Since the input of spin indices in hamiltonian objects is an essential but tiresome operation, we provide an interface that builds the lists of spins from scratch.
 Suppose that you have a 5 spin system, disposed in a linear chain.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">colder.models.lattice</span> <span class="k">as</span> <span class="nn">cll</span>
@@ -180,7 +182,7 @@ Suppose that you have a 5 spin system, disposed in a linear chain.</p>
 </div>
 </section>
 <section id="timedependent-coefficient">
-<h3>Timedependent coefficient<a class="headerlink" href="#timedependent-coefficient" title="Permalink to this heading"></a></h3>
+<h3>Timedependent coefficient<a class="headerlink" href="#timedependent-coefficient" title="Link to this heading"></a></h3>
 <p>So far, we have prompted for each term of the hamiltonian a symbolic coefficient through a string.
 For instance, in <code class="docutils literal notranslate"><span class="pre">H_z</span> <span class="pre">=</span> <span class="pre">cphys.hamiltonian('Z',</span> <span class="pre">lattice.single_site,</span> <span class="pre">coeff='A')</span></code> the coefficient is a symbol associated to the letter <span class="math notranslate nohighlight">\(A\)</span>.
 However, in order to execute an annealing schedule, that coefficient has to be a function of time.
@@ -227,7 +229,7 @@ The function has to be linked to each term of the hamiltonian using the <code cl
 When running a <cite>colder</cite> simulation, that extra argument can be prompted using the argument <code class="docutils literal notranslate"><span class="pre">system_fargs</span></code>, for instance  <code class="docutils literal notranslate"><span class="pre">system_fargs</span> <span class="pre">=</span> <span class="pre">{'tau'</span> <span class="pre">:</span> <span class="pre">0.01}</span></code>.</p>
 </section>
 <section id="initialize-a-cold-simulation">
-<h3>Initialize a COLD simulation<a class="headerlink" href="#initialize-a-cold-simulation" title="Permalink to this heading"></a></h3>
+<h3>Initialize a COLD simulation<a class="headerlink" href="#initialize-a-cold-simulation" title="Link to this heading"></a></h3>
 <p>After creating the system hamiltonian and the ansatz through the <code class="docutils literal notranslate"><span class="pre">physics</span></code> interface, the <code class="docutils literal notranslate"><span class="pre">cold</span></code> module allows to initialize a simulation.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">colder.simulation.cold</span> <span class="k">as</span> <span class="nn">ccold</span>
 
@@ -248,7 +250,7 @@ When running a <cite>colder</cite> simulation, that extra argument can be prompt
 </section>
 </section>
 <section id="complete-examples">
-<h2>Complete examples<a class="headerlink" href="#complete-examples" title="Permalink to this heading"></a></h2>
+<h2>Complete examples<a class="headerlink" href="#complete-examples" title="Link to this heading"></a></h2>
 <p>The user will find Jupyter notebooks in the <cite>examples</cite> folder on the GitHub repository.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/CERN-IT-INNOVATION/colder/blob/main/examples/ising-1d.ipynb">1D Ising model</a></p></li>

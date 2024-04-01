@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>colder.simulation.cold &mdash; colder 1.0.0 documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -91,12 +93,17 @@
 
 
 
-<div class="viewcode-block" id="get_functions_from_schedule"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.get_functions_from_schedule">[docs]</a><span class="k">def</span> <span class="nf">get_functions_from_schedule</span><span class="p">(</span><span class="n">schedules</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<div class="viewcode-block" id="get_functions_from_schedule">
+<a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.get_functions_from_schedule">[docs]</a>
+<span class="k">def</span> <span class="nf">get_functions_from_schedule</span><span class="p">(</span><span class="n">schedules</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Extract the function for every interpolation.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="p">{</span> <span class="n">k</span> <span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">get_function</span><span class="p">()</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">schedules</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="p">}</span></div>
 
 
-<div class="viewcode-block" id="check_hamiltonian_input"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.check_hamiltonian_input">[docs]</a><span class="k">def</span> <span class="nf">check_hamiltonian_input</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">cphys</span><span class="o">.</span><span class="n">hamiltonian_collection</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+
+<div class="viewcode-block" id="check_hamiltonian_input">
+<a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.check_hamiltonian_input">[docs]</a>
+<span class="k">def</span> <span class="nf">check_hamiltonian_input</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">cphys</span><span class="o">.</span><span class="n">hamiltonian_collection</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Check input obj to be hamiltonian_collection or hamiltonian. Otherwise returns None (to be handled).&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">cphys</span><span class="o">.</span><span class="n">hamiltonian_collection</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">obj</span>
@@ -109,7 +116,10 @@
 
 
 
-<div class="viewcode-block" id="cold"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold">[docs]</a><span class="k">class</span> <span class="nc">cold</span><span class="p">():</span>
+
+<div class="viewcode-block" id="cold">
+<a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold">[docs]</a>
+<span class="k">class</span> <span class="nc">cold</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    COLD object to handle the annealing simulation and optimization. </span>
 <span class="sd">    </span>
@@ -153,7 +163,9 @@
 <span class="sd">        Remark: the loss function to be optimized must accept as arguments the final state and the optimized parameter.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
-<div class="viewcode-block" id="cold.__init__"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="cold.__init__">
+<a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
             <span class="n">system</span> <span class="p">:</span> <span class="n">cphys</span><span class="o">.</span><span class="n">hamiltonian_collection</span><span class="p">,</span> <span class="n">ansatz</span> <span class="p">:</span> <span class="n">cphys</span><span class="o">.</span><span class="n">hamiltonian_collection</span><span class="p">,</span>
             <span class="n">annealing_time</span> <span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">nspin</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
             <span class="n">use_cache_agp</span> <span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span><span class="n">cgauge</span><span class="o">.</span><span class="n">cache_lcd_numpy</span><span class="p">,</span><span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -233,6 +245,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;not valid backend interface&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">backend</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">backend</span></div>
+
     
     <span class="c1"># function to check runtime requirements</span>
     <span class="k">def</span> <span class="nf">__runtime_requirements_int</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
@@ -256,7 +269,9 @@
         <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="n">elem</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">requirements</span><span class="p">)</span>
     
     
-<div class="viewcode-block" id="cold.make_schedule_interpolation"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.make_schedule_interpolation">[docs]</a>    <span class="k">def</span> <span class="nf">make_schedule_interpolation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">agp_samples</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">50</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="cold.make_schedule_interpolation">
+<a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.make_schedule_interpolation">[docs]</a>
+    <span class="k">def</span> <span class="nf">make_schedule_interpolation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">agp_samples</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">50</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute the numerical interpolation of the system driving parameters.</span>
 
@@ -273,9 +288,12 @@
         <span class="c1"># the interpolators are stored as object attributes</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">system_interpolators</span> <span class="o">=</span> <span class="n">system_interpolators</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ansatz_interpolators</span> <span class="o">=</span> <span class="n">ansatz_interpolators</span></div>
+
     
     
-<div class="viewcode-block" id="cold.retrieve_functions_from_schedule"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.retrieve_functions_from_schedule">[docs]</a>    <span class="k">def</span> <span class="nf">retrieve_functions_from_schedule</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="cold.retrieve_functions_from_schedule">
+<a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.retrieve_functions_from_schedule">[docs]</a>
+    <span class="k">def</span> <span class="nf">retrieve_functions_from_schedule</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieves the function from schedule objects, for both hamiltonian and ansatz.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__runtime_requirements_int</span><span class="p">():</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;system_interpolators and/or ansatz_interpolators is None. Run make_schedule_interpolation() first.&#39;</span><span class="p">)</span>
@@ -284,8 +302,11 @@
         <span class="n">ansatz_coeffs_functions</span> <span class="o">=</span> <span class="n">get_functions_from_schedule</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ansatz_interpolators</span><span class="p">)</span>
         
         <span class="k">return</span> <span class="n">system_coeffs_functions</span><span class="p">,</span> <span class="n">ansatz_coeffs_functions</span></div>
+
         
-<div class="viewcode-block" id="cold.compute_schedules"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.compute_schedules">[docs]</a>    <span class="k">def</span> <span class="nf">compute_schedules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span> <span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">default_time_points</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<div class="viewcode-block" id="cold.compute_schedules">
+<a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.compute_schedules">[docs]</a>
+    <span class="k">def</span> <span class="nf">compute_schedules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span> <span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">default_time_points</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Given an array of time values, computes the schedule function values.</span>
 
@@ -312,9 +333,12 @@
             <span class="n">ans_sch</span><span class="p">[</span><span class="n">ii</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="n">ff</span><span class="p">(</span><span class="n">tt</span><span class="p">)</span> <span class="k">for</span> <span class="n">ff</span> <span class="ow">in</span> <span class="n">ansatz_coeffs_functions</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="p">])</span>
          
         <span class="k">return</span> <span class="n">sys_sch</span><span class="p">,</span> <span class="n">ans_sch</span></div>
+
     
     
-<div class="viewcode-block" id="cold.plot_schedules"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.plot_schedules">[docs]</a>    <span class="k">def</span> <span class="nf">plot_schedules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">npoints</span> <span class="o">=</span> <span class="mi">101</span><span class="p">,</span> <span class="n">plot_lcd</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">legend</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="cold.plot_schedules">
+<a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.plot_schedules">[docs]</a>
+    <span class="k">def</span> <span class="nf">plot_schedules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">npoints</span> <span class="o">=</span> <span class="mi">101</span><span class="p">,</span> <span class="n">plot_lcd</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">legend</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Plot the schedule functions.</span>
 
@@ -330,10 +354,13 @@
         <span class="k">if</span> <span class="n">plot_lcd</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">ans_sch</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ansatz_interpolators</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="p">)</span>
         
         <span class="k">if</span> <span class="n">legend</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span></div>
+
     
     
 
-<div class="viewcode-block" id="cold.make_hamiltonians"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.make_hamiltonians">[docs]</a>    <span class="k">def</span> <span class="nf">make_hamiltonians</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="cold.make_hamiltonians">
+<a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.make_hamiltonians">[docs]</a>
+    <span class="k">def</span> <span class="nf">make_hamiltonians</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Evaluates the static component of hamiltonians (both system and ansatz).&quot;&quot;&quot;</span>
         <span class="n">sys_int</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interface</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nspin</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">system</span><span class="p">)</span>
         <span class="n">ans_int</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interface</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nspin</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ansatz</span><span class="p">)</span>
@@ -342,9 +369,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">ansatz_hamiltonians</span> <span class="o">=</span> <span class="n">ans_int</span><span class="o">.</span><span class="n">COLD_make_hamiltonian</span><span class="p">()</span>
         
         <span class="bp">self</span><span class="o">.</span><span class="n">__finalize_routine</span> <span class="o">=</span> <span class="n">sys_int</span><span class="o">.</span><span class="n">COLD_get_finalize_method</span><span class="p">()</span></div>
+
     
     
-<div class="viewcode-block" id="cold.make_timedependent_hamiltonian"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.make_timedependent_hamiltonian">[docs]</a>    <span class="k">def</span> <span class="nf">make_timedependent_hamiltonian</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">callable</span><span class="p">:</span>
+<div class="viewcode-block" id="cold.make_timedependent_hamiltonian">
+<a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.make_timedependent_hamiltonian">[docs]</a>
+    <span class="k">def</span> <span class="nf">make_timedependent_hamiltonian</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">callable</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the timedependent function that computes the hamiltonian for any backend.</span>
 
@@ -367,11 +397,14 @@
             
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__finalize_routine</span><span class="p">(</span><span class="n">tsys</span> <span class="o">+</span> <span class="n">tans</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">tdh</span></div>
+
     
     
     
     
-<div class="viewcode-block" id="cold.make_timedependent_hamiltonian_nogauge"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.make_timedependent_hamiltonian_nogauge">[docs]</a>    <span class="k">def</span> <span class="nf">make_timedependent_hamiltonian_nogauge</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">callable</span><span class="p">:</span>
+<div class="viewcode-block" id="cold.make_timedependent_hamiltonian_nogauge">
+<a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.make_timedependent_hamiltonian_nogauge">[docs]</a>
+    <span class="k">def</span> <span class="nf">make_timedependent_hamiltonian_nogauge</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">callable</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the timedependent function that computes the hamiltonian for any backend. The returned hamiltonian will not have the ansatz AGP terms.</span>
 
@@ -391,9 +424,12 @@
             <span class="n">terms</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span> <span class="n">system_coeffs_functions</span><span class="p">[</span><span class="n">coeff</span><span class="p">](</span><span class="n">t</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="o">*</span><span class="n">expr</span> <span class="k">for</span> <span class="n">coeff</span><span class="p">,</span> <span class="n">expr</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">system_hamiltonians</span> <span class="p">)</span> <span class="c1"># FIXME</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__finalize_routine</span><span class="p">(</span><span class="n">terms</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">tdhg</span></div>
+
     
     
-<div class="viewcode-block" id="cold.get_psi_zero"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.get_psi_zero">[docs]</a>    <span class="k">def</span> <span class="nf">get_psi_zero</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<div class="viewcode-block" id="cold.get_psi_zero">
+<a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.get_psi_zero">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_psi_zero</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Computes the initial ground state of system hamiltonian via diagonalization.</span>
 
@@ -403,8 +439,11 @@
         <span class="n">H0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_timedependent_hamiltonian_nogauge</span><span class="p">()</span>
         <span class="n">psi0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">routines</span><span class="o">.</span><span class="n">get_groundstate_superposition</span><span class="p">(</span> <span class="n">H0</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">)</span>
         <span class="k">return</span> <span class="n">psi0</span></div>
+
     
-<div class="viewcode-block" id="cold.get_psi_final"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.get_psi_final">[docs]</a>    <span class="k">def</span> <span class="nf">get_psi_final</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<div class="viewcode-block" id="cold.get_psi_final">
+<a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.get_psi_final">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_psi_final</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Computes the final ground state of system hamiltonian via diagonalization.</span>
 
@@ -414,11 +453,14 @@
         <span class="n">H0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_timedependent_hamiltonian_nogauge</span><span class="p">()</span>
         <span class="n">psiF</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">routines</span><span class="o">.</span><span class="n">get_groundstate_superposition</span><span class="p">(</span> <span class="n">H0</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__annealing_time</span><span class="p">)</span> <span class="p">)</span>
         <span class="k">return</span> <span class="n">psiF</span></div>
+
     
     
     
     
-<div class="viewcode-block" id="cold.get_spectrum"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.get_spectrum">[docs]</a>    <span class="k">def</span> <span class="nf">get_spectrum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_eig</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">nsteps</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">use_H0</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<div class="viewcode-block" id="cold.get_spectrum">
+<a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.get_spectrum">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_spectrum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_eig</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">nsteps</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">use_H0</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the spectrum of the system hamiltonian in `nsteps` between time 0 and total annealing time.</span>
 
@@ -442,8 +484,11 @@
             <span class="n">evalues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ev</span><span class="p">)</span>
             
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">evalues</span><span class="p">),</span> <span class="n">time</span></div>
+
     
-<div class="viewcode-block" id="cold.plot_spectrum"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.plot_spectrum">[docs]</a>    <span class="k">def</span> <span class="nf">plot_spectrum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_eig</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span> <span class="n">nsteps</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">use_H0</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="cold.plot_spectrum">
+<a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.plot_spectrum">[docs]</a>
+    <span class="k">def</span> <span class="nf">plot_spectrum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_eig</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span> <span class="n">nsteps</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">use_H0</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Plots the spectrum of the system hamiltonian in `nsteps` between time 0 and total annealing time.</span>
 
@@ -455,15 +500,21 @@
         <span class="n">ev</span><span class="p">,</span> <span class="n">time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_spectrum</span><span class="p">(</span><span class="n">n_eig</span> <span class="o">=</span> <span class="n">n_eig</span><span class="p">,</span> <span class="n">nsteps</span> <span class="o">=</span> <span class="n">nsteps</span><span class="p">,</span> <span class="n">use_H0</span> <span class="o">=</span> <span class="n">use_H0</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">ev</span><span class="p">)</span></div>
 
+
     
     
-<div class="viewcode-block" id="cold.be_ready"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.be_ready">[docs]</a>    <span class="k">def</span> <span class="nf">be_ready</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="cold.be_ready">
+<a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.be_ready">[docs]</a>
+    <span class="k">def</span> <span class="nf">be_ready</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Executes all the required pre-computation routines.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">make_schedule_interpolation</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">make_hamiltonians</span><span class="p">()</span></div>
+
         
     
-<div class="viewcode-block" id="cold.run"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nsteps</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">psi0</span> <span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">dt</span> <span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span><span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
+<div class="viewcode-block" id="cold.run">
+<a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.run">[docs]</a>
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nsteps</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">psi0</span> <span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">dt</span> <span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span><span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
             <span class="n">force_be_ready</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">hook_function</span> <span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">callable</span><span class="p">,</span><span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -501,10 +552,13 @@
         <span class="c1"># execute and return evolved state</span>
         <span class="n">psi</span> <span class="o">=</span> <span class="n">ann</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">H_t</span><span class="p">,</span> <span class="n">psi0</span><span class="o">=</span><span class="n">psi0</span><span class="p">,</span> <span class="n">hook_function</span><span class="o">=</span><span class="n">hook_function</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">psi</span></div>
+
     
     
     
-<div class="viewcode-block" id="cold.make_cold_optimization_function"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.make_cold_optimization_function">[docs]</a>    <span class="k">def</span> <span class="nf">make_cold_optimization_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loss_function</span> <span class="p">:</span> <span class="nb">callable</span><span class="p">,</span> <span class="n">psi0</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">annealer_nsteps</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<div class="viewcode-block" id="cold.make_cold_optimization_function">
+<a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.make_cold_optimization_function">[docs]</a>
+    <span class="k">def</span> <span class="nf">make_cold_optimization_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loss_function</span> <span class="p">:</span> <span class="nb">callable</span><span class="p">,</span> <span class="n">psi0</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">annealer_nsteps</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
             <span class="n">loss_function_args</span> <span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="p">()</span>
         <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">callable</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates the function to be optimized, given a specific `loss_function` on the final state.</span>
@@ -530,9 +584,12 @@
             <span class="k">return</span> <span class="n">loss</span>
         
         <span class="k">return</span> <span class="n">f0</span></div>
+
     
     
-<div class="viewcode-block" id="cold.run_cold_opti"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.run_cold_opti">[docs]</a>    <span class="k">def</span> <span class="nf">run_cold_opti</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="cold.run_cold_opti">
+<a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.run_cold_opti">[docs]</a>
+    <span class="k">def</span> <span class="nf">run_cold_opti</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
             <span class="n">loss_function</span> <span class="p">:</span> <span class="nb">callable</span><span class="p">,</span> <span class="n">annealer_nsteps</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">psi0</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> 
             <span class="n">init_parameters</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">options</span> <span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{},</span> <span class="n">method</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;Powell&#39;</span><span class="p">,</span>
             <span class="n">loss_function_args</span> <span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="p">(),</span> <span class="n">update_param</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
@@ -581,7 +638,10 @@
 
 
 
-<div class="viewcode-block" id="cold.run_cold_opti_bayes"><a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.run_cold_opti_bayes">[docs]</a>    <span class="k">def</span> <span class="nf">run_cold_opti_bayes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> 
+
+<div class="viewcode-block" id="cold.run_cold_opti_bayes">
+<a class="viewcode-back" href="../../../colder.simulation.html#colder.simulation.cold.cold.run_cold_opti_bayes">[docs]</a>
+    <span class="k">def</span> <span class="nf">run_cold_opti_bayes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> 
             <span class="n">loss_function</span> <span class="p">:</span> <span class="nb">callable</span><span class="p">,</span> <span class="n">annealer_nsteps</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">psi0</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> 
             <span class="n">dimensions</span> <span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">optim_options</span> <span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{},</span>
             <span class="n">loss_function_args</span> <span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="p">(),</span> <span class="n">update_param</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> 
@@ -628,7 +688,9 @@
             <span class="c1"># restore old system fargs</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">system_fargs</span> <span class="o">=</span> <span class="n">bak_system_fargs</span>
             
-        <span class="k">return</span> <span class="n">optim</span></div></div>
+        <span class="k">return</span> <span class="n">optim</span></div>
+</div>
+
         
 </pre></div>
 

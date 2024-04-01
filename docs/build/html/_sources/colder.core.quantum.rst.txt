@@ -2,14 +2,6 @@ colder.core.quantum package
 ===========================
 
 
-colder.core.quantum.cupy module
--------------------------------
-
-.. automodule:: colder.core.quantum.cupy
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 colder.core.quantum.numpy module
 --------------------------------
 

@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>colder.backend.scipy.routines &mdash; colder 1.0.0 documentation</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
@@ -39,10 +42,11 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../introduction.html">Counterdiabatic Optimized Local Driving annealER</a></li>
+              <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../intro.html">Counterdiabatic Optimized Local Driving annealER</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Package documentation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../colder.html">colder package</a></li>
 </ul>
@@ -81,21 +85,29 @@
 
 
 
-<div class="viewcode-block" id="get_lower_eigen"><a class="viewcode-back" href="../../../../colder.backend.scipy.html#colder.backend.scipy.routines.get_lower_eigen">[docs]</a><span class="k">def</span> <span class="nf">get_lower_eigen</span><span class="p">(</span><span class="n">hh</span><span class="p">,</span> <span class="n">k</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">8</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<div class="viewcode-block" id="get_lower_eigen">
+<a class="viewcode-back" href="../../../../colder.backend.scipy.html#colder.backend.scipy.routines.get_lower_eigen">[docs]</a>
+<span class="k">def</span> <span class="nf">get_lower_eigen</span><span class="p">(</span><span class="n">hh</span><span class="p">,</span> <span class="n">k</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">8</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
     <span class="k">assert</span> <span class="n">k</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;must take at least one eigenvalues&#39;</span>
     
     <span class="n">evals</span><span class="p">,</span> <span class="n">evect</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">hh</span><span class="p">,</span> <span class="n">subset_by_index</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">evals</span><span class="p">,</span> <span class="n">evect</span></div>
 
 
-<div class="viewcode-block" id="get_superposition"><a class="viewcode-back" href="../../../../colder.backend.scipy.html#colder.backend.scipy.routines.get_superposition">[docs]</a><span class="k">def</span> <span class="nf">get_superposition</span><span class="p">(</span><span class="n">hh</span><span class="p">,</span> <span class="n">n_eig</span> <span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+
+<div class="viewcode-block" id="get_superposition">
+<a class="viewcode-back" href="../../../../colder.backend.scipy.html#colder.backend.scipy.routines.get_superposition">[docs]</a>
+<span class="k">def</span> <span class="nf">get_superposition</span><span class="p">(</span><span class="n">hh</span><span class="p">,</span> <span class="n">n_eig</span> <span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     
     <span class="n">evals</span><span class="p">,</span> <span class="n">evect</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">hh</span><span class="p">,</span> <span class="n">subset_by_index</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">n_eig</span><span class="p">))</span>
     <span class="n">psi</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span> <span class="n">evect</span><span class="p">[:,:</span><span class="n">n_eig</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n_eig</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">psi</span></div>
 
 
-<div class="viewcode-block" id="get_groundstate_superposition"><a class="viewcode-back" href="../../../../colder.backend.scipy.html#colder.backend.scipy.routines.get_groundstate_superposition">[docs]</a><span class="k">def</span> <span class="nf">get_groundstate_superposition</span><span class="p">(</span><span class="n">hh</span><span class="p">,</span> <span class="n">n_eig</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span> <span class="n">print_info</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+
+<div class="viewcode-block" id="get_groundstate_superposition">
+<a class="viewcode-back" href="../../../../colder.backend.scipy.html#colder.backend.scipy.routines.get_groundstate_superposition">[docs]</a>
+<span class="k">def</span> <span class="nf">get_groundstate_superposition</span><span class="p">(</span><span class="n">hh</span><span class="p">,</span> <span class="n">n_eig</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span> <span class="n">print_info</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     
     <span class="n">evals</span><span class="p">,</span> <span class="n">evect</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">hh</span><span class="p">,</span> <span class="n">subset_by_index</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">n_eig</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
 
@@ -112,7 +124,10 @@
 
 
 
-<div class="viewcode-block" id="timedependent_evolution"><a class="viewcode-back" href="../../../../colder.backend.scipy.html#colder.backend.scipy.routines.timedependent_evolution">[docs]</a><span class="k">def</span> <span class="nf">timedependent_evolution</span><span class="p">(</span><span class="n">htf</span> <span class="p">:</span> <span class="nb">callable</span><span class="p">,</span> <span class="n">T</span> <span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">P</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span> 
+
+<div class="viewcode-block" id="timedependent_evolution">
+<a class="viewcode-back" href="../../../../colder.backend.scipy.html#colder.backend.scipy.routines.timedependent_evolution">[docs]</a>
+<span class="k">def</span> <span class="nf">timedependent_evolution</span><span class="p">(</span><span class="n">htf</span> <span class="p">:</span> <span class="nb">callable</span><span class="p">,</span> <span class="n">T</span> <span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">P</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span> 
     <span class="n">psi0</span> <span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;superpos&#39;</span><span class="p">,</span> <span class="n">gs_args</span> <span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{},</span>
     <span class="n">force_norm</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">hook_function</span> <span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">callable</span><span class="p">,</span><span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
@@ -156,6 +171,7 @@
             <span class="n">hook_function</span><span class="p">(</span><span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="p">,</span> <span class="n">state</span> <span class="o">=</span> <span class="n">state</span><span class="p">)</span>
             
     <span class="k">return</span> <span class="n">state</span></div>
+
 </pre></div>
 
            </div>

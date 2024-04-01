@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>colder.models.lattice &mdash; colder 1.0.0 documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -81,25 +83,38 @@
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span>
 
 
-<div class="viewcode-block" id="convert_array_to_target_list"><a class="viewcode-back" href="../../../colder.models.html#colder.models.lattice.convert_array_to_target_list">[docs]</a><span class="k">def</span> <span class="nf">convert_array_to_target_list</span><span class="p">(</span><span class="n">arr</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">tuple</span><span class="p">]:</span>
+<div class="viewcode-block" id="convert_array_to_target_list">
+<a class="viewcode-back" href="../../../colder.models.html#colder.models.lattice.convert_array_to_target_list">[docs]</a>
+<span class="k">def</span> <span class="nf">convert_array_to_target_list</span><span class="p">(</span><span class="n">arr</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">tuple</span><span class="p">]:</span>
     <span class="k">return</span> <span class="p">[</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">el</span><span class="p">])</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">arr</span> <span class="p">]</span></div>
 
-<div class="viewcode-block" id="make_unique_permutations"><a class="viewcode-back" href="../../../colder.models.html#colder.models.lattice.make_unique_permutations">[docs]</a><span class="k">def</span> <span class="nf">make_unique_permutations</span><span class="p">(</span> <span class="n">sites</span> <span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">tuple</span><span class="p">]</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">tuple</span><span class="p">]:</span>
+
+<div class="viewcode-block" id="make_unique_permutations">
+<a class="viewcode-back" href="../../../colder.models.html#colder.models.lattice.make_unique_permutations">[docs]</a>
+<span class="k">def</span> <span class="nf">make_unique_permutations</span><span class="p">(</span> <span class="n">sites</span> <span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">tuple</span><span class="p">]</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">tuple</span><span class="p">]:</span>
     <span class="k">pass</span></div>
 
 
 
-<div class="viewcode-block" id="lattice"><a class="viewcode-back" href="../../../colder.models.html#colder.models.lattice.lattice">[docs]</a><span class="k">class</span> <span class="nc">lattice</span><span class="p">:</span>
+
+<div class="viewcode-block" id="lattice">
+<a class="viewcode-back" href="../../../colder.models.html#colder.models.lattice.lattice">[docs]</a>
+<span class="k">class</span> <span class="nc">lattice</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Mother class for any lattice class. Defines the core methods to be inherited by the other classes.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="lattice.__init__"><a class="viewcode-back" href="../../../colder.models.html#colder.models.lattice.lattice.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="lattice.__init__">
+<a class="viewcode-back" href="../../../colder.models.html#colder.models.lattice.lattice.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Shall be defined specifically for each ineriting class.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
+
     
-<div class="viewcode-block" id="lattice.invert"><a class="viewcode-back" href="../../../colder.models.html#colder.models.lattice.lattice.invert">[docs]</a>    <span class="k">def</span> <span class="nf">invert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interactions</span> <span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">]:</span>
+<div class="viewcode-block" id="lattice.invert">
+<a class="viewcode-back" href="../../../colder.models.html#colder.models.lattice.lattice.invert">[docs]</a>
+    <span class="k">def</span> <span class="nf">invert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interactions</span> <span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Inverts list of interaction terms.</span>
 
 <span class="sd">        Args:</span>
@@ -110,7 +125,10 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">[</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">interactions</span> <span class="p">]</span></div>
 
-<div class="viewcode-block" id="lattice.add_invert"><a class="viewcode-back" href="../../../colder.models.html#colder.models.lattice.lattice.add_invert">[docs]</a>    <span class="k">def</span> <span class="nf">add_invert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interactions</span> <span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">]:</span>
+
+<div class="viewcode-block" id="lattice.add_invert">
+<a class="viewcode-back" href="../../../colder.models.html#colder.models.lattice.lattice.add_invert">[docs]</a>
+    <span class="k">def</span> <span class="nf">add_invert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interactions</span> <span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return interaction terms and their inversion.</span>
 
 <span class="sd">        Args:</span>
@@ -119,12 +137,16 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            List[Tuple]: List of interactions.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">interactions</span> <span class="o">+</span> <span class="p">[</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">interactions</span> <span class="p">]</span></div></div>
+        <span class="k">return</span> <span class="n">interactions</span> <span class="o">+</span> <span class="p">[</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">interactions</span> <span class="p">]</span></div>
+</div>
 
 
 
 
-<div class="viewcode-block" id="chain"><a class="viewcode-back" href="../../../colder.models.html#colder.models.lattice.chain">[docs]</a><span class="k">class</span> <span class="nc">chain</span><span class="p">(</span><span class="n">lattice</span><span class="p">):</span>
+
+<div class="viewcode-block" id="chain">
+<a class="viewcode-back" href="../../../colder.models.html#colder.models.lattice.chain">[docs]</a>
+<span class="k">class</span> <span class="nc">chain</span><span class="p">(</span><span class="n">lattice</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    1D chain lattice model.</span>
 <span class="sd">    </span>
@@ -140,7 +162,9 @@
 <span class="sd">        three_neighbor: build interactions with 3 adjacent spins</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
-<div class="viewcode-block" id="chain.__init__"><a class="viewcode-back" href="../../../colder.models.html#colder.models.lattice.chain.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nspin</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">periodic</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="chain.__init__">
+<a class="viewcode-back" href="../../../colder.models.html#colder.models.lattice.chain.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nspin</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">periodic</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize a 1D chain with `nspin` spins.</span>
 
@@ -155,14 +179,28 @@
         
         <span class="c1"># interactions</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">nearest_neighbor</span> <span class="o">=</span> <span class="p">[</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">i</span><span class="p">,(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="n">nspin</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nspin</span><span class="o">-</span><span class="mi">1</span> <span class="o">+</span> <span class="n">periodic</span><span class="p">)</span> <span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">next_nearest_neighbor</span> <span class="o">=</span> <span class="p">[</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">i</span><span class="p">,(</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">%</span><span class="n">nspin</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nspin</span><span class="o">-</span><span class="mi">2</span> <span class="o">+</span> <span class="n">periodic</span><span class="p">)</span> <span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">annni</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nearest_neighbor</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">next_nearest_neighbor</span>
+        
+        <span class="c1"># I&#39;m patching this, can I find a better way?</span>
+        <span class="k">if</span> <span class="n">periodic</span> <span class="ow">and</span> <span class="p">(</span><span class="n">nspin</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">next_nearest_neighbor</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">elif</span> <span class="n">periodic</span> <span class="ow">and</span> <span class="p">(</span><span class="n">nspin</span> <span class="o">==</span> <span class="mi">4</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">next_nearest_neighbor</span> <span class="o">=</span> <span class="p">[</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">add</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">periodic</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">next_nearest_neighbor</span> <span class="o">=</span> <span class="p">[</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="n">nspin</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nspin</span><span class="o">+</span><span class="n">add</span><span class="p">)</span> <span class="p">]</span>
+            
+        <span class="c1">#self.next_nearest_neighbor = [ tuple([i,(i+2)%nspin]) for i in range(nspin-2 + periodic) ]</span>
+        <span class="c1">#self.annni = self.nearest_neighbor + self.next_nearest_neighbor</span>
         
         <span class="bp">self</span><span class="o">.</span><span class="n">three_neighbor</span> <span class="o">=</span> <span class="p">[</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">i</span><span class="p">,(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="n">nspin</span><span class="p">,(</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">%</span><span class="n">nspin</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nspin</span><span class="o">-</span><span class="mi">2</span> <span class="o">+</span> <span class="n">periodic</span><span class="p">)</span> <span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">full_connected</span> <span class="o">=</span> <span class="p">[</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nspin</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">nspin</span><span class="p">)</span> <span class="p">]</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">full_connected</span> <span class="o">=</span> <span class="p">[</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nspin</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">nspin</span><span class="p">)</span> <span class="p">]</span></div>
+</div>
 
 
-<div class="viewcode-block" id="square"><a class="viewcode-back" href="../../../colder.models.html#colder.models.lattice.square">[docs]</a><span class="k">class</span> <span class="nc">square</span><span class="p">(</span><span class="n">lattice</span><span class="p">):</span>
+
+<div class="viewcode-block" id="square">
+<a class="viewcode-back" href="../../../colder.models.html#colder.models.lattice.square">[docs]</a>
+<span class="k">class</span> <span class="nc">square</span><span class="p">(</span><span class="n">lattice</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    2D square lattice model.</span>
 <span class="sd">    </span>
@@ -176,7 +214,9 @@
 <span class="sd">        full_connected: pairwise interactions of a fully connected model</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
-<div class="viewcode-block" id="square.__init__"><a class="viewcode-back" href="../../../colder.models.html#colder.models.lattice.square.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shape</span> <span class="p">:</span> <span class="nb">tuple</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="square.__init__">
+<a class="viewcode-back" href="../../../colder.models.html#colder.models.lattice.square.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shape</span> <span class="p">:</span> <span class="nb">tuple</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize a 2D square lattice with `nspin` spins.</span>
 
@@ -202,8 +242,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">next_vertical_neighbor</span> <span class="o">=</span> <span class="p">[</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">next_nearest_neighbor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">next_horizontal_neighbor</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">next_vertical_neighbor</span>
         
-        <span class="bp">self</span><span class="o">.</span><span class="n">annni</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nearest_neighbor</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">next_nearest_neighbor</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">full_connected</span> <span class="o">=</span> <span class="p">[</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nspin</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">nspin</span><span class="p">)</span> <span class="p">]</span></div></div>
+        <span class="c1">#self.annni = self.nearest_neighbor + self.next_nearest_neighbor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">full_connected</span> <span class="o">=</span> <span class="p">[</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nspin</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">nspin</span><span class="p">)</span> <span class="p">]</span></div>
+</div>
+
         
 
 </pre></div>

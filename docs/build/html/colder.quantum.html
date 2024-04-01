@@ -1,21 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>quantum package &mdash; colder 1.0.0 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="_static/jquery.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=8d563738"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -94,21 +96,21 @@
            <div itemprop="articleBody">
              
   <section id="quantum-package">
-<h1>quantum package<a class="headerlink" href="#quantum-package" title="Permalink to this heading"></a></h1>
+<h1>quantum package<a class="headerlink" href="#quantum-package" title="Link to this heading"></a></h1>
 <section id="module-colder.quantum.math">
-<span id="colder-quantum-math-module"></span><h2>colder.quantum.math module<a class="headerlink" href="#module-colder.quantum.math" title="Permalink to this heading"></a></h2>
+<span id="colder-quantum-math-module"></span><h2>colder.quantum.math module<a class="headerlink" href="#module-colder.quantum.math" title="Link to this heading"></a></h2>
 <p>This module implements basic functions for quantum information.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="colder.quantum.math.fidelity">
-<span class="sig-prename descclassname"><span class="pre">colder.quantum.math.</span></span><span class="sig-name descname"><span class="pre">fidelity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">psi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chi</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/colder/quantum/math.html#fidelity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.quantum.math.fidelity" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">colder.quantum.math.</span></span><span class="sig-name descname"><span class="pre">fidelity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">psi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chi</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/colder/quantum/math.html#fidelity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.quantum.math.fidelity" title="Link to this definition"></a></dt>
 <dd><p>Returns the fidelity of two quantum states, psi and chi.</p>
 <div class="math notranslate nohighlight">
 \[\mathcal{F} = |\langle\chi|\psi\rangle|^2\]</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>psi</strong> (<em>np.ndarray</em><em>, </em><em>cupy.ndarray</em>) – quantum state</p></li>
-<li><p><strong>chi</strong> (<em>np.ndarray</em><em>, </em><em>cupy.ndarray</em>) – quantum state</p></li>
+<li><p><strong>psi</strong> (<em>np.ndarray</em>) – quantum state</p></li>
+<li><p><strong>chi</strong> (<em>np.ndarray</em>) – quantum state</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -122,15 +124,15 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="colder.quantum.math.infidelity">
-<span class="sig-prename descclassname"><span class="pre">colder.quantum.math.</span></span><span class="sig-name descname"><span class="pre">infidelity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">psi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chi</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/colder/quantum/math.html#infidelity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.quantum.math.infidelity" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">colder.quantum.math.</span></span><span class="sig-name descname"><span class="pre">infidelity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">psi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chi</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/colder/quantum/math.html#infidelity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colder.quantum.math.infidelity" title="Link to this definition"></a></dt>
 <dd><p>Returns the infidelity of two quantum states, psi and chi.</p>
 <div class="math notranslate nohighlight">
 \[\mathcal{F} = 1 - |\langle\chi|\psi\rangle|^2\]</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>psi</strong> (<em>np.ndarray</em><em>, </em><em>cupy.ndarray</em>) – quantum state</p></li>
-<li><p><strong>chi</strong> (<em>np.ndarray</em><em>, </em><em>cupy.ndarray</em>) – quantum state</p></li>
+<li><p><strong>psi</strong> (<em>np.ndarray</em>) – quantum state</p></li>
+<li><p><strong>chi</strong> (<em>np.ndarray</em>) – quantum state</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>

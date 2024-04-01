@@ -9,7 +9,6 @@ Subpackages
 
    colder.backend.scipy
    colder.backend.sparse
-   colder.backend.cupy
    colder.backend.qibo
 
 

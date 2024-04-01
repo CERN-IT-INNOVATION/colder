@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>colder.gauge.adiabatic_potential &mdash; colder 1.0.0 documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -39,7 +42,8 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
+              <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../intro.html">Counterdiabatic Optimized Local Driving annealER</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Package documentation</span></p>
@@ -90,10 +94,14 @@
 
 
 
-<div class="viewcode-block" id="cache_lcd_numpy"><a class="viewcode-back" href="../../../colder.gauge.html#colder.gauge.adiabatic_potential.cache_lcd_numpy">[docs]</a><span class="k">class</span> <span class="nc">cache_lcd_numpy</span><span class="p">:</span>
+<div class="viewcode-block" id="cache_lcd_numpy">
+<a class="viewcode-back" href="../../../colder.gauge.html#colder.gauge.adiabatic_potential.cache_lcd_numpy">[docs]</a>
+<span class="k">class</span> <span class="nc">cache_lcd_numpy</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This class collects the intermidiate result of AGP to be cached.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="cache_lcd_numpy.__init__">
+<a class="viewcode-back" href="../../../colder.gauge.html#colder.gauge.adiabatic_potential.cache_lcd_numpy.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">agpobj</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Makes the LCD cache from AGP.</span>
@@ -106,9 +114,15 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">A</span> <span class="o">=</span> <span class="n">A</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">B</span> <span class="o">=</span> <span class="n">B</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">syms</span> <span class="o">=</span> <span class="n">syms</span></div>
+</div>
 
 
-<div class="viewcode-block" id="adiabaticgp"><a class="viewcode-back" href="../../../colder.gauge.html#colder.gauge.adiabatic_potential.adiabaticgp">[docs]</a><span class="k">class</span> <span class="nc">adiabaticgp</span><span class="p">:</span>
+
+<div class="viewcode-block" id="adiabaticgp">
+<a class="viewcode-back" href="../../../colder.gauge.html#colder.gauge.adiabatic_potential.adiabaticgp">[docs]</a>
+<span class="k">class</span> <span class="nc">adiabaticgp</span><span class="p">:</span>
+<div class="viewcode-block" id="adiabaticgp.__init__">
+<a class="viewcode-back" href="../../../colder.gauge.html#colder.gauge.adiabatic_potential.adiabaticgp.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
             <span class="n">total_sites</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">H</span> <span class="p">:</span> <span class="n">cphys</span><span class="o">.</span><span class="n">hamiltonian_collection</span><span class="p">,</span> <span class="n">ansatz</span> <span class="p">:</span> <span class="n">cphys</span><span class="o">.</span><span class="n">hamiltonian_collection</span><span class="p">,</span>
             <span class="n">sort_params</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> 
@@ -156,22 +170,31 @@
             <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">inject_cache</span><span class="p">,</span> <span class="n">cache_lcd_numpy</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">cache_lcd</span> <span class="o">=</span> <span class="n">inject_cache</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;not valid agp cache object&#39;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;not valid agp cache object&#39;</span><span class="p">)</span></div>
+
     
     
-<div class="viewcode-block" id="adiabaticgp.make_cache"><a class="viewcode-back" href="../../../colder.gauge.html#colder.gauge.adiabatic_potential.adiabaticgp.make_cache">[docs]</a>    <span class="k">def</span> <span class="nf">make_cache</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="adiabaticgp.make_cache">
+<a class="viewcode-back" href="../../../colder.gauge.html#colder.gauge.adiabatic_potential.adiabaticgp.make_cache">[docs]</a>
+    <span class="k">def</span> <span class="nf">make_cache</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Computing the AGP and store it in cache.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[info] caching agp&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cache_lcd</span> <span class="o">=</span> <span class="n">cache_lcd_numpy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cache</span> <span class="o">=</span> <span class="kc">True</span></div>
+
     
-<div class="viewcode-block" id="adiabaticgp.clear_cache"><a class="viewcode-back" href="../../../colder.gauge.html#colder.gauge.adiabatic_potential.adiabaticgp.clear_cache">[docs]</a>    <span class="k">def</span> <span class="nf">clear_cache</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="adiabaticgp.clear_cache">
+<a class="viewcode-back" href="../../../colder.gauge.html#colder.gauge.adiabatic_potential.adiabaticgp.clear_cache">[docs]</a>
+    <span class="k">def</span> <span class="nf">clear_cache</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove cached LCD. On next call, the AGP will be computed from scratch.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cache_lcd</span> <span class="o">=</span> <span class="kc">None</span></div>
+
         
-<div class="viewcode-block" id="adiabaticgp.set_cache"><a class="viewcode-back" href="../../../colder.gauge.html#colder.gauge.adiabatic_potential.adiabaticgp.set_cache">[docs]</a>    <span class="k">def</span> <span class="nf">set_cache</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cc</span> <span class="p">:</span> <span class="n">cache_lcd_numpy</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="adiabaticgp.set_cache">
+<a class="viewcode-back" href="../../../colder.gauge.html#colder.gauge.adiabatic_potential.adiabaticgp.set_cache">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_cache</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cc</span> <span class="p">:</span> <span class="n">cache_lcd_numpy</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Inject a cache object.</span>
 
@@ -180,8 +203,11 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cache</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cache_lcd</span> <span class="o">=</span> <span class="n">cc</span></div>
+
     
-<div class="viewcode-block" id="adiabaticgp.get_cache"><a class="viewcode-back" href="../../../colder.gauge.html#colder.gauge.adiabatic_potential.adiabaticgp.get_cache">[docs]</a>    <span class="k">def</span> <span class="nf">get_cache</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">cache_lcd_numpy</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+<div class="viewcode-block" id="adiabaticgp.get_cache">
+<a class="viewcode-back" href="../../../colder.gauge.html#colder.gauge.adiabatic_potential.adiabaticgp.get_cache">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_cache</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">cache_lcd_numpy</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the AGP cache, if computed.</span>
 
 <span class="sd">        Returns:</span>
@@ -190,7 +216,10 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache_lcd</span></div>
 
 
-<div class="viewcode-block" id="adiabaticgp.compute"><a class="viewcode-back" href="../../../colder.gauge.html#colder.gauge.adiabatic_potential.adiabaticgp.compute">[docs]</a>    <span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="adiabaticgp.compute">
+<a class="viewcode-back" href="../../../colder.gauge.html#colder.gauge.adiabatic_potential.adiabaticgp.compute">[docs]</a>
+    <span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute simbolically :math:`G` as expression.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -207,8 +236,11 @@
             <span class="n">G</span> <span class="o">+=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="n">mm</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="n">sympy</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="n">aa</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="n">csub</span><span class="o">.</span><span class="n">make_sum_expression</span><span class="p">(</span><span class="n">comms</span><span class="p">)</span>
         
         <span class="k">return</span> <span class="n">G</span><span class="o">.</span><span class="n">expand</span><span class="p">()</span></div>
+
     
-<div class="viewcode-block" id="adiabaticgp.compute_square_trace"><a class="viewcode-back" href="../../../colder.gauge.html#colder.gauge.adiabatic_potential.adiabaticgp.compute_square_trace">[docs]</a>    <span class="k">def</span> <span class="nf">compute_square_trace</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="adiabaticgp.compute_square_trace">
+<a class="viewcode-back" href="../../../colder.gauge.html#colder.gauge.adiabatic_potential.adiabaticgp.compute_square_trace">[docs]</a>
+    <span class="k">def</span> <span class="nf">compute_square_trace</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute simbolically :math:`Tr[G^2]`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -216,9 +248,12 @@
         <span class="n">sigmas</span> <span class="o">=</span> <span class="n">csub</span><span class="o">.</span><span class="n">get_operators_from_expr_with_prefix</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">operators_prefix</span><span class="p">)</span>
         <span class="n">trG2</span> <span class="o">=</span> <span class="n">csub</span><span class="o">.</span><span class="n">expression_singular_square</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">sigmas</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">csub</span><span class="o">.</span><span class="n">replace_operators_in_expr</span><span class="p">(</span><span class="n">trG2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">operators_prefix</span><span class="p">,</span> <span class="n">replacement_value</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span></div>
+
     
     
-<div class="viewcode-block" id="adiabaticgp.get_lcd_equation_byvar"><a class="viewcode-back" href="../../../colder.gauge.html#colder.gauge.adiabatic_potential.adiabaticgp.get_lcd_equation_byvar">[docs]</a>    <span class="k">def</span> <span class="nf">get_lcd_equation_byvar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">var</span> <span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<div class="viewcode-block" id="adiabaticgp.get_lcd_equation_byvar">
+<a class="viewcode-back" href="../../../colder.gauge.html#colder.gauge.adiabatic_potential.adiabaticgp.get_lcd_equation_byvar">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_lcd_equation_byvar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">var</span> <span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Computes the LCD equations for variable `var`.</span>
 
 <span class="sd">        Args:</span>
@@ -227,8 +262,11 @@
         <span class="n">trG2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_square_trace</span><span class="p">()</span>
         <span class="n">alpha_diff</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span> <span class="n">trG2</span><span class="p">,</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="n">var</span><span class="p">)</span> <span class="p">)</span><span class="o">.</span><span class="n">expand</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">sympy</span><span class="o">.</span><span class="n">collect</span><span class="p">(</span><span class="n">alpha_diff</span><span class="p">,</span> <span class="p">[</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="n">ee</span><span class="p">)</span> <span class="k">for</span> <span class="n">ee</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ansatz_unique_parameters</span> <span class="p">])</span></div>
+
     
-<div class="viewcode-block" id="adiabaticgp.get_lcd_equations"><a class="viewcode-back" href="../../../colder.gauge.html#colder.gauge.adiabatic_potential.adiabaticgp.get_lcd_equations">[docs]</a>    <span class="k">def</span> <span class="nf">get_lcd_equations</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">:</span>
+<div class="viewcode-block" id="adiabaticgp.get_lcd_equations">
+<a class="viewcode-back" href="../../../colder.gauge.html#colder.gauge.adiabatic_potential.adiabaticgp.get_lcd_equations">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_lcd_equations</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute the LCD equations for all variables.</span>
 
@@ -237,9 +275,12 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># NOTE: the order of variables is given by obj.ansatz_unique_parameters</span>
         <span class="k">return</span> <span class="p">[</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_lcd_equation_byvar</span><span class="p">(</span><span class="n">vv</span><span class="p">)</span> <span class="k">for</span> <span class="n">vv</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ansatz_unique_parameters</span> <span class="p">]</span></div>
+
     
     
-<div class="viewcode-block" id="adiabaticgp.make_lcd_system"><a class="viewcode-back" href="../../../colder.gauge.html#colder.gauge.adiabatic_potential.adiabaticgp.make_lcd_system">[docs]</a>    <span class="k">def</span> <span class="nf">make_lcd_system</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="adiabaticgp.make_lcd_system">
+<a class="viewcode-back" href="../../../colder.gauge.html#colder.gauge.adiabatic_potential.adiabaticgp.make_lcd_system">[docs]</a>
+    <span class="k">def</span> <span class="nf">make_lcd_system</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute simbolically the LCD equations as a linear system.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -249,9 +290,12 @@
         <span class="c1"># get the linear system as sympy matrices</span>
         <span class="n">A</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="n">csub</span><span class="o">.</span><span class="n">expressions_to_linear_system_matrix</span><span class="p">(</span><span class="n">eqs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ansatz_unique_parameters</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span></div>
+
     
     
-<div class="viewcode-block" id="adiabaticgp.retrieve_model_symbols"><a class="viewcode-back" href="../../../colder.gauge.html#colder.gauge.adiabatic_potential.adiabaticgp.retrieve_model_symbols">[docs]</a>    <span class="k">def</span> <span class="nf">retrieve_model_symbols</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">:</span>
+<div class="viewcode-block" id="adiabaticgp.retrieve_model_symbols">
+<a class="viewcode-back" href="../../../colder.gauge.html#colder.gauge.adiabatic_potential.adiabaticgp.retrieve_model_symbols">[docs]</a>
+    <span class="k">def</span> <span class="nf">retrieve_model_symbols</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the list of all symbols for this AGP model.</span>
 
@@ -261,8 +305,11 @@
         <span class="n">expected_symbols</span> <span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_unique_parameters</span> <span class="o">+</span> <span class="p">[</span> <span class="bp">self</span><span class="o">.</span><span class="n">derivative_prefix</span> <span class="o">+</span> <span class="n">ee</span> <span class="k">for</span> <span class="n">ee</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_unique_parameters</span> <span class="p">]</span>
         <span class="k">return</span> <span class="n">expected_symbols</span></div>
 
+
     
-<div class="viewcode-block" id="adiabaticgp.make_lcd_numpy"><a class="viewcode-back" href="../../../colder.gauge.html#colder.gauge.adiabatic_potential.adiabaticgp.make_lcd_numpy">[docs]</a>    <span class="k">def</span> <span class="nf">make_lcd_numpy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbols_check</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">modules</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;numpy&#39;</span><span class="p">,</span> <span class="n">args_override</span> <span class="p">:</span> <span class="n">List</span> <span class="o">=</span> <span class="kc">None</span>
+<div class="viewcode-block" id="adiabaticgp.make_lcd_numpy">
+<a class="viewcode-back" href="../../../colder.gauge.html#colder.gauge.adiabatic_potential.adiabaticgp.make_lcd_numpy">[docs]</a>
+    <span class="k">def</span> <span class="nf">make_lcd_numpy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbols_check</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">modules</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;numpy&#39;</span><span class="p">,</span> <span class="n">args_override</span> <span class="p">:</span> <span class="n">List</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">callable</span><span class="p">,</span> <span class="nb">callable</span><span class="p">,</span> <span class="n">List</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute simbolically the LCD equations as a linear system and lambdify the matrices to numpy array depending on system symbols.</span>
@@ -307,11 +354,14 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">__last_lambdify_args</span> <span class="o">=</span> <span class="n">expected_symbols</span>
         
         <span class="k">return</span> <span class="n">A_func</span><span class="p">,</span> <span class="n">B_func</span><span class="p">,</span> <span class="n">expected_symbols</span></div>
+
         <span class="c1"># note: the result of this function is cached</span>
     
     
     
-<div class="viewcode-block" id="adiabaticgp.lcd_numerical_solver"><a class="viewcode-back" href="../../../colder.gauge.html#colder.gauge.adiabatic_potential.adiabaticgp.lcd_numerical_solver">[docs]</a>    <span class="k">def</span> <span class="nf">lcd_numerical_solver</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">finj</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">fargs</span> <span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{},</span> <span class="n">nocache</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<div class="viewcode-block" id="adiabaticgp.lcd_numerical_solver">
+<a class="viewcode-back" href="../../../colder.gauge.html#colder.gauge.adiabatic_potential.adiabaticgp.lcd_numerical_solver">[docs]</a>
+    <span class="k">def</span> <span class="nf">lcd_numerical_solver</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">finj</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">fargs</span> <span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{},</span> <span class="n">nocache</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Solve LCD equations for `time`, given a schedule injected through `finj`.</span>
 
@@ -353,9 +403,12 @@
             <span class="n">numsol</span><span class="p">[</span><span class="n">ii</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A_timed</span><span class="p">,</span> <span class="n">B_timed</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
         
         <span class="k">return</span> <span class="n">numsol</span></div>
+
     
     
-<div class="viewcode-block" id="adiabaticgp.lcd_numerical_solver_from_range"><a class="viewcode-back" href="../../../colder.gauge.html#colder.gauge.adiabatic_potential.adiabaticgp.lcd_numerical_solver_from_range">[docs]</a>    <span class="k">def</span> <span class="nf">lcd_numerical_solver_from_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trange</span> <span class="p">:</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">nsamples</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">finj</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">fargs</span> <span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{})</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<div class="viewcode-block" id="adiabaticgp.lcd_numerical_solver_from_range">
+<a class="viewcode-back" href="../../../colder.gauge.html#colder.gauge.adiabatic_potential.adiabaticgp.lcd_numerical_solver_from_range">[docs]</a>
+    <span class="k">def</span> <span class="nf">lcd_numerical_solver_from_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trange</span> <span class="p">:</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">nsamples</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">finj</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">fargs</span> <span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{})</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Call `lcd_numerical_solver` for a time array in range `trange`.</span>
 
@@ -370,9 +423,12 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">time</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">trange</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">trange</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">nsamples</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lcd_numerical_solver</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">finj</span><span class="o">=</span><span class="n">finj</span><span class="p">,</span> <span class="n">fargs</span><span class="o">=</span><span class="n">fargs</span><span class="p">)</span></div>
+
     
     
-<div class="viewcode-block" id="adiabaticgp.lcd_interpolated_solver"><a class="viewcode-back" href="../../../colder.gauge.html#colder.gauge.adiabatic_potential.adiabaticgp.lcd_interpolated_solver">[docs]</a>    <span class="k">def</span> <span class="nf">lcd_interpolated_solver</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trange</span> <span class="p">:</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">nsamples</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">finj</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">fargs</span> <span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{},</span> <span class="n">bc_type</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;clamped&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">cnum</span><span class="o">.</span><span class="n">interpolator1D</span><span class="p">]:</span>
+<div class="viewcode-block" id="adiabaticgp.lcd_interpolated_solver">
+<a class="viewcode-back" href="../../../colder.gauge.html#colder.gauge.adiabatic_potential.adiabaticgp.lcd_interpolated_solver">[docs]</a>
+    <span class="k">def</span> <span class="nf">lcd_interpolated_solver</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trange</span> <span class="p">:</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">nsamples</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">finj</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">fargs</span> <span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{},</span> <span class="n">bc_type</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;clamped&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">cnum</span><span class="o">.</span><span class="n">interpolator1D</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Solve numerically the LCD for time in `trange` and return a dictionary of values for each unique parameter of the system.</span>
 
@@ -396,9 +452,12 @@
             <span class="n">solvers</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span> <span class="o">=</span> <span class="n">cnum</span><span class="o">.</span><span class="n">interpolator1D</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">yyy</span><span class="p">,</span> <span class="n">bc_type</span><span class="o">=</span><span class="n">bc_type</span><span class="p">)</span>
         
         <span class="k">return</span> <span class="n">solvers</span></div>
+
     
     
-<div class="viewcode-block" id="adiabaticgp.match_interpolated_injections"><a class="viewcode-back" href="../../../colder.gauge.html#colder.gauge.adiabatic_potential.adiabaticgp.match_interpolated_injections">[docs]</a>    <span class="k">def</span> <span class="nf">match_interpolated_injections</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">system_interpolators</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<div class="viewcode-block" id="adiabaticgp.match_interpolated_injections">
+<a class="viewcode-back" href="../../../colder.gauge.html#colder.gauge.adiabatic_potential.adiabaticgp.match_interpolated_injections">[docs]</a>
+    <span class="k">def</span> <span class="nf">match_interpolated_injections</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">system_interpolators</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns a dictionary for of callable function for the parameters in system and their derivatives.</span>
 
@@ -413,7 +472,8 @@
             <span class="n">finj</span><span class="p">[</span><span class="n">coeff</span><span class="p">]</span> <span class="o">=</span> <span class="n">interp</span><span class="o">.</span><span class="n">get_function</span><span class="p">()</span>
             <span class="n">finj</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">derivative_prefix</span><span class="o">+</span><span class="n">coeff</span><span class="p">]</span> <span class="o">=</span> <span class="n">interp</span><span class="o">.</span><span class="n">get_derivative</span><span class="p">()</span>
         
-        <span class="k">return</span> <span class="n">finj</span></div></div>
+        <span class="k">return</span> <span class="n">finj</span></div>
+</div>
 
 
 
@@ -421,7 +481,10 @@
 
 
 
-<div class="viewcode-block" id="plot_interpolators"><a class="viewcode-back" href="../../../colder.gauge.html#colder.gauge.adiabatic_potential.plot_interpolators">[docs]</a><span class="k">def</span> <span class="nf">plot_interpolators</span><span class="p">(</span><span class="n">data</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">time</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">):</span>
+
+<div class="viewcode-block" id="plot_interpolators">
+<a class="viewcode-back" href="../../../colder.gauge.html#colder.gauge.adiabatic_potential.plot_interpolators">[docs]</a>
+<span class="k">def</span> <span class="nf">plot_interpolators</span><span class="p">(</span><span class="n">data</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">time</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plot the interpolated data in time array.</span>
 
@@ -431,6 +494,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">interp</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">interp</span><span class="o">.</span><span class="n">get_function</span><span class="p">()(</span><span class="n">time</span><span class="p">),</span> <span class="n">label</span> <span class="o">=</span> <span class="n">k</span><span class="p">)</span></div>
+
 </pre></div>
 
            </div>
