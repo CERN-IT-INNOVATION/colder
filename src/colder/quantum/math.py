@@ -1,7 +1,6 @@
 """This module implements basic functions for quantum information."""
 
 import numpy as np
-import cupy
 
 
 def fidelity(psi, chi) -> float:
@@ -12,9 +11,9 @@ def fidelity(psi, chi) -> float:
 
     Parameters
     ----------
-    psi: np.ndarray, cupy.ndarray
+    psi: np.ndarray
         quantum state
-    chi: np.ndarray, cupy.ndarray
+    chi: np.ndarray
         quantum state
 
     Returns
@@ -24,7 +23,6 @@ def fidelity(psi, chi) -> float:
     """
     cc = psi @ chi.conj()
     fid = np.real( cc * cc.conj() )
-    if isinstance(fid, cupy.ndarray): fid = fid.item()
     return fid
 
 def infidelity(psi, chi) -> float:
@@ -35,9 +33,9 @@ def infidelity(psi, chi) -> float:
 
     Parameters
     ----------
-    psi: np.ndarray, cupy.ndarray
+    psi: np.ndarray
         quantum state
-    chi: np.ndarray, cupy.ndarray
+    chi: np.ndarray
         quantum state
 
     Returns
