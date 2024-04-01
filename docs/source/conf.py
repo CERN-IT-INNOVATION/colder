@@ -14,7 +14,7 @@ sys.path.insert(0, os.path.abspath("../../src/"))
 project = 'colder'
 copyright = '2023, Francesco Pio Barone'
 author = 'Francesco Pio Barone'
-release = '1.0.0'
+release = '1.0.2'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -23,7 +23,8 @@ extensions = [
   'sphinx.ext.autodoc',
   'sphinx.ext.viewcode',
   'sphinx.ext.napoleon',
-  'nbsphinx'
+  'nbsphinx',
+  'sphinx_rtd_theme'
   #'sphinxcontrib.napoleon',
 ]
 
