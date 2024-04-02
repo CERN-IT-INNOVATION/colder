@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>colder.simulation.cold &mdash; colder 1.0.0 documentation</title>
+  <title>colder.simulation.cold &mdash; colder 1.0.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
 
@@ -14,7 +14,7 @@
   
         <script src="../../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../../../_static/documentation_options.js?v=1ed6394b"></script>
         <script src="../../../_static/doctools.js?v=888ff710"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -229,19 +229,16 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">__finalize_routine</span> <span class="o">=</span> <span class="kc">None</span>
         
         <span class="c1"># choose backend</span>
-        <span class="k">assert</span> <span class="n">backend</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;scipy&#39;</span><span class="p">,</span> <span class="s1">&#39;sparse&#39;</span><span class="p">,</span> <span class="s1">&#39;qibo&#39;</span><span class="p">,</span> <span class="s1">&#39;cupy&#39;</span><span class="p">],</span> <span class="s1">&#39;not valid backend&#39;</span>
+        <span class="k">assert</span> <span class="n">backend</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;scipy&#39;</span><span class="p">,</span> <span class="s1">&#39;qibo&#39;</span><span class="p">],</span> <span class="s1">&#39;not valid backend&#39;</span>
         <span class="k">if</span> <span class="n">backend</span> <span class="o">==</span> <span class="s1">&#39;qibo&#39;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">interface</span> <span class="o">=</span> <span class="n">colder</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">qibo</span><span class="o">.</span><span class="n">interface</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">routines</span> <span class="o">=</span> <span class="n">colder</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">qibo</span><span class="o">.</span><span class="n">routines</span>
         <span class="k">elif</span> <span class="n">backend</span> <span class="o">==</span> <span class="s1">&#39;scipy&#39;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">interface</span> <span class="o">=</span> <span class="n">colder</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">scipy</span><span class="o">.</span><span class="n">interface</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">routines</span> <span class="o">=</span> <span class="n">colder</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">scipy</span><span class="o">.</span><span class="n">routines</span>
-        <span class="k">elif</span> <span class="n">backend</span> <span class="o">==</span> <span class="s1">&#39;sparse&#39;</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">backend</span> <span class="o">==</span> <span class="s1">&#39;sparse&#39;</span><span class="p">:</span> <span class="c1"># NOTE: this has been removed in v1.0.2</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">interface</span> <span class="o">=</span> <span class="n">colder</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">interface</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">routines</span> <span class="o">=</span> <span class="n">colder</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">routines</span>
-        <span class="k">elif</span> <span class="n">backend</span> <span class="o">==</span> <span class="s1">&#39;cupy&#39;</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">interface</span> <span class="o">=</span> <span class="n">colder</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">cupy</span><span class="o">.</span><span class="n">interface</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">routines</span> <span class="o">=</span> <span class="n">colder</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">cupy</span><span class="o">.</span><span class="n">routines</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;not valid backend interface&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">backend</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">backend</span></div>
@@ -390,7 +387,7 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__runtime_requirements_ham</span><span class="p">():</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;system_hamiltonians and/or ansatz_hamiltonians not computed. Run make_hamiltonians() first.&#39;</span><span class="p">)</span>
         
-        <span class="c1"># note: the .item() in the coefficient is used to get rid of numpy layer (allows mult with cupy arrays)</span>
+        <span class="c1"># note: the .item() in the coefficient is used to get rid of numpy layer</span>
         <span class="k">def</span> <span class="nf">tdh</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
             <span class="n">tsys</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span> <span class="n">system_coeffs_functions</span><span class="p">[</span><span class="n">coeff</span><span class="p">](</span><span class="n">t</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="o">*</span><span class="n">expr</span> <span class="k">for</span> <span class="n">coeff</span><span class="p">,</span> <span class="n">expr</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">system_hamiltonians</span> <span class="p">)</span>
             <span class="n">tans</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span> <span class="n">ansatz_coeffs_functions</span><span class="p">[</span><span class="n">coeff</span><span class="p">](</span><span class="n">t</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="o">*</span><span class="n">expr</span> <span class="k">for</span> <span class="n">coeff</span><span class="p">,</span> <span class="n">expr</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ansatz_hamiltonians</span> <span class="p">)</span>

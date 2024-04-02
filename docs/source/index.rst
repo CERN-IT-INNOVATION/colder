@@ -17,7 +17,7 @@ COLDER
 Welcome to colder's documentation!
 ==================================
 
-This package provides tool for Spin system simulation and optimization through a combination of Quantum Optimal Control and Counterdiabatic Driving techniques.
+This package provides tool for Spin system simulation and optimization through a combination of Quantum Optimal Control and Counterdiabatic Driving techniques (`Cepaite2023`_).
 The framework allows to prompt the system through a simplified interface and automatically compute the minimization of the Adiabatic Gauge Potential (AGP) for a given ansatz.
 
 
@@ -41,3 +41,6 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
+
+.. _Cepaite2023: https://doi.org/10.1103/PRXQuantum.4.010312

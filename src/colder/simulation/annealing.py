@@ -39,7 +39,7 @@ class annealing:
             tau (float): Total annealing time.
             P (Union[int,None], optional): Number of timesteps. Defaults to None. If provided, overrides the value of `dt`.
             dt (Union[float,None], optional): Timestep. Defaults to None. 
-            backend (str, optional): Select a backend. Defaults to 'qibo'. Available backends: `qibo`, `scipy`, `sparse`, `cupy`.
+            backend (str, optional): Select a backend. Defaults to 'qibo'. Available backends: `qibo`, `scipy`.
             backend_options (dict, optional): Dictionary of kwargs to pass to backend. Defaults to {}.
 
         Raises:
@@ -64,10 +64,8 @@ class annealing:
             self.backend_time_evolution = colder.backend.qibo.routines.timedependent_evolution
         elif backend == 'scipy':
             self.backend_time_evolution = colder.backend.scipy.routines.timedependent_evolution
-        elif backend == 'sparse':
-            self.backend_time_evolution = colder.backend.sparse.routines.timedependent_evolution
-        elif backend == 'cupy':
-            self.backend_time_evolution = colder.backend.cupy.routines.timedependent_evolution
+        #elif backend == 'sparse':
+        #    self.backend_time_evolution = colder.backend.sparse.routines.timedependent_evolution
         else:
             raise Exception('not valid backend identifier')
         

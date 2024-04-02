@@ -141,19 +141,16 @@ class cold():
         self.__finalize_routine = None
         
         # choose backend
-        assert backend in ['scipy', 'sparse', 'qibo', 'cupy'], 'not valid backend'
+        assert backend in ['scipy', 'qibo'], 'not valid backend'
         if backend == 'qibo':
             self.interface = colder.backend.qibo.interface
             self.routines = colder.backend.qibo.routines
         elif backend == 'scipy':
             self.interface = colder.backend.scipy.interface
             self.routines = colder.backend.scipy.routines
-        elif backend == 'sparse':
+        elif backend == 'sparse': # NOTE: this has been removed in v1.0.2
             self.interface = colder.backend.sparse.interface
             self.routines = colder.backend.sparse.routines
-        elif backend == 'cupy':
-            self.interface = colder.backend.cupy.interface
-            self.routines = colder.backend.cupy.routines
         else:
             raise Exception('not valid backend interface')
         self.backend : str = backend
@@ -284,7 +281,7 @@ class cold():
         if self.__runtime_requirements_ham():
             raise Exception('system_hamiltonians and/or ansatz_hamiltonians not computed. Run make_hamiltonians() first.')
         
-        # note: the .item() in the coefficient is used to get rid of numpy layer (allows mult with cupy arrays)
+        # note: the .item() in the coefficient is used to get rid of numpy layer
         def tdh(t):
             tsys = sum( system_coeffs_functions[coeff](t).item()*expr for coeff, expr in self.system_hamiltonians )
             tans = sum( ansatz_coeffs_functions[coeff](t).item()*expr for coeff, expr in self.ansatz_hamiltonians )

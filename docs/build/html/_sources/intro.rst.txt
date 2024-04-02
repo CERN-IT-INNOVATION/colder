@@ -1,7 +1,7 @@
 Counterdiabatic Optimized Local Driving annealER
 ################################################
 
-This package provides tool for Spin system simulation and optimization through a combination of Quantum Optimal Control and Counterdiabatic Driving techniques.
+This package provides tool for Spin system simulation and optimization through a combination of Quantum Optimal Control and Counterdiabatic Driving technique (see the reference paper: `Cepaite2023`_).
 The framework allows to prompt the system through a simplified interface and automatically compute the minimization of the Adiabatic Gauge Potential (AGP) for a given ansatz.
 
 
@@ -218,3 +218,4 @@ The user will find Jupyter notebooks in the `examples` folder on the GitHub repo
 
 
 .. _1D Ising model: https://github.com/CERN-IT-INNOVATION/colder/blob/main/examples/ising-1d.ipynb
+.. _Cepaite2023: https://doi.org/10.1103/PRXQuantum.4.010312

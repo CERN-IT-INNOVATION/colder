@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>colder.simulation.annealing &mdash; colder 1.0.0 documentation</title>
+  <title>colder.simulation.annealing &mdash; colder 1.0.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
 
@@ -14,7 +14,7 @@
   
         <script src="../../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../../../_static/documentation_options.js?v=1ed6394b"></script>
         <script src="../../../_static/doctools.js?v=888ff710"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -121,7 +121,7 @@
 <span class="sd">            tau (float): Total annealing time.</span>
 <span class="sd">            P (Union[int,None], optional): Number of timesteps. Defaults to None. If provided, overrides the value of `dt`.</span>
 <span class="sd">            dt (Union[float,None], optional): Timestep. Defaults to None. </span>
-<span class="sd">            backend (str, optional): Select a backend. Defaults to &#39;qibo&#39;. Available backends: `qibo`, `scipy`, `sparse`, `cupy`.</span>
+<span class="sd">            backend (str, optional): Select a backend. Defaults to &#39;qibo&#39;. Available backends: `qibo`, `scipy`.</span>
 <span class="sd">            backend_options (dict, optional): Dictionary of kwargs to pass to backend. Defaults to {}.</span>
 
 <span class="sd">        Raises:</span>
@@ -146,10 +146,8 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">backend_time_evolution</span> <span class="o">=</span> <span class="n">colder</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">qibo</span><span class="o">.</span><span class="n">routines</span><span class="o">.</span><span class="n">timedependent_evolution</span>
         <span class="k">elif</span> <span class="n">backend</span> <span class="o">==</span> <span class="s1">&#39;scipy&#39;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">backend_time_evolution</span> <span class="o">=</span> <span class="n">colder</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">scipy</span><span class="o">.</span><span class="n">routines</span><span class="o">.</span><span class="n">timedependent_evolution</span>
-        <span class="k">elif</span> <span class="n">backend</span> <span class="o">==</span> <span class="s1">&#39;sparse&#39;</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">backend_time_evolution</span> <span class="o">=</span> <span class="n">colder</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">routines</span><span class="o">.</span><span class="n">timedependent_evolution</span>
-        <span class="k">elif</span> <span class="n">backend</span> <span class="o">==</span> <span class="s1">&#39;cupy&#39;</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">backend_time_evolution</span> <span class="o">=</span> <span class="n">colder</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">cupy</span><span class="o">.</span><span class="n">routines</span><span class="o">.</span><span class="n">timedependent_evolution</span>
+        <span class="c1">#elif backend == &#39;sparse&#39;:</span>
+        <span class="c1">#    self.backend_time_evolution = colder.backend.sparse.routines.timedependent_evolution</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;not valid backend identifier&#39;</span><span class="p">)</span></div>
 
